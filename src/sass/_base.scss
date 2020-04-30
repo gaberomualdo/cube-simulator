@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+// variables
+$cube-green: rgb(99, 250, 119);
+$cube-orange: rgb(249, 128, 42);
+$cube-blue: rgb(58, 194, 254);
+$cube-red: rgb(236, 97, 100);
+$cube-white: rgb(227, 227, 219);
+$cube-yellow: rgb(203, 247, 76);
+
+$page-bg: #ecf0f1;
+$container-bg: #f7f9f9;
+
+$medium-grey: #7b979e;
+$medium-light-grey: #9db2b7;
+$light-grey: #a8bbbf;
+$light-lightest-grey: #bfcdd0;
+$lightest-grey: #d6dee1;
+
+// basically REM but in px
+$base-size: 16;
+$br-base-size: 4;
+
+// custom selection
+::selection {
+  background-color: rgba($medium-grey, 0.2);
+}
+
+// custom scrollbar
+::-webkit-scrollbar {
+  width: #{0.625 * $base-size}px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $lightest-grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $medium-light-grey;
+  border-radius: #{0.75 * $br-base-size}px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $medium-grey;
+}
