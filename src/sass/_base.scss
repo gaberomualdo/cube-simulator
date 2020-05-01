@@ -62,21 +62,3 @@ $page-phone-width: 650px;
 ::selection {
   background-color: rgba($medium-grey, 0.2);
 }
-
-// custom scrollbar
-::-webkit-scrollbar {
-  width: bsize(0.625);
-}
-
-::-webkit-scrollbar-track {
-  background-color: $lightest-grey;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: $medium-light-grey;
-  border-radius: br-bsize(0.75);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: $medium-grey;
-}
