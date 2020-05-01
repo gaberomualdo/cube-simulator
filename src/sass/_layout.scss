@@ -36,9 +36,5 @@ body {
       flex-basis: 50%;
       overflow-y: auto;
     }
-
-    & .col:nth-child(2) {
-      background-color: lighten($page-grey, 2%);
-    }
   }
 }
