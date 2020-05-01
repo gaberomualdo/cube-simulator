@@ -8,18 +8,55 @@ $cube-red: rgb(236, 97, 100);
 $cube-white: rgb(227, 227, 219);
 $cube-yellow: rgb(203, 247, 76);
 
-$page-bg: #ecf0f1;
-$container-bg: #f7f9f9;
+$grey-base-color: #9db2b7;
 
-$medium-grey: #7b979e;
-$medium-light-grey: #9db2b7;
-$light-grey: #a8bbbf;
-$light-lightest-grey: #bfcdd0;
-$lightest-grey: #d6dee1;
+$page-grey: lighten($grey-base-color, 27%);
+$container-grey: lighten($grey-base-color, 32.5%);
+$medium-grey: darken($grey-base-color, 11.5%);
+$medium-light-grey: darken($grey-base-color, 0%);
+$light-grey: lighten($grey-base-color, 3.75%);
+$light-lightest-grey: lighten($grey-base-color, 11.5%);
+$lightest-grey: lighten($grey-base-color, 19.25%);
 
-// basically REM but in px
+// base sizes (similar to REM, but includes one for border radii as well)
 $base-size: 16;
 $br-base-size: 4;
+
+// return multiples of base sizes (default as px, can return just number instead)
+@function bsize($coefficient, $in-px: true) {
+  @if $in-px {
+    @return #{$coefficient * $base-size}px;
+  }
+  @return $coefficient * $base-size;
+}
+
+@function br-bsize($coefficient, $in-px: true) {
+  @if $in-px {
+    @return #{$coefficient * $br-base-size}px;
+  }
+  @return $coefficient * $br-base-size;
+}
+
+// page sizes
+$page-mobile-width: 1000px;
+$page-phone-width: 650px;
+
+// page size mixins
+@mixin in-mobile {
+  @media only screen and (min-width: #{$page-phone-width + 1px}) and (max-width: $page-mobile-width) {
+    @content;
+  }
+}
+@mixin in-phone {
+  @media only screen and (max-width: $page-phone-width) {
+    @content;
+  }
+}
+@mixin in-mobile-and-phone {
+  @media only screen and (max-width: $page-mobile-width) {
+    @content;
+  }
+}
 
 // custom selection
 ::selection {
@@ -28,7 +65,7 @@ $br-base-size: 4;
 
 // custom scrollbar
 ::-webkit-scrollbar {
-  width: #{0.625 * $base-size}px;
+  width: bsize(0.625);
 }
 
 ::-webkit-scrollbar-track {
@@ -37,7 +74,7 @@ $br-base-size: 4;
 
 ::-webkit-scrollbar-thumb {
   background-color: $medium-light-grey;
-  border-radius: #{0.75 * $br-base-size}px;
+  border-radius: br-bsize(0.75);
 }
 
 ::-webkit-scrollbar-thumb:hover {
