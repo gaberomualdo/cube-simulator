@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 // variables
-$black: #000000;
-$white: #ffffff;
-
 $cube-green: rgb(99, 250, 119);
 $cube-orange: rgb(249, 128, 42);
 $cube-blue: rgb(58, 194, 254);
@@ -15,6 +12,7 @@ $grey-base-color: #9db2b7;
 
 $page-grey: lighten($grey-base-color, 27%);
 $container-grey: lighten($grey-base-color, 32.5%);
+$dark-medium-grey: darken($grey-base-color, 25%);
 $medium-grey: darken($grey-base-color, 11.5%);
 $medium-light-grey: darken($grey-base-color, 0%);
 $light-grey: lighten($grey-base-color, 3.75%);
