@@ -2,6 +2,10 @@
 ::selection {
   background-color: rgba(123, 151, 158, 0.2); }
 
+hr {
+  border: none;
+  border-top: 1px solid #ecf0f1; }
+
 * {
   box-sizing: border-box;
   font-family: inherit; }
@@ -40,40 +44,92 @@ body {
         body .container .col {
           padding: 12px; } }
 
-body .container .col:nth-child(1) .logo {
-  height: 52px;
-  padding: 0 8px 12px 8px;
-  border-bottom: 1px solid #ecf0f1; }
-  @media only screen and (max-width: 1000px) {
-    body .container .col:nth-child(1) .logo {
+body .container .col:nth-child(1) {
+  display: flex;
+  flex-direction: column; }
+  body .container .col:nth-child(1) .logo {
+    flex-basis: 52px;
+    padding: 0 8px 12px 8px;
+    border-bottom: 1px solid #ecf0f1; }
+    @media only screen and (max-width: 1000px) {
+      body .container .col:nth-child(1) .logo {
+        height: 48px;
+        padding-bottom: 8px;
+        text-align: center; } }
+    body .container .col:nth-child(1) .logo > * {
+      display: block;
+      float: left; }
+      @media only screen and (max-width: 1000px) {
+        body .container .col:nth-child(1) .logo > * {
+          display: inline-block;
+          float: none;
+          vertical-align: top; } }
+    body .container .col:nth-child(1) .logo img {
+      height: 40px;
+      width: auto;
+      margin-right: 16px; }
+      @media only screen and (max-width: 1000px) {
+        body .container .col:nth-child(1) .logo img {
+          margin-right: 10px; } }
+    body .container .col:nth-child(1) .logo h1 {
+      margin: 0;
+      line-height: 40px;
+      font-size: 21.6px;
+      color: #5a747b;
+      font-weight: 500; }
+      @media only screen and (max-width: 1000px) {
+        body .container .col:nth-child(1) .logo h1 {
+          font-size: 20px;
+          padding-right: 24px; } }
+  body .container .col:nth-child(1) .moves {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 24px 0 0 0; }
+    @media only screen and (max-width: 1000px) {
+      body .container .col:nth-child(1) .moves {
+        margin: 12px 0 0 0; } }
+    body .container .col:nth-child(1) .moves .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       height: 48px;
-      padding-bottom: 8px;
-      text-align: center; } }
-  body .container .col:nth-child(1) .logo > * {
-    display: block;
-    float: left; }
-    @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(1) .logo > * {
-        display: inline-block;
-        float: none;
-        vertical-align: top; } }
-  body .container .col:nth-child(1) .logo img {
-    height: 40px;
-    width: auto;
-    margin-right: 16px; }
-    @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(1) .logo img {
-        margin-right: 10px; } }
-  body .container .col:nth-child(1) .logo h1 {
-    margin: 0;
-    line-height: 40px;
-    font-size: 21.6px;
-    color: #5a747b;
-    font-weight: 500; }
-    @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(1) .logo h1 {
-        font-size: 20px;
-        padding-right: 24px; } }
+      list-style: none;
+      padding: 0;
+      margin: 0; }
+      body .container .col:nth-child(1) .moves .row li {
+        color: #44585d; }
+        body .container .col:nth-child(1) .moves .row li:not(:last-child) {
+          margin-right: 24px; }
+        body .container .col:nth-child(1) .moves .row li > * {
+          display: block;
+          float: left;
+          margin: 0;
+          height: 48px;
+          line-height: 48px; }
+        body .container .col:nth-child(1) .moves .row li button {
+          margin-right: 12px;
+          border: 1px solid transparent;
+          background-color: #f1f4f5;
+          color: inherit;
+          padding: 0 16px;
+          border-radius: 8px;
+          font-size: 18.4px;
+          outline: none;
+          cursor: pointer;
+          box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
+          transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
+          body .container .col:nth-child(1) .moves .row li button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
+          body .container .col:nth-child(1) .moves .row li button:active {
+            transform: translateY(0);
+            background-color: #e5ebec; }
+        body .container .col:nth-child(1) .moves .row li p {
+          opacity: 0.5; }
+          body .container .col:nth-child(1) .moves .row li p strong {
+            font-weight: 500; }
 
 body .container .col:nth-child(2) {
   background-color: #f2f5f6;
