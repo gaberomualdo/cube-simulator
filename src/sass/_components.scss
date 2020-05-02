@@ -38,6 +38,9 @@ body .container .col {
 
         @include in-mobile-and-phone {
           font-size: bsize(1.25);
+
+          // padding to compensate for centering to make text seem more centered
+          padding-right: bsize(1.5);
         }
       }
     }
