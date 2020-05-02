@@ -67,17 +67,35 @@ body .container .col {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: bsize(3);
+        min-height: bsize(3);
 
         list-style: none;
         @include p0;
         @include m0;
 
+        @include in-mobile-and-phone {
+          &:not(:last-child) {
+            margin-bottom: bsize(1.5);
+
+            @include in-phone {
+              margin-bottom: bsize(0.75);
+            }
+          }
+        }
+
         li {
           color: $dark-grey;
 
+          @include in-phone {
+            flex-basis: 100%;
+          }
+
           &:not(:last-child) {
             margin-right: bsize(1.5);
+
+            @include in-phone {
+              margin-right: bsize(0.75);
+            }
           }
 
           & > * {
@@ -85,6 +103,10 @@ body .container .col {
             margin: 0;
             height: bsize(3);
             line-height: bsize(3);
+
+            @media only screen and (max-width: 530px), (min-width: #{$page-mobile-width + 1px}) and (max-width: 1075px) {
+              clear: both;
+            }
           }
 
           button {
@@ -92,7 +114,8 @@ body .container .col {
             border: 1px solid transparent;
             background-color: lighten($page-grey, 1.5%);
             color: inherit;
-            padding: 0 bsize(1);
+            text-align: center;
+            width: bsize(3);
             border-radius: br-bsize(2);
             font-size: bsize(1.15);
             outline: none;
@@ -109,9 +132,14 @@ body .container .col {
               transform: translateY(-1px);
               box-shadow: 0 bsize(0.1) bsize(0.4) rgba($dark-grey, 0.45);
             }
-            &:active {
+            &:active,
+            &:focus {
               transform: translateY(0);
               background-color: darken($page-grey, 2.5%);
+            }
+
+            @include in-phone {
+              width: 100%;
             }
           }
 
@@ -120,6 +148,10 @@ body .container .col {
 
             strong {
               font-weight: 500;
+            }
+
+            @include in-phone {
+              display: none;
             }
           }
         }
