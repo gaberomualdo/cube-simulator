@@ -23,74 +23,76 @@ body {
   @media only screen and (max-width: 650px) {
     body {
       padding: 14px; } }
-  body .container {
-    background-color: #fdfdfd;
-    flex-basis: 100%;
-    width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);
-    border: 1px solid #d6dee1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row; }
-    @media only screen and (max-width: 1000px) {
-      body .container {
-        flex-direction: column; } }
-    body .container .col {
-      padding: 24px;
-      flex-basis: 50%;
-      overflow-y: auto; }
-      @media only screen and (max-width: 650px) {
-        body .container .col {
-          padding: 12px; } }
 
-body .container .col:nth-child(1) {
+.container {
+  background-color: #fdfdfd;
+  flex-basis: 100%;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);
+  border: 1px solid #d6dee1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row; }
+  @media only screen and (max-width: 1000px) {
+    .container {
+      flex-direction: column; } }
+
+.col {
+  padding: 24px;
+  flex-basis: 50%;
+  overflow-y: auto; }
+  @media only screen and (max-width: 650px) {
+    .col {
+      padding: 12px; } }
+
+.col:nth-child(1) {
   display: flex;
   flex-direction: column; }
-  body .container .col:nth-child(1) .logo {
+  .col:nth-child(1) .logo {
     flex-basis: 52px;
     padding: 0 8px 12px 8px;
     border-bottom: 1px solid #ecf0f1; }
     @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(1) .logo {
+      .col:nth-child(1) .logo {
         height: 48px;
         padding-bottom: 8px;
         text-align: center; } }
-    body .container .col:nth-child(1) .logo > * {
+    .col:nth-child(1) .logo > * {
       display: block;
       float: left; }
       @media only screen and (max-width: 1000px) {
-        body .container .col:nth-child(1) .logo > * {
+        .col:nth-child(1) .logo > * {
           display: inline-block;
           float: none;
           vertical-align: top; } }
-    body .container .col:nth-child(1) .logo img {
+    .col:nth-child(1) .logo img {
       height: 40px;
       width: auto;
       margin-right: 16px; }
       @media only screen and (max-width: 1000px) {
-        body .container .col:nth-child(1) .logo img {
+        .col:nth-child(1) .logo img {
           margin-right: 10px; } }
-    body .container .col:nth-child(1) .logo h1 {
+    .col:nth-child(1) .logo h1 {
       margin: 0;
       line-height: 40px;
       font-size: 21.6px;
       color: #5a747b;
       font-weight: 500; }
       @media only screen and (max-width: 1000px) {
-        body .container .col:nth-child(1) .logo h1 {
+        .col:nth-child(1) .logo h1 {
           font-size: 20px;
           padding-right: 24px; } }
-  body .container .col:nth-child(1) .moves {
+  .col:nth-child(1) .moves {
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 24px 0 0 0; }
     @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(1) .moves {
+      .col:nth-child(1) .moves {
         margin: 12px 0 0 0; } }
-    body .container .col:nth-child(1) .moves .row {
+    .col:nth-child(1) .moves .row {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -99,31 +101,31 @@ body .container .col:nth-child(1) {
       padding: 0;
       margin: 0; }
       @media only screen and (max-width: 1000px) {
-        body .container .col:nth-child(1) .moves .row:not(:last-child) {
+        .col:nth-child(1) .moves .row:not(:last-child) {
           margin-bottom: 24px; } }
   @media only screen and (max-width: 1000px) and (max-width: 650px) {
-    body .container .col:nth-child(1) .moves .row:not(:last-child) {
+    .col:nth-child(1) .moves .row:not(:last-child) {
       margin-bottom: 12px; } }
-      body .container .col:nth-child(1) .moves .row li {
+      .col:nth-child(1) .moves .row li {
         color: #44585d; }
         @media only screen and (max-width: 650px) {
-          body .container .col:nth-child(1) .moves .row li {
+          .col:nth-child(1) .moves .row li {
             flex-basis: 100%; } }
-        body .container .col:nth-child(1) .moves .row li:not(:last-child) {
+        .col:nth-child(1) .moves .row li:not(:last-child) {
           margin-right: 24px; }
           @media only screen and (max-width: 650px) {
-            body .container .col:nth-child(1) .moves .row li:not(:last-child) {
+            .col:nth-child(1) .moves .row li:not(:last-child) {
               margin-right: 12px; } }
-        body .container .col:nth-child(1) .moves .row li > * {
+        .col:nth-child(1) .moves .row li > * {
           display: block;
           float: left;
           margin: 0;
           height: 48px;
           line-height: 48px; }
           @media only screen and (max-width: 530px), (min-width: 1001px) and (max-width: 1075px) {
-            body .container .col:nth-child(1) .moves .row li > * {
+            .col:nth-child(1) .moves .row li > * {
               clear: both; } }
-        body .container .col:nth-child(1) .moves .row li button {
+        .col:nth-child(1) .moves .row li button {
           margin-right: 12px;
           border: 1px solid transparent;
           background-color: #f1f4f5;
@@ -136,28 +138,28 @@ body .container .col:nth-child(1) {
           cursor: pointer;
           box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
           transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
-          body .container .col:nth-child(1) .moves .row li button:hover {
+          .col:nth-child(1) .moves .row li button:hover {
             transform: translateY(-1px);
             box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
-          body .container .col:nth-child(1) .moves .row li button:active, body .container .col:nth-child(1) .moves .row li button:focus {
+          .col:nth-child(1) .moves .row li button:active, .col:nth-child(1) .moves .row li button:focus {
             transform: translateY(0);
             background-color: #e5ebec; }
           @media only screen and (max-width: 650px) {
-            body .container .col:nth-child(1) .moves .row li button {
+            .col:nth-child(1) .moves .row li button {
               width: 100%; } }
-        body .container .col:nth-child(1) .moves .row li p {
+        .col:nth-child(1) .moves .row li p {
           opacity: 0.5; }
-          body .container .col:nth-child(1) .moves .row li p strong {
+          .col:nth-child(1) .moves .row li p strong {
             font-weight: 500; }
           @media only screen and (max-width: 650px) {
-            body .container .col:nth-child(1) .moves .row li p {
+            .col:nth-child(1) .moves .row li p {
               display: none; } }
 
-body .container .col:nth-child(2) {
+.col:nth-child(2) {
   background-color: #f2f5f6;
   display: flex;
   flex-direction: column; }
-  body .container .col:nth-child(2) .row {
+  .col:nth-child(2) .row {
     flex-basis: 50%;
     flex-shrink: 1;
     width: 100%;
@@ -166,20 +168,20 @@ body .container .col:nth-child(2) {
     overflow: hidden;
     font-size: 0; }
     @media only screen and (max-width: 1000px) {
-      body .container .col:nth-child(2) .row {
+      .col:nth-child(2) .row {
         height: auto;
         max-height: 400px; } }
-    body .container .col:nth-child(2) .row:not(:last-child) {
+    .col:nth-child(2) .row:not(:last-child) {
       margin-bottom: 24px; }
       @media only screen and (max-width: 650px) {
-        body .container .col:nth-child(2) .row:not(:last-child) {
+        .col:nth-child(2) .row:not(:last-child) {
           margin-bottom: 12px; } }
-    body .container .col:nth-child(2) .row img.cube-image {
+    .col:nth-child(2) .row img.cube-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
       background-color: #dfe6e8; }
-    body .container .col:nth-child(2) .row .caption {
+    .col:nth-child(2) .row .caption {
       position: absolute;
       right: 0;
       bottom: 0;

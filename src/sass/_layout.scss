@@ -18,31 +18,29 @@ body {
   @include in-phone {
     padding: bsize(0.875);
   }
+}
+.container {
+  background-color: $container-grey;
+  flex-basis: 100%;
+  width: 100%;
+  border-radius: br-bsize(1.5);
+  box-shadow: 0 bsize(0.25) bsize(1.75) rgba($medium-grey, 0.25);
+  border: 1px solid $lightest-grey;
+  overflow: hidden;
 
-  .container {
-    background-color: $container-grey;
-    flex-basis: 100%;
-    width: 100%;
-    border-radius: br-bsize(1.5);
-    box-shadow: 0 bsize(0.25) bsize(1.75) rgba($medium-grey, 0.25);
-    border: 1px solid $lightest-grey;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
 
-    display: flex;
-    flex-direction: row;
+  @include in-mobile-and-phone {
+    flex-direction: column;
+  }
+}
+.col {
+  padding: bsize(1.5);
+  flex-basis: 50%;
+  overflow-y: auto;
 
-    @include in-mobile-and-phone {
-      flex-direction: column;
-    }
-
-    & .col {
-      padding: bsize(1.5);
-      flex-basis: 50%;
-      overflow-y: auto;
-
-      @include in-phone {
-        padding: bsize(0.75);
-      }
-    }
+  @include in-phone {
+    padding: bsize(0.75);
   }
 }
