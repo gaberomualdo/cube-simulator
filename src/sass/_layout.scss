@@ -15,6 +15,10 @@ body {
     height: auto;
   }
 
+  @include in-phone {
+    padding: bsize(0.875);
+  }
+
   .container {
     background-color: $container-grey;
     flex-basis: 100%;
@@ -35,6 +39,10 @@ body {
       padding: bsize(1.5);
       flex-basis: 50%;
       overflow-y: auto;
+
+      @include in-phone {
+        padding: bsize(0.75);
+      }
     }
   }
 }

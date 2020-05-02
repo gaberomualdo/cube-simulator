@@ -17,9 +17,19 @@ body .container .col {
       position: relative;
       border-radius: br-bsize(1);
       overflow: hidden;
+      font-size: 0;
+
+      @include in-mobile-and-phone {
+        height: auto;
+        max-height: bsize(25);
+      }
 
       &:not(:last-child) {
         margin-bottom: bsize(1.5);
+
+        @include in-phone {
+          margin-bottom: bsize(0.75);
+        }
       }
 
       img.cube-image {
