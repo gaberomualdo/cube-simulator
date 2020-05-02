@@ -192,6 +192,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center 70%;
         background-color: darken($container-grey, 10%);
       }
 
@@ -201,7 +202,7 @@
         bottom: 0;
         font-size: bsize(0.75);
         color: $lightest-grey;
-        background-color: rgba($dark-medium-grey, 0.625);
+        background-color: rgba($page-grey, 0.15);
         border-top-left-radius: br-bsize(1);
         margin: 0;
         padding: 0 bsize(0.5);
