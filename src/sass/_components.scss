@@ -1,15 +1,55 @@
-// first column
 body .container .col {
+  // first column with move buttons and logo bar
   &:nth-child(1) {
-    display: flex;
-    flex-direction: column;
+    .logo {
+      height: bsize(3.25);
+      padding: 0 bsize(0.5) bsize(0.75) bsize(0.5);
+      border-bottom: 1px solid $page-grey;
+
+      @include in-mobile-and-phone {
+        height: bsize(3);
+        padding-bottom: bsize(0.5);
+        text-align: center;
+      }
+
+      & > * {
+        @include dbfl;
+
+        @include in-mobile-and-phone {
+          @include dibfnvt;
+        }
+      }
+
+      img {
+        height: bsize(2.5);
+        width: auto;
+        margin-right: bsize(1);
+        @include in-mobile-and-phone {
+          margin-right: bsize(0.625);
+        }
+      }
+
+      h1 {
+        @include m0;
+        line-height: bsize(2.5);
+        font-size: bsize(1.35);
+        color: $dark-medium-grey;
+        font-weight: 500;
+
+        @include in-mobile-and-phone {
+          font-size: bsize(1.25);
+        }
+      }
+    }
   }
 
+  // second column with images
   &:nth-child(2) {
     background-color: lighten($page-grey, 2%);
     display: flex;
     flex-direction: column;
 
+    // each row is an image with a caption
     .row {
       flex-basis: 50%;
       flex-shrink: 1;
@@ -51,10 +91,6 @@ body .container .col {
         padding: 0 bsize(0.5);
         height: bsize(1.5);
         line-height: bsize(1.65);
-
-        strong {
-          font-weight: 400;
-        }
       }
     }
   }

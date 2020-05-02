@@ -40,9 +40,39 @@ body {
         body .container .col {
           padding: 12px; } }
 
-body .container .col:nth-child(1) {
-  display: flex;
-  flex-direction: column; }
+body .container .col:nth-child(1) .logo {
+  height: 52px;
+  padding: 0 8px 12px 8px;
+  border-bottom: 1px solid #ecf0f1; }
+  @media only screen and (max-width: 1000px) {
+    body .container .col:nth-child(1) .logo {
+      height: 48px;
+      padding-bottom: 8px;
+      text-align: center; } }
+  body .container .col:nth-child(1) .logo > * {
+    display: block;
+    float: left; }
+    @media only screen and (max-width: 1000px) {
+      body .container .col:nth-child(1) .logo > * {
+        display: inline-block;
+        float: none;
+        vertical-align: top; } }
+  body .container .col:nth-child(1) .logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 16px; }
+    @media only screen and (max-width: 1000px) {
+      body .container .col:nth-child(1) .logo img {
+        margin-right: 10px; } }
+  body .container .col:nth-child(1) .logo h1 {
+    margin: 0;
+    line-height: 40px;
+    font-size: 21.6px;
+    color: #5a747b;
+    font-weight: 500; }
+    @media only screen and (max-width: 1000px) {
+      body .container .col:nth-child(1) .logo h1 {
+        font-size: 20px; } }
 
 body .container .col:nth-child(2) {
   background-color: #f2f5f6;
@@ -82,5 +112,3 @@ body .container .col:nth-child(2) {
       padding: 0 8px;
       height: 24px;
       line-height: 26.4px; }
-      body .container .col:nth-child(2) .row .caption strong {
-        font-weight: 400; }

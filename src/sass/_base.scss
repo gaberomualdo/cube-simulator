@@ -59,6 +59,38 @@ $page-phone-width: 650px;
   }
 }
 
+// commonly used CSS lines as mixins
+@mixin d-block-f-left {
+  display: block;
+  float: left;
+}
+@mixin dbfl {
+  @include d-block-f-left;
+}
+
+@mixin d-inline-block-f-none-va-top {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+@mixin dibfnvt {
+  @include d-inline-block-f-none-va-top;
+}
+
+@mixin margin-0 {
+  margin: 0;
+}
+@mixin m0 {
+  @include margin-0;
+}
+
+@mixin padding-0 {
+  padding: 0;
+}
+@mixin p0 {
+  @include padding-0;
+}
+
 // custom selection
 ::selection {
   background-color: rgba($medium-grey, 0.2);
