@@ -80,6 +80,8 @@ class Cube {
     this.cube = cube;
   }
 
+  moveFace(color) {}
+
   toFacesObj() {
     let faces = {};
     for (let x = 0; x < 3; x++) {
@@ -122,7 +124,16 @@ class Cube {
               col = x;
             } else if (axis === 'x') {
               row = 2 - y;
-              col = 2 - z;
+              col = z;
+            }
+
+            // more presets for back view faces orientation problems
+            if (curFace === 'o' || curFace === 'b') {
+              row = 2 - row;
+            } else if (curFace === 'y') {
+              [row, col] = [col, row];
+              row = 2 - row;
+              col = 2 - col;
             }
 
             faces[curFace][row][col] = piece[axis];

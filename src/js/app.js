@@ -26,10 +26,31 @@ document.querySelectorAll('.col:first-child .moves .row .move button').forEach((
   });
 });
 
-window.addEventListener('load', async () => {
+const update = async () => {
   const facesObj = cube.toFacesObj();
   document.querySelector('img.cube-image.front-view').src = await getCubeImageFrontURL(facesObj);
   document.querySelector('img.cube-image.back-view').src = await getCubeImageBackURL(facesObj);
+};
+
+window.addEventListener('load', async function () {
+  await update();
+  setTimeout(async () => {
+    console.log('test');
+
+    //
+    // cube.cube[1][2][0].y = 'g';
+    // cube.cube[2][2][0].y = 'w';
+
+    // cube.cube[0][2][1].y = 'o';
+    // cube.cube[1][2][1].y = 'b';
+    // cube.cube[2][2][1].y = 'y';
+
+    // cube.cube[0][2][2].y = 'w';
+    // cube.cube[1][2][2].y = 'r';
+    // cube.cube[2][2][2].y = 'g';
+
+    await update();
+  }, 1000);
 });
 
 // cube visualization
@@ -89,7 +110,7 @@ const sendVisualizerHTTPRequest = async (facesObj) => {
     body: JSON.stringify(reqBody),
   });
 
-  if (response.status == 200) {
+  if (response.status === 200) {
     const responseJSON = await response.json();
 
     if (!responseJSON['output_path']) {
