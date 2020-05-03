@@ -3,6 +3,10 @@ require('regenerator-runtime/runtime');
 const Cube = require('./cube');
 const url = require('url');
 
+// this function sets a given cube to an example valid cube arrangement
+// (copied from a physical cube)
+const setExampleCube = require('./examplecube');
+
 // cube
 const cube = new Cube();
 
@@ -26,109 +30,17 @@ document.querySelectorAll('.col:first-child .moves .row .move button').forEach((
   });
 });
 
-const update = async () => {
+window.addEventListener('load', async function () {
+  await refreshCubeImage();
+});
+
+// cube visualization
+const refreshCubeImage = async () => {
   const facesObj = cube.toFacesObj();
   document.querySelector('img.cube-image.front-view').src = await getCubeImageFrontURL(facesObj);
   document.querySelector('img.cube-image.back-view').src = await getCubeImageBackURL(facesObj);
 };
 
-window.addEventListener('load', async function () {
-  await update();
-  setTimeout(async () => {
-    console.log('test');
-
-    // first row of pieces on green face
-    cube.cube[0][0][0].z = 'r';
-    cube.cube[0][0][0].y = 'w';
-    cube.cube[0][0][0].x = 'b';
-
-    cube.cube[1][0][0].y = 'b';
-    cube.cube[1][0][0].z = 'r';
-
-    cube.cube[2][0][0].z = 'g';
-    cube.cube[2][0][0].y = 'o';
-    cube.cube[2][0][0].x = 'y';
-
-    // second row on green face
-    cube.cube[0][1][0].z = 'r';
-    cube.cube[0][1][0].x = 'w';
-
-    cube.cube[1][1][0].z = 'g';
-
-    cube.cube[2][1][0].z = 'y';
-    cube.cube[2][1][0].x = 'g';
-
-    // third row of pieces on green face
-    cube.cube[0][2][0].z = 'g';
-    cube.cube[0][2][0].y = 'y';
-    cube.cube[0][2][0].x = 'r';
-
-    cube.cube[1][2][0].y = 'y';
-    cube.cube[1][2][0].z = 'b';
-
-    cube.cube[2][2][0].z = 'w';
-    cube.cube[2][2][0].y = 'r';
-    cube.cube[2][2][0].x = 'g';
-
-    // next layer
-    cube.cube[0][0][1].y = 'o';
-    cube.cube[0][0][1].x = 'g';
-
-    cube.cube[0][1][1].x = 'o';
-
-    cube.cube[0][2][1].y = 'o';
-    cube.cube[0][2][1].x = 'b';
-
-    cube.cube[1][2][1].y = 'w';
-    cube.cube[1][0][1].y = 'y';
-
-    cube.cube[2][0][1].y = 'y';
-    cube.cube[2][0][1].x = 'o';
-
-    cube.cube[2][1][1].x = 'r';
-
-    cube.cube[2][2][1].y = 'g';
-    cube.cube[2][2][1].x = 'w';
-
-    // last layer
-    // first row of pieces on blue face
-    cube.cube[0][0][2].z = 'o';
-    cube.cube[0][0][2].y = 'g';
-    cube.cube[0][0][2].x = 'w';
-
-    cube.cube[1][0][2].y = 'r';
-    cube.cube[1][0][2].z = 'y';
-
-    cube.cube[2][0][2].z = 'b';
-    cube.cube[2][0][2].y = 'y';
-    cube.cube[2][0][2].x = 'r';
-
-    // second row on blue face
-    cube.cube[0][1][2].z = 'g';
-    cube.cube[0][1][2].x = 'r';
-
-    cube.cube[1][1][2].z = 'b';
-
-    cube.cube[2][1][2].z = 'o';
-    cube.cube[2][1][2].x = 'w';
-
-    // third row of pieces on blue face
-    cube.cube[0][2][2].z = 'o';
-    cube.cube[0][2][2].y = 'y';
-    cube.cube[0][2][2].x = 'b';
-
-    cube.cube[1][2][2].y = 'w';
-    cube.cube[1][2][2].z = 'b';
-
-    cube.cube[2][2][2].z = 'o';
-    cube.cube[2][2][2].y = 'w';
-    cube.cube[2][2][2].x = 'b';
-
-    await update();
-  }, 100);
-});
-
-// cube visualization
 const VISUALIZER_SERVER_URL = 'http://localhost:6556/api/';
 const VISUALIZER_LARGE_IMAGE = true;
 
