@@ -25,12 +25,15 @@ document.querySelectorAll('.col:first-child .moves .row .move button').forEach((
     }, 150);
   });
 
-  moveButton.addEventListener('click', function () {
-    alert(`${this.innerText} button was clicked`);
+  moveButton.addEventListener('click', async function () {
+    const curMoveNotation = this.innerText;
+
+    cube.makeMove(curMoveNotation);
+    await refreshCubeImage();
   });
 });
 
-window.addEventListener('load', async function () {
+window.addEventListener('load', async () => {
   await refreshCubeImage();
 });
 

@@ -76,6 +76,21 @@ class Cube {
     this.cube = cube;
   }
 
+  // scramble (make random moves)
+  scramble(amountOfMoves = 30, afterEveryMove = () => {}) {
+    const possibleNormalMoves = ['U', 'D', 'R', 'L', 'F', 'B'];
+
+    for (let i = 0; i < amountOfMoves; i++) {
+      const chosenMove = Math.floor(Math.random() * possibleNormalMoves.length);
+      const clockwise = [true, false][Math.floor(Math.random() * 2)];
+
+      const notation = `${chosenMove}${clockwise ? "'" : ''}`;
+      this.makeMove(notation);
+
+      afterEveryMove(notation);
+    }
+  }
+
   // make move with Rubik's cube notation; not case-sensitive
   makeMove(notation) {
     notation = notation.toLowerCase().trim();
@@ -99,7 +114,7 @@ class Cube {
       case 'u':
         faceColor = 'w';
         break;
-      case 'w':
+      case 'd':
         faceColor = 'y';
         break;
       default:
