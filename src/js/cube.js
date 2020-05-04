@@ -81,7 +81,7 @@ class Cube {
     const possibleNormalMoves = ['U', 'D', 'R', 'L', 'F', 'B'];
 
     for (let i = 0; i < amountOfMoves; i++) {
-      const chosenMove = Math.floor(Math.random() * possibleNormalMoves.length);
+      const chosenMove = possibleNormalMoves[Math.floor(Math.random() * possibleNormalMoves.length)];
       const clockwise = [true, false][Math.floor(Math.random() * 2)];
 
       const notation = `${chosenMove}${clockwise ? "'" : ''}`;
@@ -255,7 +255,6 @@ class Cube {
                 };
               } else if (axis === 'x') {
                 const newY = newCoords[0];
-                console.log('test');
                 const newZ = newCoords[1];
 
                 newCube[axisValue][newY][newZ] = {
