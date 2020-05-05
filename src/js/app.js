@@ -3,10 +3,6 @@ require('regenerator-runtime/runtime');
 const Cube = require('./cube');
 const url = require('url');
 
-// this function sets a given cube to an example valid cube arrangement
-// (copied from a physical cube)
-const setExampleCube = require('./examplecube');
-
 // cube
 const cube = new Cube();
 
