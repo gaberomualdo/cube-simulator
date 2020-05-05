@@ -43,9 +43,23 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.keyCode === moveKeyKeyCode) {
-      makeMoveFromButton(moveNotation);
+    if (e.key !== undefined) {
+      if (e.key.toLowerCase() !== moveKey.toLowerCase()) {
+        // not correct key
+        return;
+      }
+    } else if (e.keyCode !== undefined) {
+      if (e.keyCode !== moveKeyKeyCode) {
+        // not correct key
+        return;
+      }
+    } else {
+      // browser supports neither key or keycode
+      return;
     }
+
+    // passed checks so make move
+    makeMoveFromButton(moveNotation);
   });
 });
 
