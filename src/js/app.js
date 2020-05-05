@@ -11,10 +11,17 @@ const setExampleCube = require('./examplecube');
 const cube = new Cube();
 
 // move buttons
-document.querySelectorAll('.col:first-child .moves .row .move button').forEach((moveButton) => {
+document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) => {
   const isFocused = (element) => {
     return element === document.activeElement;
   };
+
+  const moveButton = move.querySelector('button');
+  const moveKey = move.querySelector('p strong').innerText;
+
+  const moveKeyKeyCode = moveKey.toUpperCase().charCodeAt(0);
+
+  const moveNotation = moveButton.innerText;
 
   // if focused, blur after a certain amount of time
   moveButton.addEventListener('focus', function () {
@@ -25,11 +32,20 @@ document.querySelectorAll('.col:first-child .moves .row .move button').forEach((
     }, 150);
   });
 
-  moveButton.addEventListener('click', async function () {
-    const curMoveNotation = this.innerText;
-
-    cube.makeMove(curMoveNotation);
+  // move on click and when key shorthand is pressed
+  const makeMoveFromButton = async (moveNotation) => {
+    cube.makeMove(moveNotation);
     await refreshCubeImage();
+  };
+
+  moveButton.addEventListener('click', () => {
+    makeMoveFromButton(moveNotation);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.keyCode === moveKeyKeyCode) {
+      makeMoveFromButton(moveNotation);
+    }
   });
 });
 
