@@ -108,7 +108,7 @@ module.exports = (cube, makeMoveWithNotation) => {
         // colored part is on yellow face and
         // white part is on a face other than yellow
         if (y === 2 && whiteFacePos[0] !== 'y') {
-          console.log('First Case');
+          // first case
 
           const faceToMove = toFaceFromAxis(whiteFacePos[0], whiteFacePos[1]);
           makeMoveWithNotation(toNotation(faceToMove));
@@ -117,7 +117,7 @@ module.exports = (cube, makeMoveWithNotation) => {
           // continue solving (to second case)
           solvePieceInTopCross(pieceColor);
         } else if (y === 0 && whiteFacePos[0] !== 'y') {
-          console.log('Second Case');
+          // second case
 
           // move yellow face so that piece is on adjacent face to its target face
 
@@ -126,9 +126,6 @@ module.exports = (cube, makeMoveWithNotation) => {
 
           const currentFace = toFaceFromAxis(whiteFacePos[0], whiteFacePos[1]);
           const adjacentFaceToTarget = faceMovePosition[(faceMovePosition.indexOf(pieceColor) - 1 + 4) % faceMovePosition.length];
-
-          console.log('Current Face', currentFace);
-          console.log('Adjacent to Target Face', adjacentFaceToTarget);
 
           let movesToAdjacentFaceToTarget = faceMovePosition.indexOf(adjacentFaceToTarget) - faceMovePosition.indexOf(currentFace);
 
@@ -147,7 +144,8 @@ module.exports = (cube, makeMoveWithNotation) => {
           makeMoveWithNotation(toNotation(pieceColor));
           makeMoveWithNotation(toNotation(adjacentFaceToTarget));
         } else if (y === 1) {
-          console.log('Third Case');
+          // third case
+
           // move face either clockwise or counterclockwise until the piece is on the yellow face
           const faceToMove = toFaceFromAxis(coloredFacePos[0], coloredFacePos[1]);
 
@@ -185,7 +183,7 @@ module.exports = (cube, makeMoveWithNotation) => {
           // continue solving (to fifth case)
           solvePieceInTopCross(pieceColor);
         } else if (y === 2 && whiteFacePos[0] === 'y') {
-          console.log('Fourth Case');
+          // fourth case
 
           let targetPiecePos = targetPiecePosForColors[pieceColor];
           targetPiecePos.y = 2;
@@ -200,7 +198,7 @@ module.exports = (cube, makeMoveWithNotation) => {
             solvePieceInTopCross(pieceColor);
           }
         } else if (y === 0 && whiteFacePos[0] === 'y') {
-          console.log('Fifth Case');
+          // fifth case
 
           // move yellow face until colors match up
           let targetPiecePos = targetPiecePosForColors[pieceColor];
@@ -220,12 +218,8 @@ module.exports = (cube, makeMoveWithNotation) => {
     });
   };
 
-  console.log('Green:');
   solvePieceInTopCross('g');
-  console.log('Red:');
   solvePieceInTopCross('r');
-  console.log('Blue:');
   solvePieceInTopCross('b');
-  console.log('Orange:');
   solvePieceInTopCross('o');
 };

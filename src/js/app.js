@@ -69,13 +69,13 @@ window.addEventListener('load', async () => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key == 'b') {
-    solveCube(cube, makeMoveAndRefreshImage);
+    solveCube(cube, cube.makeMove);
+    await refreshCubeImages();
   }
 });
 
 // make move and refresh
 const makeMoveAndRefreshImage = async (moveNotation) => {
-  console.log(moveNotation);
   cube.makeMove(moveNotation);
   await refreshCubeImages();
 };
