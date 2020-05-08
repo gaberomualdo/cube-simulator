@@ -1,6 +1,7 @@
 require('regenerator-runtime/runtime');
 
 const Cube = require('./cube');
+const solveCube = require('./solve');
 const url = require('url');
 
 // cube
@@ -29,13 +30,9 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
   });
 
   // move on click and when key shorthand is pressed
-  const makeMoveFromButton = async (moveNotation) => {
-    cube.makeMove(moveNotation);
-    await refreshCubeImage();
-  };
 
   moveButton.addEventListener('click', () => {
-    makeMoveFromButton(moveNotation);
+    makeMoveAndRefreshImage(moveNotation);
   });
 
   document.addEventListener('keydown', (e) => {
@@ -55,16 +52,36 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
     }
 
     // passed checks so make move
-    makeMoveFromButton(moveNotation);
+    makeMoveAndRefreshImage(moveNotation);
   });
 });
 
 window.addEventListener('load', async () => {
-  await refreshCubeImage();
+  makeMoveAndRefreshImage('U');
+  makeMoveAndRefreshImage('B');
+  makeMoveAndRefreshImage('R');
+  makeMoveAndRefreshImage('L');
+  makeMoveAndRefreshImage('U');
+  makeMoveAndRefreshImage('F');
+  makeMoveAndRefreshImage('B');
+  await refreshCubeImages();
 });
 
+document.addEventListener('keydown', (e) => {
+  if (e.key == 'b') {
+    solveCube(cube, makeMoveAndRefreshImage);
+  }
+});
+
+// make move and refresh
+const makeMoveAndRefreshImage = async (moveNotation) => {
+  console.log(moveNotation);
+  cube.makeMove(moveNotation);
+  await refreshCubeImages();
+};
+
 // cube visualization
-const refreshCubeImage = async () => {
+const refreshCubeImages = async () => {
   const facesObj = cube.toFacesObj();
   document.querySelector('img.cube-image.front-view').src = await getCubeImageFrontURL(facesObj);
   document.querySelector('img.cube-image.back-view').src = await getCubeImageBackURL(facesObj);
