@@ -64,18 +64,25 @@ window.addEventListener('load', async () => {
   makeMoveAndRefreshImage('U');
   makeMoveAndRefreshImage('F');
   makeMoveAndRefreshImage('B');
+
   await refreshCubeImages();
 });
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', async (e) => {
   if (e.key == 'b') {
-    solveCube(cube, cube.makeMove);
+    let movesToSolve = [];
+    solveCube(cube, (moveNotation) => {
+      cube.makeMove(moveNotation);
+      console.log(`${movesToSolve.length}. ${moveNotation}`);
+      movesToSolve.push(moveNotation);
+    });
     await refreshCubeImages();
   }
 });
 
 // make move and refresh
 const makeMoveAndRefreshImage = async (moveNotation) => {
+  console.log(moveNotation);
   cube.makeMove(moveNotation);
   await refreshCubeImages();
 };
