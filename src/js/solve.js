@@ -50,9 +50,9 @@ module.exports = (cube, makeMoveWithNotation) => {
       throw new Error(`Invalid axis ${axis}`);
     }
 
-    if (axisPos == 0) {
+    if (axisPos === 0) {
       return axisWithFaces.start;
-    } else if (axisPos == 2) {
+    } else if (axisPos === 2) {
       return axisWithFaces.end;
     }
 
@@ -90,7 +90,7 @@ module.exports = (cube, makeMoveWithNotation) => {
 
   // get inverse of a move
   const getInverseOfNotation = (notation) => {
-    if (notation.length == 1) {
+    if (notation.length === 1) {
       return notation + "'";
     } else {
       return notation[0];
@@ -375,6 +375,82 @@ module.exports = (cube, makeMoveWithNotation) => {
     });
   };
 
+  // solve second layer
+  const solvePieceInSecondLayer = (pieceFirstColor, pieceSecondColor) => {
+    loopThroughCube((x, y, z) => {
+      const piece = cube.cube[x][y][z];
+      const pieceColors = Object.values(piece);
+
+      if (pieceColors.length === 2 && pieceColors.contains(pieceFirstColor) && pieceColors.contains(pieceSecondColor)) {
+        // found piece to be moved
+
+        const piecePos = { x, y, z };
+
+        const getTargetPiecePosForColors = (firstColor, secondColor) => {
+          const colors = [firstColor, secondColor];
+          if (colors.contains('g') && colors.contains('o')) {
+            return { x: 0, z: 0, y: 1 };
+          } else if (colors.contains('o') && colors.contains('b')) {
+            return { x: 0, z: 2, y: 1 };
+          } else if (colors.contains('b') && colors.contains('r')) {
+            return { x: 2, z: 2, y: 1 };
+          } else if (colors.contains('r') && colors.contains('g')) {
+            return { x: 2, z: 0, y: 1 };
+          }
+
+          throw new Error(`Side piece with colors ${firstColor} and ${secondColor} is not valid.`);
+        };
+
+        if (piecePos.y === 1) {
+          // first case
+
+          console.log('Reached First Case');
+
+          const faceToMoveRightMovement = findFaceForPieceAlgorithm(piecePos);
+          const faceToMoveLeftMovement = findFaceForPieceAlgorithm(piecePos, false);
+
+          performSolveForPieceAlgorithm(faceToMoveRightMovement);
+          performSolveForPieceAlgorithm(faceToMoveLeftMovement, false);
+
+          // continue solving
+          solvePieceInSecondLayer(pieceFirstColor, pieceSecondColor);
+        } else if (piecePos.y === 0) {
+          // second case
+
+          const targetTopFacePosForTopColor = {
+            g: { x: 1, z: 2, y: 0 },
+            r: { x: 0, z: 1, y: 0 },
+            b: { x: 1, z: 0, y: 0 },
+            o: { x: 2, z: 1, y: 0 },
+          };
+
+          const topColor = piece.y;
+
+          const targetTopFacePos = targetTopFacePosForTopColor[topColor];
+          while (!isInTargetPosition(piece, targetTopFacePos)) {
+            makeMoveWithNotation(toNotation('y'));
+          }
+
+          const targetPosition = getTargetPiecePosForColors(pieceFirstColor, pieceSecondColor);
+
+          const pieceMovementFaceRight = findFaceForPieceAlgorithm(targetPosition);
+          const pieceMovementFaceLeft = findFaceForPieceAlgorithm(targetPosition, false);
+
+          // decide which one to do first based on matching with original top color
+          if (pieceMovementFaceRight !== topColor) {
+            performSolveForPieceAlgorithm(pieceMovementFaceRight);
+            performSolveForPieceAlgorithm(pieceMovementFaceLeft, false);
+          } else if (pieceMovementFaceLeft !== topColor) {
+            performSolveForPieceAlgorithm(pieceMovementFaceLeft, false);
+            performSolveForPieceAlgorithm(pieceMovementFaceRight);
+          }
+        }
+
+        return true;
+      }
+    });
+  };
+
   // solve top cross
   solvePieceInTopCross('g');
   solvePieceInTopCross('r');
@@ -386,4 +462,10 @@ module.exports = (cube, makeMoveWithNotation) => {
   solvePieceInTopCorners('o', 'b');
   solvePieceInTopCorners('b', 'r');
   solvePieceInTopCorners('r', 'g');
+
+  // solve second layer
+  solvePieceInSecondLayer('g', 'o');
+  solvePieceInSecondLayer('o', 'b');
+  solvePieceInSecondLayer('b', 'r');
+  solvePieceInSecondLayer('r', 'g');
 };
