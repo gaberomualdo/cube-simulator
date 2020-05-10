@@ -747,6 +747,25 @@ module.exports = (cube, makeMoveWithNotation) => {
     }
   };
 
+  // solve orientation of bottom corners
+  const solveOrientationOfBottomCorners = () => {
+    // solve for piece at (0, 0, 0)
+    const solveForOriginCornerPiece = () => {
+      // continue solving until piece has yellow color at yellow face
+      while (!(cube.cube[0][0][0].y === 'y')) {
+        makeMoveWithNotation(toNotation('g'));
+        makeMoveWithNotation(toNotation('w'));
+        makeMoveWithNotation(toNotation('g', false));
+        makeMoveWithNotation(toNotation('w', false));
+      }
+    };
+
+    for (let i = 0; i < 4; i++) {
+      solveForOriginCornerPiece();
+      makeMoveWithNotation(toNotation('y', false));
+    }
+  };
+
   // solve top cross
   solvePieceInTopCross('g');
   solvePieceInTopCross('r');
@@ -771,4 +790,5 @@ module.exports = (cube, makeMoveWithNotation) => {
 
   // solve bottom corners
   solvePositionOfBottomCorners();
+  solveOrientationOfBottomCorners();
 };
