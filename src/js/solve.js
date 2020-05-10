@@ -451,6 +451,184 @@ module.exports = (cube, makeMoveWithNotation) => {
     });
   };
 
+  const solveBottomCrossWithoutOrientation = () => {
+    const hasYellowAsBottomColor = (piecePos) => {
+      return cube.cube[piecePos.x][piecePos.y][piecePos.z].y === 'y';
+    };
+
+    // key --> written position of side piece on yellow face, oriented with green as front, yellow as top, and red as left
+    // value --> full position as x, y, and z
+    const piecePositions = {
+      left: { x: 2, z: 1, y: 0 },
+      bottom: { x: 1, z: 0, y: 0 },
+      right: { x: 0, z: 1, y: 0 },
+      top: { x: 1, z: 2, y: 0 },
+    };
+
+    let verticalPiecesWithYellowAsBottomColorCount = 0;
+    let horizontalPiecesWithYellowAsBottomColorCount = 0;
+
+    Object.keys(piecePositions).forEach((key) => {
+      const curPiecePos = piecePositions[key];
+      if (hasYellowAsBottomColor(curPiecePos)) {
+        if (key === 'left' || key === 'right') {
+          horizontalPiecesWithYellowAsBottomColorCount++;
+        } else if (key === 'top' || key === 'bottom') {
+          verticalPiecesWithYellowAsBottomColorCount++;
+        }
+      }
+    });
+
+    if (verticalPiecesWithYellowAsBottomColorCount === 2 && horizontalPiecesWithYellowAsBottomColorCount === 2) {
+      // first case
+
+      // already solved without orientation
+      return;
+    } else if (verticalPiecesWithYellowAsBottomColorCount === 0 && horizontalPiecesWithYellowAsBottomColorCount === 0) {
+      // second case
+
+      makeMoveWithNotation(toNotation('g'));
+      performSolveForPieceAlgorithm('g');
+      makeMoveWithNotation(toNotation('g', false));
+
+      // continue solving
+      solveBottomCrossWithoutOrientation();
+    } else if (verticalPiecesWithYellowAsBottomColorCount === 1 && horizontalPiecesWithYellowAsBottomColorCount === 1) {
+      // third case
+
+      // turn until position looks like this (on yellow face):
+      //  *
+      // **-
+      //  -
+      // where * is yellow and - is other colors
+
+      while (!(hasYellowAsBottomColor(piecePositions.left) && hasYellowAsBottomColor(piecePositions.top))) {
+        makeMoveWithNotation(toNotation('y'));
+      }
+
+      makeMoveWithNotation(toNotation('g'));
+      performSolveForPieceAlgorithm('g');
+      makeMoveWithNotation(toNotation('g', false));
+
+      // continue solving
+      solveBottomCrossWithoutOrientation();
+    } else if (verticalPiecesWithYellowAsBottomColorCount === 2) {
+      // fourth case
+
+      // current position looks like this (on yellow face):
+      //  *
+      // -*-
+      //  *
+      // where * is yellow and - is other colors
+
+      // turn once to make position look like this instead:
+      //  -
+      // ***
+      //  -
+
+      makeMoveWithNotation(toNotation('y'));
+
+      // continue solving
+      solveBottomCrossWithoutOrientation();
+    } else if (horizontalPiecesWithYellowAsBottomColorCount === 2) {
+      // fifth case
+
+      makeMoveWithNotation(toNotation('g'));
+      performSolveForPieceAlgorithm('g');
+      makeMoveWithNotation(toNotation('g', false));
+    }
+  };
+
+  // solve orientation of bottom cross
+  const solveBottomCrossOrientation = () => {
+    // perform algorithm to fix orientation
+    const performFixOrientationAlgorithm = (firstMoveFace) => {
+      makeMoveWithNotation(toNotation(firstMoveFace));
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation(firstMoveFace, false));
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation(firstMoveFace));
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation(firstMoveFace, false));
+      makeMoveWithNotation(toNotation('y'));
+    };
+
+    // key --> written position of side piece on yellow face, oriented with green as front, yellow as top, and red as left
+    // value --> full position as x, y, and z
+    const piecePositions = {
+      left: { x: 2, z: 1, y: 0 },
+      bottom: { x: 1, z: 0, y: 0 },
+      right: { x: 0, z: 1, y: 0 },
+      top: { x: 1, z: 2, y: 0 },
+    };
+
+    // face colors which each key in piecePositions corresponds to
+    const pieceCorrectFaceColors = {
+      left: 'r',
+      bottom: 'g',
+      right: 'o',
+      top: 'b',
+    };
+
+    // get color on piece that is not yellow
+    const getColorNotYellow = (piecePos) => {
+      const piece = cube.cube[piecePos.x][piecePos.y][piecePos.z];
+      if (piece.x) {
+        return piece.x;
+      }
+      return piece.z;
+    };
+
+    // list of matching side pieces which are oriented correctly
+    let matchingSidePieces = [];
+
+    while (!(matchingSidePieces.length > 1)) {
+      makeMoveWithNotation(toNotation('y'));
+
+      matchingSidePieces = [];
+      Object.keys(piecePositions).forEach((key) => {
+        const curPiecePos = piecePositions[key];
+        if (getColorNotYellow(curPiecePos) === pieceCorrectFaceColors[key]) {
+          matchingSidePieces.push(key);
+        }
+      });
+    }
+
+    if (matchingSidePieces.length === 4) {
+      // first case
+
+      // all faces are matched!
+      return;
+    } else if (
+      (matchingSidePieces.contains('left') && matchingSidePieces.contains('right')) ||
+      (matchingSidePieces.contains('top') && matchingSidePieces.contains('bottom'))
+    ) {
+      // second case
+      // pieces at the correct place are at opposite sides
+      performFixOrientationAlgorithm('o');
+
+      // continue solving
+      solveBottomCrossOrientation();
+    } else {
+      // pieces at the correct place are at adjacent faces
+
+      let firstFaceMoveOfAlgorithm = '';
+
+      if (matchingSidePieces.contains('bottom') && matchingSidePieces.contains('left')) {
+        firstFaceMoveOfAlgorithm = 'r';
+      } else if (matchingSidePieces.contains('left') && matchingSidePieces.contains('top')) {
+        firstFaceMoveOfAlgorithm = 'b';
+      } else if (matchingSidePieces.contains('top') && matchingSidePieces.contains('right')) {
+        firstFaceMoveOfAlgorithm = 'o';
+      } else if (matchingSidePieces.contains('right') && matchingSidePieces.contains('bottom')) {
+        firstFaceMoveOfAlgorithm = 'g';
+      }
+
+      performFixOrientationAlgorithm(firstFaceMoveOfAlgorithm);
+    }
+  };
+
   // solve top cross
   solvePieceInTopCross('g');
   solvePieceInTopCross('r');
@@ -468,4 +646,10 @@ module.exports = (cube, makeMoveWithNotation) => {
   solvePieceInSecondLayer('o', 'b');
   solvePieceInSecondLayer('b', 'r');
   solvePieceInSecondLayer('r', 'g');
+
+  // solve bottom cross
+  solveBottomCrossWithoutOrientation();
+
+  console.log('Start solving bottom cross orientation');
+  solveBottomCrossOrientation();
 };
