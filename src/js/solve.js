@@ -404,8 +404,36 @@ module.exports = (cube, makeMoveWithNotation) => {
         if (piecePos.y === 1) {
           // first case
 
-          console.log('Reached First Case');
+          // check if already solved
+          const colors = [pieceFirstColor, pieceSecondColor];
 
+          let isInCorrectFinalPosition = false;
+
+          if (colors.contains('g') && colors.contains('o') && piecePos.x === 0 && piecePos.z === 0) {
+            isInCorrectFinalPosition = true;
+          } else if (colors.contains('o') && colors.contains('b') && piecePos.x === 0 && piecePos.z === 2) {
+            isInCorrectFinalPosition = true;
+          } else if (colors.contains('b') && colors.contains('r') && piecePos.x === 2 && piecePos.z === 2) {
+            isInCorrectFinalPosition = true;
+          } else if (colors.contains('r') && colors.contains('g') && piecePos.x === 2 && piecePos.z === 0) {
+            isInCorrectFinalPosition = true;
+          }
+
+          let isInCorrectOrientation = false;
+
+          if (isInCorrectFinalPosition) {
+            if (colors.contains('g') && piece.z === 'g') {
+              isInCorrectOrientation = true;
+            } else if (colors.contains('b') && piece.z === 'b') {
+              isInCorrectOrientation = true;
+            }
+          }
+
+          if (isInCorrectFinalPosition && isInCorrectOrientation) {
+            return;
+          }
+
+          // not already solved, continue
           const faceToMoveRightMovement = findFaceForPieceAlgorithm(piecePos);
           const faceToMoveLeftMovement = findFaceForPieceAlgorithm(piecePos, false);
 
@@ -629,6 +657,9 @@ module.exports = (cube, makeMoveWithNotation) => {
     }
   };
 
+  // solve position of bottom corners
+  const solvePositionOfBottomCorners = () => {};
+
   // solve top cross
   solvePieceInTopCross('g');
   solvePieceInTopCross('r');
@@ -649,7 +680,8 @@ module.exports = (cube, makeMoveWithNotation) => {
 
   // solve bottom cross
   solveBottomCrossWithoutOrientation();
-
-  console.log('Start solving bottom cross orientation');
   solveBottomCrossOrientation();
+
+  // solve bottom corners
+  solvePositionOfBottomCorners();
 };
