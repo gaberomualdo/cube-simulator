@@ -25,7 +25,12 @@ class Cube {
     },
   };
 
-  constructor() {
+  constructor(passedCube = []) {
+    if (passedCube.length > 0) {
+      this.cube = passedCube;
+      return;
+    }
+
     // cube represented on a graph, with (0,0,0)/[0][0][0] being the yellow-orange-green corner
 
     // colors are shorthands which can be derived from the colors object

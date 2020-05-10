@@ -57,13 +57,7 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
 });
 
 window.addEventListener('load', async () => {
-  makeMoveAndRefreshImage('U');
-  makeMoveAndRefreshImage('B');
-  makeMoveAndRefreshImage('R');
-  makeMoveAndRefreshImage('L');
-  makeMoveAndRefreshImage('U');
-  makeMoveAndRefreshImage('F');
-  makeMoveAndRefreshImage('B');
+  cube.scramble();
 
   await refreshCubeImages();
 });
@@ -71,12 +65,32 @@ window.addEventListener('load', async () => {
 document.addEventListener('keydown', async (e) => {
   if (e.key == 'b') {
     let movesToSolve = [];
-    solveCube(cube, (moveNotation) => {
-      cube.makeMove(moveNotation);
-      console.log(`${movesToSolve.length}. ${moveNotation}`);
+
+    const cubeToSolve = new Cube(cube.cube);
+
+    solveCube(cubeToSolve, (moveNotation) => {
+      cubeToSolve.makeMove(moveNotation);
       movesToSolve.push(moveNotation);
     });
-    await refreshCubeImages();
+
+    let movesMadeCount = 0;
+
+    const makeMovesToSolve = async () => {
+      cube.makeMove(movesToSolve[movesMadeCount]);
+      movesMadeCount++;
+
+      await refreshCubeImages();
+
+      if (movesMadeCount < movesToSolve.length) {
+        makeMovesToSolve();
+      } else {
+        const millisecondsToSolve = new Date().getTime() - startTime;
+        console.log(`Solving took ${millisecondsToSolve / 1000} seconds`);
+      }
+    };
+
+    const startTime = new Date().getTime();
+    makeMovesToSolve();
   }
 });
 
