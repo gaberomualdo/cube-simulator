@@ -658,7 +658,94 @@ module.exports = (cube, makeMoveWithNotation) => {
   };
 
   // solve position of bottom corners
-  const solvePositionOfBottomCorners = () => {};
+  const solvePositionOfBottomCorners = () => {
+    const getTargetPiecePosForColors = (firstColor, secondColor) => {
+      const colors = [firstColor, secondColor];
+
+      if (colors.contains('g') && colors.contains('o')) {
+        return { x: 0, z: 0, y: 0 };
+      } else if (colors.contains('o') && colors.contains('b')) {
+        return { x: 0, z: 2, y: 0 };
+      } else if (colors.contains('b') && colors.contains('r')) {
+        return { x: 2, z: 2, y: 0 };
+      } else if (colors.contains('r') && colors.contains('g')) {
+        return { x: 2, z: 0, y: 0 };
+      }
+    };
+
+    // perform corner swapping algorithm
+    const performCornerSwappingAlgorithm = (firstMoveFace, secondMoveFace) => {
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation(firstMoveFace));
+      makeMoveWithNotation(toNotation('y', false));
+      makeMoveWithNotation(toNotation(secondMoveFace, false));
+      makeMoveWithNotation(toNotation('y'));
+      makeMoveWithNotation(toNotation(firstMoveFace, false));
+      makeMoveWithNotation(toNotation('y', false));
+      makeMoveWithNotation(toNotation(secondMoveFace));
+    };
+
+    const cornerColors = [
+      ['g', 'o'],
+      ['o', 'b'],
+      ['b', 'r'],
+      ['r', 'g'],
+    ];
+
+    let cornersInCorrectPlace = [];
+
+    cornerColors.forEach((cornerColorPair) => {
+      if (
+        isInTargetPosition(
+          { x: cornerColorPair[0], y: cornerColorPair[1], z: 'y' },
+          getTargetPiecePosForColors(cornerColorPair[0], cornerColorPair[1])
+        )
+      ) {
+        cornersInCorrectPlace.push(cornerColorPair);
+      }
+    });
+
+    if (cornersInCorrectPlace.length === 4) {
+      // first case
+
+      // already solved
+      return;
+    } else if (cornersInCorrectPlace.length === 0) {
+      // second case
+
+      performCornerSwappingAlgorithm('o', 'r');
+
+      // continue solving
+      solvePositionOfBottomCorners();
+    } else if (cornersInCorrectPlace.length >= 1) {
+      // third case
+
+      // perform swapping algorithm from first correct corner
+      const correctCornerColors = cornersInCorrectPlace[0];
+
+      let swappingAlgorithmFirstMoveFace;
+      let swappingAlgorithmSecondMoveFace;
+
+      if (correctCornerColors.contains('g') && correctCornerColors.contains('o')) {
+        swappingAlgorithmFirstMoveFace = 'o';
+        swappingAlgorithmSecondMoveFace = 'r';
+      } else if (correctCornerColors.contains('o') && correctCornerColors.contains('b')) {
+        swappingAlgorithmFirstMoveFace = 'b';
+        swappingAlgorithmSecondMoveFace = 'g';
+      } else if (correctCornerColors.contains('b') && correctCornerColors.contains('r')) {
+        swappingAlgorithmFirstMoveFace = 'r';
+        swappingAlgorithmSecondMoveFace = 'o';
+      } else if (correctCornerColors.contains('r') && correctCornerColors.contains('g')) {
+        swappingAlgorithmFirstMoveFace = 'g';
+        swappingAlgorithmSecondMoveFace = 'b';
+      }
+
+      performCornerSwappingAlgorithm(swappingAlgorithmFirstMoveFace, swappingAlgorithmSecondMoveFace);
+
+      // continue solving
+      solvePositionOfBottomCorners();
+    }
+  };
 
   // solve top cross
   solvePieceInTopCross('g');
