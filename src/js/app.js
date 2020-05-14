@@ -2,6 +2,7 @@ require('regenerator-runtime/runtime');
 
 const Cube = require('./cube');
 const solveCube = require('./solve');
+const compressMoves = require('./compressMoves');
 const url = require('url');
 
 // cube
@@ -73,7 +74,11 @@ document.addEventListener('keydown', async (e) => {
       movesToSolve.push(moveNotation);
     });
 
-    let movesMadeCount = 0;
+    console.log('initial move count', movesToSolve.length);
+
+    // compress moves
+    movesToSolve = compressMoves(movesToSolve);
+    console.log('compressed move count', movesToSolve.length);
 
     const makeMovesToSolve = async () => {
       cube.makeMove(movesToSolve[movesMadeCount]);
@@ -82,6 +87,7 @@ document.addEventListener('keydown', async (e) => {
       await refreshCubeImages();
 
       if (movesMadeCount < movesToSolve.length) {
+        console.log(`${movesMadeCount}/${movesToSolve.length} moves completed`);
         makeMovesToSolve();
       } else {
         const millisecondsToSolve = new Date().getTime() - startTime;
@@ -89,8 +95,13 @@ document.addEventListener('keydown', async (e) => {
       }
     };
 
+    let movesMadeCount = 0;
     const startTime = new Date().getTime();
-    makeMovesToSolve();
+
+    if (movesToSolve.length > 0) {
+      makeMovesToSolve();
+      await refreshCubeImages();
+    }
   }
 });
 
