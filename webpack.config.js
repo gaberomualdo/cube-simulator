@@ -28,8 +28,6 @@ const sourceCodeVersionUniqueID = (() => {
 
 handlebarsInput.cacheVersion = sourceCodeVersionUniqueID;
 
-console.log(handlebarsInput);
-
 Handlebars.registerHelper('times', function (n, block) {
   let accum = '';
   for (let i = 0; i < n; ++i) accum += block.fn(i);
@@ -43,7 +41,7 @@ Handlebars.registerHelper('generateMovesMarkup', function (moves, block) {
   let accum = '';
 
   for (let row = 0; row < rows; row++) {
-    accum += "<ul class='rows'>";
+    accum += "<ul class='row'>";
     for (let item = 0; item < cols; item++) {
       block.data.move = moves[row * cols + item];
       accum += block.fn(this);

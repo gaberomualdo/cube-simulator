@@ -144,23 +144,23 @@
           <div class="content">
             <ul class="misc-buttons">
               <li>
-                <button>Solve Cube</button>
+                <button class="styled-button">Solve Cube</button>
                 <p>Solve the cube automatically with a basic solving algorithm.</p>
               </li>
               <li>
-                <button>Scramble Cube</button>
+                <button class="styled-button">Scramble Cube</button>
                 <p>Scramble the cube with 25 random moves.</p>
               </li>
               <li>
-                <button>Undo</button>
+                <button class="styled-button">Undo</button>
                 <p>Undo the previous move or action (ex: scramble or solve).</p>
               </li>
             </ul>
             <div class="move-buttons">
               {{#generateMovesMarkup cubeMoves}}
                 <li class="move">
-                  <button>{{@move.notation}}</button>
-                  <p>or press <strong>{{#replace 'shift' '<span class="shift">shift</span>'}}{{@move.key}}{{/replace}}</strong></p>
+                  <button class="styled-button">{{@move.notation}}</button>
+                  <p><strong>{{#replace 'shift' '<span class="shift">shift</span>'}}{{@move.key}}{{/replace}}</strong></p>
                 </li>
               {{/generateMovesMarkup}}
             </div>

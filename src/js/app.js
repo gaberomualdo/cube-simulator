@@ -11,7 +11,7 @@ const url = require('url');
 const cube = new Cube();
 
 // move buttons
-document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) => {
+document.querySelectorAll('.col:first-child .moves .content .move-buttons .row .move').forEach((move) => {
   const isFocused = (element) => {
     return element === document.activeElement;
   };
@@ -60,9 +60,9 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
 });
 
 window.addEventListener('load', async () => {
-  await cube.scramble(25, async (notation) => {
+  /*await cube.scramble(25, async (notation) => {
     await refreshCubeImages();
-  });
+  });*/
 });
 
 document.addEventListener('keydown', async (e) => {

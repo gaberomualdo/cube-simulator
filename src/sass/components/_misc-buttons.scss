@@ -1,0 +1,32 @@
+ul.misc-buttons {
+  color: $dark-grey;
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
+
+  li {
+    min-height: bsize(2.5);
+    overflow: hidden;
+
+    &:not(:last-child) {
+      margin-bottom: bsize(0.75);
+    }
+
+    & > * {
+      @include dib-fn-vt;
+    }
+
+    button {
+      padding: 0 bsize(0.75);
+      height: bsize(2.25);
+      line-height: bsize(2.25);
+      font-size: bsize(1);
+    }
+    p {
+      height: bsize(2.25);
+
+      padding: bsize(0.375) 0;
+      line-height: bsize(1.5);
+    }
+  }
+}

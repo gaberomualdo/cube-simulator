@@ -1,0 +1,78 @@
+// moves list
+.col:first-child .moves .content .move-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: bsize(1.5) 0 0 0;
+
+  @include in-mobile-and-phone {
+    margin: bsize(0.75) 0 0 0;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: bsize(3);
+
+    list-style: none;
+    @include p0;
+    @include m0;
+
+    &:not(:last-child) {
+      margin-bottom: bsize(1.5);
+
+      @include in-phone {
+        margin-bottom: bsize(0.75);
+      }
+    }
+
+    li {
+      color: $dark-grey;
+      flex-basis: 100%;
+
+      display: flex;
+      flex-direction: row;
+
+      &:not(:last-child) {
+        margin-right: bsize(1.5);
+
+        @include in-phone {
+          margin-right: bsize(0.75);
+        }
+      }
+
+      & > * {
+        @include db-fl;
+        margin: 0;
+        height: bsize(3);
+        line-height: bsize(3);
+
+        @media only screen and (max-width: 530px), (min-width: #{$page-mobile-width + 1px}) and (max-width: 1075px) {
+          clear: both;
+        }
+      }
+
+      button {
+        flex-basis: bsize(3);
+        @include in-phone {
+          width: 100%;
+        }
+      }
+
+      p {
+        padding-left: bsize(0.75);
+        opacity: 0.5;
+
+        strong {
+          font-weight: 500;
+        }
+
+        @include in-phone {
+          display: none;
+        }
+      }
+    }
+  }
+}

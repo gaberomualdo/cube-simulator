@@ -3,6 +3,7 @@
   flex-basis: bsize(3.25);
   padding: 0 bsize(0.5) bsize(0.75) bsize(0.5);
   border-bottom: 1px solid $page-grey;
+  margin-bottom: bsize(0.75);
 
   @include in-mobile-and-phone {
     height: bsize(3);
