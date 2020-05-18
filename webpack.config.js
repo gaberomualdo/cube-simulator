@@ -1,14 +1,15 @@
 const path = require('path');
-const child_process = require('child_process');
+const childProcess = require('child_process');
 const Handlebars = require('handlebars');
 const uuid = require('uuid');
+const config = require('config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const getUniqueIDOfCurSourceCode = () => {
   try {
-    const out = child_process.execSync('git log --abbrev-commit HEAD -1').toString();
+    const out = childProcess.execSync('git log --abbrev-commit HEAD -1').toString();
     const outAsArr = out.replace(/\n/g, ' ').replace(/\t/g, ' ').split(' ');
 
     const latestCommitID = outAsArr[outAsArr.indexOf('commit') + 1];
@@ -22,7 +23,7 @@ const getUniqueIDOfCurSourceCode = () => {
   return `u${uuid.v4()}`;
 };
 
-const cache_version = getUniqueIDOfCurSourceCode();
+const cacheVersion = getUniqueIDOfCurSourceCode();
 
 module.exports = {
   entry: './src/index.js',
@@ -82,7 +83,8 @@ module.exports = {
 
                 try {
                   result = Handlebars.compile(content)({
-                    cache_version,
+                    cache_version: cacheVersion,
+                    site_details: config.get('siteDetails'),
                   });
                 } catch (error) {
                   loaderContext.emitError(error);

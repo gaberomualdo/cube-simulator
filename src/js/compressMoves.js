@@ -22,8 +22,7 @@ module.exports = (moves) => {
       return;
     }
 
-    // delimeter is added to the end of target and replacement to account for bugs
-    // in replacing moves with no moves
+    // delimeter is added to the end of target and replacement to account for bugs in replacing moves with no moves
     const targetMovesAsStr = targetMoves.join(moveStrDelimeter) + moveStrDelimeter;
     const replacementMovesAsStr = replacementMoves.join(moveStrDelimeter) + (replacementMoves.length > 1 ? moveStrDelimeter : '');
     allMovesStr = allMovesStr.split(targetMovesAsStr).join(replacementMovesAsStr);

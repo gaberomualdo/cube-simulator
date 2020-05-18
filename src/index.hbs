@@ -25,50 +25,7 @@
 <meta property="og:description" content="Young web developer (currently starting high school) looking to build something new with code and make a name for myself.">
 
     
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="application/ld+json">
-{
-    "@type": "WebSite",
-    "@context": "http://schema.org",
-    "url": "https://xtrp.io/",
-    "name": "Fred Adams",
-    "author": {
-        "@type": "Person",
-        "name": "Fred Adams"
-    },
-    "sameAs": [
-        "https://github.com/xtrp/","https://dev.to/xtrp/","mailto:xtrp@xtrp.io"        ],
-    "description": "Young web developer (currently starting high school) looking to build something new with code and make a name for myself."
-}
-</script>
-
-    <title>Fred Adams (xtrp) – Full Stack Web-Developer</title>
-
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-120907429-6"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'UA-120907429-6');
-</script>
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/views/assets/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/views/assets/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/views/assets/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/views/assets/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/views/assets/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/views/assets/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/views/assets/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/views/assets/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/views/assets/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/views/assets/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/views/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/views/assets/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/views/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/views/assets/favicon/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
 
     <link rel="stylesheet" href="/views/resources/skeleton/normalize.min.css?v=10">
 <link rel="stylesheet" href="/views/resources/skeleton/skeleton.min.css?v=10">
@@ -83,6 +40,42 @@ gtag('config', 'UA-120907429-6');
 
     <!-- Title -->
     <title>Rubik's Cube</title>
+
+    <!-- SEO -->
+    <script type="application/ld+json">
+    {
+      "@type": "WebSite",
+      "@context": "http://schema.org",
+      "url": "{{site_details['url']}}",
+      "name": "{{site_details['name']}}",
+      "author": {
+        "@type": "Person",
+        "name": "{{site_details.author.name}}",
+        "email": "{{site_details.author.email}}"
+      },
+      "description": "{{site_details.description}}"
+    }
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="robots" content="index, follow">
+
+    <meta name="author" content="{{site_details.author.name}}">
+    <meta name="description" content="{{site_details.description}}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{site_details.name}}">
+    <meta name="twitter:description" content="{{site_details.description}}">
+
+    <meta property="og:title" content="{{site_details.name}}">
+    <meta property="og:site_name" content="{{site_details.name}}">
+    <meta property="og:description" content="{{site_details.description}}">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
