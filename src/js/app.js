@@ -74,11 +74,8 @@ document.addEventListener('keydown', async (e) => {
       movesToSolve.push(moveNotation);
     });
 
-    console.log('initial move count', movesToSolve.length);
-
     // compress moves
     movesToSolve = compressMoves(movesToSolve);
-    console.log('compressed move count', movesToSolve.length);
 
     const makeMovesToSolve = async () => {
       cube.makeMove(movesToSolve[movesMadeCount]);
@@ -87,16 +84,11 @@ document.addEventListener('keydown', async (e) => {
       await refreshCubeImages();
 
       if (movesMadeCount < movesToSolve.length) {
-        console.log(`${movesMadeCount}/${movesToSolve.length} moves completed`);
         makeMovesToSolve();
-      } else {
-        const millisecondsToSolve = new Date().getTime() - startTime;
-        console.log(`Solving took ${millisecondsToSolve / 1000} seconds`);
       }
     };
 
     let movesMadeCount = 0;
-    const startTime = new Date().getTime();
 
     if (movesToSolve.length > 0) {
       makeMovesToSolve();

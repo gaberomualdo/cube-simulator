@@ -2,6 +2,15 @@
 // B, B, B --> B', B, B' --> (no moves), etc.
 
 module.exports = (moves) => {
+  const repeatArr = (arr, times) => {
+    let repeatedArr = [];
+    for (let i = 0; i < times; i++) {
+      repeatedArr = repeatedArr.concat(arr);
+    }
+
+    return repeatedArr;
+  };
+
   // delimeter must be a str whose characters aren't present in Rubik's cube notation
   const moveStrDelimeter = ';';
 
@@ -20,9 +29,31 @@ module.exports = (moves) => {
     allMovesStr = allMovesStr.split(targetMovesAsStr).join(replacementMovesAsStr);
   };
 
+  const getInverse = (notation) => {
+    if (notation.length === 1) {
+      return notation + "'";
+    } else {
+      return notation[0];
+    }
+  };
+  const isInverse = (notation) => notation.length > 1 && notation[1] === "'";
+
+  // solve for piece algorithm replacements
+  const pieceAlgorithmFirstMoves = ['L', 'F', 'R', 'B', "F'", "R'", "B'", "L'"];
+
+  pieceAlgorithmFirstMoves.forEach((firstMove) => {
+    const sequence = [firstMove, isInverse(firstMove) ? "D'" : 'D', getInverse(firstMove), isInverse(firstMove) ? 'D' : "D'"];
+    const inverseSequence = [getInverse(sequence[3]), getInverse(sequence[2]), getInverse(sequence[1]), getInverse(sequence[0])];
+
+    // replace 5 sequences with 1 inverse sequence;
+    // replace 4 sequences with 2 inverse sequences;
+    replaceMoves(repeatArr(sequence, 5), inverseSequence);
+    replaceMoves(repeatArr(sequence, 4), repeatArr(inverseSequence, 2));
+  });
+
+  // main move replacements
   const possibleNonInverseMoves = ['U', 'D', 'L', 'R', 'F', 'B'];
 
-  // replacements
   possibleNonInverseMoves.forEach((move) => {
     const inverseMove = move + "'";
 
@@ -43,7 +74,7 @@ module.exports = (moves) => {
     replaceMoves([move, inverseMove], []);
   });
 
-  // converse movesAsStr back to array of moves
+  // convert movesAsStr back to array of moves
   const allMovesArr = allMovesStr.split(moveStrDelimeter);
 
   // remove last element to account for last extra delimeter added previously

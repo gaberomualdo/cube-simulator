@@ -42,6 +42,24 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              attributes: false,
+            },
+          },
+        ],
+      },
     ],
   },
 };
