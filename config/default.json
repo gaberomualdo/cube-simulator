@@ -1,11 +1,64 @@
 {
-  "siteDetails": {
-    "url": "http://localhost:6557/",
-    "author": {
-      "name": "Fred Adams",
-      "email": "xtrp@xtrp.io"
+  "hbs": {
+    "siteDetails": {
+      "url": "http://localhost:6557/",
+      "author": {
+        "name": "Fred Adams",
+        "email": "xtrp@xtrp.io"
+      },
+      "name": "Rubik's Cube Simulator",
+      "description": "Scramble, solve, and move a virtual Rubik's cube just like you would in real life!"
     },
-    "name": "Rubik's Cube Simulator",
-    "description": "Scramble, solve, and move a virtual Rubik's cube just like you would in real life!"
+    "cubeMoves": [
+      {
+        "notation": "U",
+        "key": "u"
+      },
+      {
+        "notation": "D",
+        "key": "d"
+      },
+      {
+        "notation": "L",
+        "key": "l"
+      },
+      {
+        "notation": "R",
+        "key": "r"
+      },
+      {
+        "notation": "F",
+        "key": "f"
+      },
+      {
+        "notation": "B",
+        "key": "b"
+      },
+
+      {
+        "notation": "U'",
+        "key": "shift + u"
+      },
+      {
+        "notation": "D'",
+        "key": "shift + d"
+      },
+      {
+        "notation": "L'",
+        "key": "shift + l"
+      },
+      {
+        "notation": "R'",
+        "key": "shift + r"
+      },
+      {
+        "notation": "F'",
+        "key": "shift + f"
+      },
+      {
+        "notation": "B'",
+        "key": "shift + b"
+      }
+    ]
   }
 }

@@ -46,14 +46,14 @@
     {
       "@type": "WebSite",
       "@context": "http://schema.org",
-      "url": "{{site_details.url}}",
-      "name": "{{site_details.name}}",
+      "url": "{{siteDetails.url}}",
+      "name": "{{siteDetails.name}}",
       "author": {
         "@type": "Person",
-        "name": "{{site_details.author.name}}",
-        "email": "{{site_details.author.email}}"
+        "name": "{{siteDetails.author.name}}",
+        "email": "{{siteDetails.author.email}}"
       },
-      "description": "{{site_details.description}}"
+      "description": "{{siteDetails.description}}"
     }
     </script>
 
@@ -66,16 +66,16 @@
 
     <meta name="robots" content="index, follow">
 
-    <meta name="author" content="{{site_details.author.name}}">
-    <meta name="description" content="{{site_details.description}}">
+    <meta name="author" content="{{siteDetails.author.name}}">
+    <meta name="description" content="{{siteDetails.description}}">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{site_details.name}}">
-    <meta name="twitter:description" content="{{site_details.description}}">
+    <meta name="twitter:title" content="{{siteDetails.name}}">
+    <meta name="twitter:description" content="{{siteDetails.description}}">
 
-    <meta property="og:title" content="{{site_details.name}}">
-    <meta property="og:site_name" content="{{site_details.name}}">
-    <meta property="og:description" content="{{site_details.description}}">
+    <meta property="og:title" content="{{siteDetails.name}}">
+    <meta property="og:site_name" content="{{siteDetails.name}}">
+    <meta property="og:description" content="{{siteDetails.description}}">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
@@ -103,7 +103,7 @@
     <link rel="manifest" href="manifest.json" />
 
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="main.css?v={{cache_version}}" />
+    <link rel="stylesheet" href="main.css?v={{cacheVersion}}" />
 
     <!-- Icon font -->
     <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
@@ -137,62 +137,35 @@
         </div>
 
         <div class="moves">
-          <ul class="row">
-            <li class="move">
-              <button>U</button>
-              <p>or press <strong>q</strong></p>
-            </li>
-            <li class="move">
-              <button>L</button>
-              <p>or press <strong>w</strong></p>
-            </li>
-            <li class="move">
-              <button>F</button>
-              <p>or press <strong>e</strong></p>
-            </li>
-          </ul>
-          <ul class="row">
-            <li class="move">
-              <button>U'</button>
-              <p>or press <strong>a</strong></p>
-            </li>
-            <li class="move">
-              <button>L'</button>
-              <p>or press <strong>s</strong></p>
-            </li>
-            <li class="move">
-              <button>F'</button>
-              <p>or press <strong>d</strong></p>
-            </li>
-          </ul>
-          <ul class="row">
-            <li class="move">
-              <button>R</button>
-              <p>or press <strong>u</strong></p>
-            </li>
-            <li class="move">
-              <button>B</button>
-              <p>or press <strong>i</strong></p>
-            </li>
-            <li class="move">
-              <button>D</button>
-              <p>or press <strong>o</strong></p>
-            </li>
-          </ul>
-          <ul class="row">
-            <li class="move">
-              <button>R'</button>
-              <p>or press <strong>j</strong></p>
-            </li>
-            <li class="move">
-              <button>B'</button>
-              <p>or press <strong>k</strong></p>
-            </li>
-            <li class="move">
-              <button>D'</button>
-              <p>or press <strong>l</strong></p>
-            </li>
-          </ul>
+          <button class="label">
+            <p>Moves</p>
+            <i class="icon im im-angle-down"></i>
+          </button>
+          <div class="content">
+            <ul class="misc-buttons">
+              <li>
+                <button>Solve Cube</button>
+                <p>Solve the cube automatically with a basic solving algorithm.</p>
+              </li>
+              <li>
+                <button>Scramble Cube</button>
+                <p>Scramble the cube with 25 random moves.</p>
+              </li>
+              <li>
+                <button>Undo</button>
+                <p>Undo the previous move or action (ex: scramble or solve).</p>
+              </li>
+            </ul>
+            <div class="move-buttons">
+              {{#generateMovesMarkup cubeMoves}}
+                <li class="move">
+                  <button>{{@move.notation}}</button>
+                  <p>or press <strong>{{@move.key}}</strong></p>
+                </li>
+              {{/generateMovesMarkup}}
+            </div>
+            <ul class="log"></ul>
+          </div>
         </div>
       </div>
 
@@ -209,6 +182,9 @@
     </div>
 
     <!-- Main script -->
-    <script src="main.js?v={{cache_version}}"></script>
+    <script src="main.js?v={{cacheVersion}}"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
   </body>
 </html>

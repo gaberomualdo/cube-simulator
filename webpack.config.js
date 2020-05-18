@@ -7,13 +7,9 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const Handlebars = require('handlebars');
-Handlebars.registerHelper('times', function (n, block) {
-  var accum = '';
-  for (var i = 0; i < n; ++i) accum += block.fn(i);
-  return accum;
-});
 
-const getUniqueIDOfCurSourceCode = () => {
+const handlebarsInput = config.get('hbs');
+handlebarsInput.cacheVersion = (() => {
   try {
     const out = childProcess.execSync('git log --abbrev-commit HEAD -1').toString();
     const outAsArr = out.replace(/\n/g, ' ').replace(/\t/g, ' ').split(' ');
@@ -27,9 +23,30 @@ const getUniqueIDOfCurSourceCode = () => {
 
   // if getting unique ID Git commit fails, use UUID v4 with 'u' prefix
   return `u${uuid.v4()}`;
-};
+})();
 
-const cacheVersion = getUniqueIDOfCurSourceCode();
+Handlebars.registerHelper('times', function (n, block) {
+  let accum = '';
+  for (let i = 0; i < n; ++i) accum += block.fn(i);
+  return accum;
+});
+
+Handlebars.registerHelper('generateMovesMarkup', function (moves, block) {
+  let rows = 4;
+  let cols = 3;
+
+  let accum = '';
+
+  for (let row = 0; row < rows; row++) {
+    accum += "<ul class='rows'>";
+    for (let item = 0; item < cols; item++) {
+      block.data.move = moves[row * cols + item];
+      accum += block.fn(this);
+    }
+    accum += '</ul>';
+  }
+  return accum;
+});
 
 module.exports = {
   entry: './src/index.js',
@@ -88,10 +105,7 @@ module.exports = {
                 let result;
 
                 try {
-                  result = Handlebars.compile(content)({
-                    cache_version: cacheVersion,
-                    site_details: config.get('siteDetails'),
-                  });
+                  result = Handlebars.compile(content)(handlebarsInput);
                 } catch (error) {
                   loaderContext.emitError(error);
                   return content;
