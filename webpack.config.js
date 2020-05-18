@@ -1,7 +1,28 @@
 const path = require('path');
+const child_process = require('child_process');
+const Handlebars = require('handlebars');
+const uuid = require('uuid');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const getUniqueIDOfCurSourceCode = () => {
+  try {
+    const out = child_process.execSync('git log --abbrev-commit HEAD -1').toString();
+    const outAsArr = out.replace(/\n/g, ' ').replace(/\t/g, ' ').split(' ');
+
+    const latestCommitID = outAsArr[outAsArr.indexOf('commit') + 1];
+
+    return latestCommitID;
+  } catch (err) {
+    console.error(err.message);
+  }
+
+  // if getting unique ID Git commit fails, use UUID v4 with 'u' prefix
+  return `u${uuid.v4()}`;
+};
+
+const cache_version = getUniqueIDOfCurSourceCode();
 
 module.exports = {
   entry: './src/index.js',
@@ -43,12 +64,12 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/,
+        test: /\.hbs$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
+              name: '[name].html',
             },
           },
           'extract-loader',
@@ -56,6 +77,20 @@ module.exports = {
             loader: 'html-loader',
             options: {
               attributes: false,
+              preprocessor: (content, loaderContext) => {
+                let result;
+
+                try {
+                  result = Handlebars.compile(content)({
+                    cache_version,
+                  });
+                } catch (error) {
+                  loaderContext.emitError(error);
+                  return content;
+                }
+
+                return result;
+              },
             },
           },
         ],

@@ -181,7 +181,8 @@ body {
       height: 100%;
       object-fit: cover;
       object-position: center 70%;
-      background-color: #dfe6e8; }
+      background-color: #dfe6e8;
+      filter: saturate(1.25); }
     .col:nth-child(2) .row .caption {
       position: absolute;
       right: 0;

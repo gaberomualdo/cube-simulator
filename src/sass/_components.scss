@@ -194,6 +194,7 @@
         object-fit: cover;
         object-position: center 70%;
         background-color: darken($container-grey, 10%);
+        filter: saturate(1.25);
       }
 
       .caption {
