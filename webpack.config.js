@@ -48,6 +48,10 @@ Handlebars.registerHelper('generateMovesMarkup', function (moves, block) {
   return accum;
 });
 
+Handlebars.registerHelper('replace', function (target, replacement, block) {
+  return new Handlebars.SafeString(block.fn(this).split(target).join(replacement));
+});
+
 module.exports = {
   entry: './src/index.js',
   output: {

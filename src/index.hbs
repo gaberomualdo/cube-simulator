@@ -160,7 +160,7 @@
               {{#generateMovesMarkup cubeMoves}}
                 <li class="move">
                   <button>{{@move.notation}}</button>
-                  <p>or press <strong>{{@move.key}}</strong></p>
+                  <p>or press <strong>{{#replace 'shift' '<span class="shift">shift</span>'}}{{@move.key}}{{/replace}}</strong></p>
                 </li>
               {{/generateMovesMarkup}}
             </div>
