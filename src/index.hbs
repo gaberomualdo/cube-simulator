@@ -46,8 +46,8 @@
     {
       "@type": "WebSite",
       "@context": "http://schema.org",
-      "url": "{{site_details['url']}}",
-      "name": "{{site_details['name']}}",
+      "url": "{{site_details.url}}",
+      "name": "{{site_details.name}}",
       "author": {
         "@type": "Person",
         "name": "{{site_details.author.name}}",
@@ -121,6 +121,19 @@
             <p>Set Pieces</p>
             <i class="icon im im-angle-down"></i>
           </button>
+          <div class="content">
+            {{#times 6}}
+            <div class="face">
+                {{#times 3}}
+                <div class="row">
+                  {{#times 3}}
+                  <div class="piece"><i class="icon im im-sync"></i></div>
+                  {{/times}}
+                </div>
+                {{/times}}
+            </div>
+            {{/times}}
+          </div>
         </div>
 
         <div class="moves">

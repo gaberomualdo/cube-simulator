@@ -1,11 +1,17 @@
 const path = require('path');
 const childProcess = require('child_process');
-const Handlebars = require('handlebars');
 const uuid = require('uuid');
 const config = require('config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const Handlebars = require('handlebars');
+Handlebars.registerHelper('times', function (n, block) {
+  var accum = '';
+  for (var i = 0; i < n; ++i) accum += block.fn(i);
+  return accum;
+});
 
 const getUniqueIDOfCurSourceCode = () => {
   try {

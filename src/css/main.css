@@ -6,6 +6,21 @@ hr {
   border: none;
   border-top: 1px solid #ecf0f1; }
 
+::-webkit-scrollbar {
+  width: 20px; }
+
+::-webkit-scrollbar-track {
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #bfcdd0;
+  border-radius: 20px;
+  border: 5.6px solid transparent;
+  background-clip: content-box; }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9db2b7; }
+
 * {
   box-sizing: border-box;
   font-family: inherit; }
