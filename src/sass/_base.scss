@@ -20,7 +20,7 @@ $light-grey: lighten($grey-base-color, 3.75%);
 $light-lightest-grey: lighten($grey-base-color, 11.5%);
 $lightest-grey: lighten($grey-base-color, 19.25%);
 
-// base sizes (similar to REM, but includes one for border radii as well)
+// base sizes (similar to REM, but converts to px and includes one for border radii as well)
 $base-size: 16;
 $br-base-size: 4;
 
@@ -38,6 +38,10 @@ $br-base-size: 4;
   }
   @return $coefficient * $br-base-size;
 }
+
+// scrollbar sizes
+$scrollbar-container-width: bsize(1.25, false);
+$scrollbar-width: bsize(0.55, false);
 
 // page sizes
 $page-mobile-width: 1000px;
@@ -105,7 +109,7 @@ hr {
 
 // custom scrollbar
 ::-webkit-scrollbar {
-  width: bsize(1.25);
+  width: #{$scrollbar-container-width}px;
 }
 
 ::-webkit-scrollbar-track {
@@ -114,11 +118,19 @@ hr {
 
 ::-webkit-scrollbar-thumb {
   background-color: $lightest-grey;
-  border-radius: bsize(1.25);
-  border: bsize(0.35) solid transparent;
+  border-radius: #{$scrollbar-container-width}px;
+  border: #{($scrollbar-container-width - $scrollbar-width) / 2}px solid transparent;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: $light-grey;
+}
+
+// body scrollbar is darker
+body::-webkit-scrollbar-thumb {
+  background-color: $light-lightest-grey;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: $medium-light-grey;
 }
