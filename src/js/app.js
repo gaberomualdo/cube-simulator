@@ -1,3 +1,5 @@
+import './miscDOM.js';
+
 require('regenerator-runtime/runtime');
 
 const Cube = require('./cube');
@@ -58,9 +60,9 @@ document.querySelectorAll('.col:first-child .moves .row .move').forEach((move) =
 });
 
 window.addEventListener('load', async () => {
-  cube.scramble();
-
-  await refreshCubeImages();
+  await cube.scramble(25, async (notation) => {
+    await refreshCubeImages();
+  });
 });
 
 document.addEventListener('keydown', async (e) => {

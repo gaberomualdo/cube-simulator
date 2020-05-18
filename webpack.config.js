@@ -8,8 +8,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const Handlebars = require('handlebars');
 
-const handlebarsInput = config.get('hbs');
-handlebarsInput.cacheVersion = (() => {
+const handlebarsInput = JSON.parse(JSON.stringify(config.get('hbs')));
+
+const sourceCodeVersionUniqueID = (() => {
   try {
     const out = childProcess.execSync('git log --abbrev-commit HEAD -1').toString();
     const outAsArr = out.replace(/\n/g, ' ').replace(/\t/g, ' ').split(' ');
@@ -24,6 +25,10 @@ handlebarsInput.cacheVersion = (() => {
   // if getting unique ID Git commit fails, use UUID v4 with 'u' prefix
   return `u${uuid.v4()}`;
 })();
+
+handlebarsInput.cacheVersion = sourceCodeVersionUniqueID;
+
+console.log(handlebarsInput);
 
 Handlebars.registerHelper('times', function (n, block) {
   let accum = '';

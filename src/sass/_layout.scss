@@ -39,6 +39,8 @@ body {
   padding: bsize(1.5);
   flex-basis: 50%;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
   @include in-phone {
     padding: bsize(0.75);

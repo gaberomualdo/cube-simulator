@@ -2,6 +2,9 @@
 ::selection {
   background-color: rgba(123, 151, 158, 0.2); }
 
+* {
+  outline-color: #bfcdd0; }
+
 hr {
   border: none;
   border-top: 1px solid #ecf0f1; }
@@ -62,124 +65,15 @@ body {
 .col {
   padding: 24px;
   flex-basis: 50%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column; }
   @media only screen and (max-width: 650px) {
     .col {
       padding: 12px; } }
 
-.col:nth-child(1) {
-  display: flex;
-  flex-direction: column; }
-  .col:nth-child(1) .logo {
-    flex-basis: 52px;
-    padding: 0 8px 12px 8px;
-    border-bottom: 1px solid #ecf0f1; }
-    @media only screen and (max-width: 1000px) {
-      .col:nth-child(1) .logo {
-        height: 48px;
-        padding-bottom: 8px;
-        text-align: center; } }
-    .col:nth-child(1) .logo > * {
-      display: block;
-      float: left; }
-      @media only screen and (max-width: 1000px) {
-        .col:nth-child(1) .logo > * {
-          display: inline-block;
-          float: none;
-          vertical-align: top; } }
-    .col:nth-child(1) .logo img {
-      height: 40px;
-      width: auto;
-      margin-right: 16px; }
-      @media only screen and (max-width: 1000px) {
-        .col:nth-child(1) .logo img {
-          margin-right: 10px; } }
-    .col:nth-child(1) .logo h1 {
-      margin: 0;
-      line-height: 40px;
-      font-size: 21.6px;
-      color: #5a747b;
-      font-weight: 500; }
-      @media only screen and (max-width: 1000px) {
-        .col:nth-child(1) .logo h1 {
-          font-size: 20px;
-          padding-right: 24px; } }
-  .col:nth-child(1) .moves {
-    flex-basis: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 24px 0 0 0; }
-    @media only screen and (max-width: 1000px) {
-      .col:nth-child(1) .moves {
-        margin: 12px 0 0 0; } }
-    .col:nth-child(1) .moves .row {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      min-height: 48px;
-      list-style: none;
-      padding: 0;
-      margin: 0; }
-      @media only screen and (max-width: 1000px) {
-        .col:nth-child(1) .moves .row:not(:last-child) {
-          margin-bottom: 24px; } }
-  @media only screen and (max-width: 1000px) and (max-width: 650px) {
-    .col:nth-child(1) .moves .row:not(:last-child) {
-      margin-bottom: 12px; } }
-      .col:nth-child(1) .moves .row li {
-        color: #44585d; }
-        @media only screen and (max-width: 650px) {
-          .col:nth-child(1) .moves .row li {
-            flex-basis: 100%; } }
-        .col:nth-child(1) .moves .row li:not(:last-child) {
-          margin-right: 24px; }
-          @media only screen and (max-width: 650px) {
-            .col:nth-child(1) .moves .row li:not(:last-child) {
-              margin-right: 12px; } }
-        .col:nth-child(1) .moves .row li > * {
-          display: block;
-          float: left;
-          margin: 0;
-          height: 48px;
-          line-height: 48px; }
-          @media only screen and (max-width: 530px), (min-width: 1001px) and (max-width: 1075px) {
-            .col:nth-child(1) .moves .row li > * {
-              clear: both; } }
-        .col:nth-child(1) .moves .row li button {
-          margin-right: 12px;
-          border: 1px solid transparent;
-          background-color: #f1f4f5;
-          color: inherit;
-          text-align: center;
-          width: 48px;
-          border-radius: 8px;
-          font-size: 18.4px;
-          outline: none;
-          cursor: pointer;
-          box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
-          transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
-          .col:nth-child(1) .moves .row li button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
-          .col:nth-child(1) .moves .row li button:active, .col:nth-child(1) .moves .row li button:focus {
-            transform: translateY(0);
-            background-color: #e5ebec; }
-          @media only screen and (max-width: 650px) {
-            .col:nth-child(1) .moves .row li button {
-              width: 100%; } }
-        .col:nth-child(1) .moves .row li p {
-          opacity: 0.5; }
-          .col:nth-child(1) .moves .row li p strong {
-            font-weight: 500; }
-          @media only screen and (max-width: 650px) {
-            .col:nth-child(1) .moves .row li p {
-              display: none; } }
-
 .col:nth-child(2) {
-  background-color: #f2f5f6;
-  display: flex;
-  flex-direction: column; }
+  background-color: #f2f5f6; }
   .col:nth-child(2) .row {
     flex-basis: 50%;
     flex-shrink: 1;
@@ -216,3 +110,72 @@ body {
       padding: 0 8px;
       height: 24px;
       line-height: 26.4px; }
+
+.col:first-child .logo {
+  flex-basis: 52px;
+  padding: 0 8px 12px 8px;
+  border-bottom: 1px solid #ecf0f1; }
+  @media only screen and (max-width: 1000px) {
+    .col:first-child .logo {
+      height: 48px;
+      padding-bottom: 8px;
+      text-align: center; } }
+  .col:first-child .logo > * {
+    display: block;
+    float: left; }
+    @media only screen and (max-width: 1000px) {
+      .col:first-child .logo > * {
+        display: inline-block;
+        float: none;
+        vertical-align: top; } }
+  .col:first-child .logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 16px; }
+    @media only screen and (max-width: 1000px) {
+      .col:first-child .logo img {
+        margin-right: 10px; } }
+  .col:first-child .logo h1 {
+    margin: 0;
+    line-height: 40px;
+    font-size: 21.6px;
+    color: #5a747b;
+    font-weight: 500; }
+    @media only screen and (max-width: 1000px) {
+      .col:first-child .logo h1 {
+        font-size: 20px;
+        padding-right: 24px; } }
+
+.openable-section {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%; }
+  .openable-section.closed {
+    flex-basis: 56px; }
+    .openable-section.closed .label .icon {
+      transform: translateX(-2.4px) rotate(-90deg); }
+    .openable-section.closed .content {
+      display: none; }
+  .openable-section .label {
+    cursor: pointer;
+    flex-basis: 56px;
+    border: none;
+    margin-bottom: 2px;
+    padding: 4px 13.6px;
+    background-color: transparent;
+    color: #44585d;
+    box-shadow: 0 1px 0 #dee5e7; }
+    .openable-section .label > * {
+      display: block;
+      float: left;
+      margin: 0;
+      height: 48px;
+      line-height: 49px;
+      font-size: 18.4px; }
+    .openable-section .label .icon {
+      float: right;
+      font-size: 21.6px;
+      line-height: 52.8px;
+      transition: transform 0.25s; }
+  .openable-section .content {
+    flex-basis: 100%; }

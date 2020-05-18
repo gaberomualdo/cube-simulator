@@ -1,54 +1,3 @@
-.col {
-  // first column with move buttons and logo bar
-  &:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-
-    // logo bar
-    .logo {
-      flex-basis: bsize(3.25);
-      padding: 0 bsize(0.5) bsize(0.75) bsize(0.5);
-      border-bottom: 1px solid $page-grey;
-
-      @include in-mobile-and-phone {
-        height: bsize(3);
-        padding-bottom: bsize(0.5);
-        text-align: center;
-      }
-
-      & > * {
-        @include dbfl;
-
-        @include in-mobile-and-phone {
-          @include dibfnvt;
-        }
-      }
-
-      img {
-        height: bsize(2.5);
-        width: auto;
-        margin-right: bsize(1);
-        @include in-mobile-and-phone {
-          margin-right: bsize(0.625);
-        }
-      }
-
-      h1 {
-        @include m0;
-        line-height: bsize(2.5);
-        font-size: bsize(1.35);
-        color: $dark-medium-grey;
-        font-weight: 500;
-
-        @include in-mobile-and-phone {
-          font-size: bsize(1.25);
-
-          // padding to compensate for centering to make text seem more centered
-          padding-right: bsize(1.5);
-        }
-      }
-    }
-
     // moves list
     .moves {
       flex-basis: 100%;
@@ -99,7 +48,7 @@
           }
 
           & > * {
-            @include dbfl;
+            @include db-fl;
             margin: 0;
             height: bsize(3);
             line-height: bsize(3);
@@ -159,57 +108,4 @@
     }
   }
 
-  // second column with images
-  &:nth-child(2) {
-    background-color: lighten($page-grey, 2%);
-    display: flex;
-    flex-direction: column;
-
-    // each row is an image with a caption
-    .row {
-      flex-basis: 50%;
-      flex-shrink: 1;
-      width: 100%;
-      position: relative;
-      border-radius: br-bsize(1);
-      overflow: hidden;
-      font-size: 0;
-
-      @include in-mobile-and-phone {
-        height: auto;
-        max-height: bsize(25);
-      }
-
-      &:not(:last-child) {
-        margin-bottom: bsize(1.5);
-
-        @include in-phone {
-          margin-bottom: bsize(0.75);
-        }
-      }
-
-      img.cube-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 70%;
-        background-color: darken($container-grey, 10%);
-        filter: saturate(1.25);
-      }
-
-      .caption {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        font-size: bsize(0.75);
-        color: $lightest-grey;
-        background-color: rgba($page-grey, 0.15);
-        border-top-left-radius: br-bsize(1);
-        margin: 0;
-        padding: 0 bsize(0.5);
-        height: bsize(1.5);
-        line-height: bsize(1.65);
-      }
-    }
-  }
 }

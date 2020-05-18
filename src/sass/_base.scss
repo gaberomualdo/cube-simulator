@@ -69,7 +69,7 @@ $page-phone-width: 650px;
   display: block;
   float: left;
 }
-@mixin dbfl {
+@mixin db-fl {
   @include d-block-f-left;
 }
 
@@ -78,7 +78,7 @@ $page-phone-width: 650px;
   float: none;
   vertical-align: top;
 }
-@mixin dibfnvt {
+@mixin dib-fn-vt {
   @include d-inline-block-f-none-va-top;
 }
 
@@ -99,6 +99,11 @@ $page-phone-width: 650px;
 // custom selection
 ::selection {
   background-color: rgba($medium-grey, 0.2);
+}
+
+// default outline
+* {
+  outline-color: $light-lightest-grey;
 }
 
 // default hr styles

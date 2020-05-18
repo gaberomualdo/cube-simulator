@@ -82,7 +82,7 @@ class Cube {
   }
 
   // scramble (make random moves)
-  scramble(amountOfMoves = 30, afterEveryMove = () => {}) {
+  async scramble(amountOfMoves = 30, afterEveryMove = () => {}) {
     const possibleNormalMoves = ['U', 'D', 'R', 'L', 'F', 'B'];
 
     for (let i = 0; i < amountOfMoves; i++) {
@@ -92,7 +92,7 @@ class Cube {
       const notation = `${chosenMove}${clockwise ? "'" : ''}`;
       this.makeMove(notation);
 
-      afterEveryMove(notation);
+      await afterEveryMove(notation);
     }
   }
 

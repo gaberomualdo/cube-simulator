@@ -1,0 +1,49 @@
+.openable-section {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+
+  &.closed {
+    flex-basis: bsize(3.5);
+
+    .label .icon {
+      transform: translateX(-#{bsize(0.15)}) rotate(-90deg);
+    }
+
+    .content {
+      display: none;
+    }
+  }
+
+  .label {
+    cursor: pointer;
+    flex-basis: bsize(3.5);
+    border: none;
+    margin-bottom: 2px;
+    padding: bsize(0.25) bsize(0.85);
+    background-color: transparent;
+    color: $dark-grey;
+    box-shadow: 0 1px 0 darken($page-grey, 5%);
+
+    & > * {
+      @include db-fl;
+
+      margin: 0;
+
+      height: bsize(3);
+      line-height: #{bsize(3, false) + 1}px;
+      font-size: bsize(1.15);
+    }
+
+    .icon {
+      float: right;
+      font-size: bsize(1.35);
+      line-height: bsize(3.3);
+      transition: transform 0.25s;
+    }
+  }
+
+  .content {
+    flex-basis: 100%;
+  }
+}
