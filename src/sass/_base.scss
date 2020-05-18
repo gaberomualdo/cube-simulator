@@ -113,12 +113,12 @@ hr {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $light-lightest-grey;
+  background-color: $lightest-grey;
   border-radius: bsize(1.25);
   border: bsize(0.35) solid transparent;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: $medium-light-grey;
+  background-color: $light-grey;
 }

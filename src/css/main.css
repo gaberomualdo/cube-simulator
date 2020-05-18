@@ -13,13 +13,13 @@ hr {
   background-color: transparent; }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #bfcdd0;
+  background-color: #d6dee1;
   border-radius: 20px;
   border: 5.6px solid transparent;
   background-clip: content-box; }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #9db2b7; }
+  background-color: #a8bbbf; }
 
 * {
   box-sizing: border-box;
