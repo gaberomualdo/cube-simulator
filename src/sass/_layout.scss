@@ -46,3 +46,16 @@ body {
     padding: bsize(0.75);
   }
 }
+
+// special case with scrolling on first column
+.col:first-child {
+  padding: bsize(1.5) bsize(1.5) 0 bsize(1.5);
+
+  & > *:last-child {
+    padding-bottom: bsize(1.5);
+
+    @include in-phone {
+      padding-bottom: bsize(0.75);
+    }
+  }
+}

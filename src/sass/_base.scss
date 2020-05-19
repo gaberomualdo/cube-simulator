@@ -64,6 +64,18 @@ $page-phone-width: 650px;
   }
 }
 
+@mixin not-in-phone {
+  @media only screen and (min-width: #{$page-phone-width + 1px}) {
+    @content;
+  }
+}
+
+@mixin not-in-mobile-and-phone {
+  @media only screen and (min-width: #{$page-mobile-width + 1px}) {
+    @content;
+  }
+}
+
 // commonly used CSS lines as mixins
 @mixin d-block-f-left {
   display: block;
