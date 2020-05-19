@@ -37,7 +37,7 @@ body {
 }
 .col {
   padding: bsize(1.5);
-  flex-basis: 50%;
+  flex-basis: 35%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,7 @@ body {
 
 // special case with scrolling on first column
 .col:first-child {
+  flex-basis: 65%;
   padding: bsize(1.5) bsize(1.5) 0 bsize(1.5);
 
   & > *:last-child {
