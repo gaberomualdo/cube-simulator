@@ -30,7 +30,17 @@ const makeMoveAndRefreshImage = async (moveNotation) => {
 require('./dom/openableSection');
 
 // misc buttons
-require('./dom/miscButtons')(Cube, cube, refreshCubeImages, solveCube, compressMoves, history);
+const miscButtons = require('./dom/miscButtons')();
+
+miscButtons.solveButton.addEventListener('click', () => {
+  miscButtons.solve(Cube, cube, refreshCubeImages, solveCube, compressMoves, history);
+});
+miscButtons.scrambleButton.addEventListener('click', () => {
+  miscButtons.scramble(cube, refreshCubeImages, history);
+});
+miscButtons.undoButton.addEventListener('click', () => {
+  miscButtons.undo(cube, refreshCubeImages, history);
+});
 
 // move buttons
 require('./dom/moveButtons')(makeMoveAndRefreshImage);
