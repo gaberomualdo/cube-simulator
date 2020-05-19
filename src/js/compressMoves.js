@@ -1,7 +1,7 @@
 // this file compresses a set of moves (as notation) with various replacements, ex:
 // B, B, B --> B', B, B' --> (no moves), etc.
 
-module.exports = (moves) => {
+const compressMoves = (moves) => {
   const repeatArr = (arr, times) => {
     let repeatedArr = [];
     for (let i = 0; i < times; i++) {
@@ -80,4 +80,21 @@ module.exports = (moves) => {
   allMovesArr.pop();
 
   return allMovesArr;
+};
+
+// keep on compressing until no compressions are made (similar to bubble sort for example)
+module.exports = (moves) => {
+  moves = JSON.parse(JSON.stringify(moves));
+
+  let compressionsMade = true;
+
+  while (compressionsMade && moves.length > 0) {
+    const movesBefore = JSON.stringify(moves);
+    moves = compressMoves(moves);
+    const movesAfter = JSON.stringify(moves);
+
+    compressionsMade = movesBefore !== movesAfter;
+  }
+
+  return moves;
 };
