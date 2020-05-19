@@ -168,10 +168,10 @@ body {
     @media only screen and (max-width: 650px) {
       .openable-section.closed {
         flex-basis: 40px; } }
-    .openable-section.closed .label .icon {
-      transform: translateX(-2.4px) rotate(-90deg); }
     .openable-section.closed .content {
       display: none; }
+    .openable-section.closed .label .icon {
+      transform: translateX(-2.4px) rotate(-90deg); }
   .openable-section .label {
     cursor: pointer;
     flex-basis: 56px;
@@ -340,9 +340,84 @@ ul.misc-buttons {
   cursor: pointer;
   box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
   transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
-  .styled-button:hover {
+  .styled-button:not([disabled]):hover {
     transform: translateY(-1px);
     box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
-  .styled-button:active, .styled-button:focus {
+  .styled-button:not([disabled]):active, .styled-button:not([disabled]):focus {
     transform: translateY(0);
     background-color: #e5ebec; }
+
+.set-pieces .content {
+  justify-content: space-around;
+  padding-bottom: 24px; }
+  .set-pieces .content .faces-row {
+    flex-basis: 160px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .set-pieces .content .faces-row .face {
+      height: 160px;
+      width: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      .set-pieces .content .faces-row .face .row {
+        flex-basis: 47.2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+        .set-pieces .content .faces-row .face .row .piece {
+          flex-basis: 47.2px;
+          height: 47.2px;
+          border-radius: 8px;
+          position: relative;
+          background-color: red;
+          transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out; }
+          .set-pieces .content .faces-row .face .row .piece:disabled {
+            opacity: 0.5; }
+          .set-pieces .content .faces-row .face .row .piece i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            margin-top: 3.2px;
+            font-size: 28px;
+            line-height: 1;
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out; }
+          .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover {
+            opacity: 0.8; }
+            .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover i {
+              opacity: 1; }
+          .set-pieces .content .faces-row .face .row .piece:not(:disabled):active {
+            opacity: 1; }
+        .set-pieces .content .faces-row .face .row:nth-child(1) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(1) .piece:nth-child(2) {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(1) .piece:nth-child(3) {
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(2) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(2) .piece:nth-child(3) {
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(3) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(3) .piece:nth-child(2) {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0; }
+        .set-pieces .content .faces-row .face .row:nth-child(3) .piece:nth-child(3) {
+          border-bottom-left-radius: 0;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0; }

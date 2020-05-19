@@ -15,13 +15,15 @@
   transition: box-shadow $transition-duration $transition-timing, background-color $transition-duration $transition-timing,
     transform $transition-duration $transition-timing;
 
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 bsize(0.1) bsize(0.4) rgba($dark-grey, 0.45);
-  }
-  &:active,
-  &:focus {
-    transform: translateY(0);
-    background-color: darken($page-grey, 2.5%);
+  &:not([disabled]) {
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 bsize(0.1) bsize(0.4) rgba($dark-grey, 0.45);
+    }
+    &:active,
+    &:focus {
+      transform: translateY(0);
+      background-color: darken($page-grey, 2.5%);
+    }
   }
 }

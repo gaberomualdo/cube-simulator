@@ -1,0 +1,106 @@
+.set-pieces .content {
+  justify-content: space-around;
+  padding-bottom: bsize(1.5);
+
+  .faces-row {
+    flex-basis: bsize(10);
+    margin-top: bsize(1.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .face {
+      height: bsize(10);
+      width: bsize(10);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .row {
+        flex-basis: bsize(2.95);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .piece {
+          flex-basis: bsize(2.95);
+          height: bsize(2.95);
+          border-radius: br-bsize(2);
+          position: relative;
+          background-color: red;
+          transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+
+          &:disabled {
+            opacity: 0.35;
+          }
+
+          i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $white;
+            margin-top: bsize(0.2);
+            font-size: bsize(1.75);
+            line-height: 1;
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out;
+          }
+          &:not(:disabled) {
+            &:hover {
+              opacity: 0.8;
+
+              i {
+                opacity: 1;
+              }
+            }
+
+            &:active {
+              opacity: 1;
+            }
+          }
+        }
+
+        &:nth-child(1) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+        &:nth-child(1) .piece:nth-child(2) {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+        &:nth-child(1) .piece:nth-child(3) {
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+        &:nth-child(2) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+        &:nth-child(2) .piece:nth-child(3) {
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+        &:nth-child(3) .piece:nth-child(1) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        &:nth-child(3) .piece:nth-child(2) {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        &:nth-child(3) .piece:nth-child(3) {
+          border-bottom-left-radius: 0;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+  }
+}
