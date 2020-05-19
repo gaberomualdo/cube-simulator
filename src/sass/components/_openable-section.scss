@@ -6,6 +6,10 @@
   &.closed {
     flex-basis: bsize(3.5);
 
+    @include in-phone {
+      flex-basis: bsize(2.5);
+    }
+
     .label .icon {
       transform: translateX(-#{bsize(0.15)}) rotate(-90deg);
     }
@@ -40,6 +44,21 @@
       font-size: bsize(1.35);
       line-height: bsize(3.3);
       transition: transform 0.25s;
+    }
+
+    @include in-phone {
+      padding: bsize(0.25) bsize(0.65);
+      flex-basis: bsize(2.5);
+
+      & > * {
+        height: bsize(2);
+        line-height: #{bsize(2, false) + 1}px;
+        font-size: bsize(1);
+      }
+      .icon {
+        font-size: bsize(1.1);
+        line-height: bsize(2.3);
+      }
     }
   }
 
