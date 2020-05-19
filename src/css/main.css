@@ -185,10 +185,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 24px 0 0 0; }
+  margin-top: 24px; }
   @media only screen and (max-width: 1000px) {
     .col:first-child .moves .content .move-buttons {
-      margin: 12px 0 0 0; } }
+      margin-top: 12px; } }
   .col:first-child .moves .content .move-buttons .row {
     display: flex;
     flex-direction: row;
@@ -225,7 +225,7 @@ body {
         flex-basis: 48px; }
         @media only screen and (max-width: 650px) {
           .col:first-child .moves .content .move-buttons .row li button {
-            width: 100%; } }
+            flex-basis: 100%; } }
       .col:first-child .moves .content .move-buttons .row li p {
         padding-left: 12px;
         opacity: 0.5; }
@@ -239,25 +239,52 @@ ul.misc-buttons {
   color: #44585d;
   list-style: none;
   padding: 0;
-  overflow: hidden; }
+  margin: 24px 0; }
+  @media only screen and (max-width: 1000px) {
+    ul.misc-buttons {
+      margin: 12px 0; } }
+  @media only screen and (max-width: 650px) {
+    ul.misc-buttons {
+      display: flex;
+      flex-direction: row; } }
   ul.misc-buttons li {
-    min-height: 40px;
-    overflow: hidden; }
+    min-height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; }
+    @media only screen and (max-width: 650px) {
+      ul.misc-buttons li {
+        flex-basis: 100%; } }
     ul.misc-buttons li:not(:last-child) {
-      margin-bottom: 12px; }
-    ul.misc-buttons li > * {
-      display: inline-block;
-      float: none;
-      vertical-align: top; }
+      margin-bottom: 16px; }
+      @media only screen and (max-width: 650px) {
+        ul.misc-buttons li:not(:last-child) {
+          margin-bottom: 1px;
+          margin-right: 12px; } }
     ul.misc-buttons li button {
       padding: 0 12px;
       height: 36px;
       line-height: 36px;
-      font-size: 16px; }
+      font-size: 16px;
+      border-radius: 5px; }
+      @media only screen and (max-width: 650px) {
+        ul.misc-buttons li button {
+          flex-basis: 100%; }
+          ul.misc-buttons li button span.mobile-no-display {
+            display: none; } }
     ul.misc-buttons li p {
-      height: 36px;
-      padding: 6px 0;
-      line-height: 24px; }
+      flex-basis: 0%;
+      flex-grow: 1;
+      transform: translateY(1px);
+      min-height: 36px;
+      padding: 6px 0 6px 16px;
+      line-height: 24px;
+      margin: 0;
+      opacity: 0.55;
+      overflow: hidden; }
+      @media only screen and (max-width: 650px) {
+        ul.misc-buttons li p {
+          display: none; } }
 
 .styled-button {
   border: 1px solid transparent;

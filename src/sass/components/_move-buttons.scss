@@ -4,10 +4,10 @@
   flex-direction: column;
   justify-content: space-between;
 
-  margin: bsize(1.5) 0 0 0;
+  margin-top: bsize(1.5);
 
   @include in-mobile-and-phone {
-    margin: bsize(0.75) 0 0 0;
+    margin-top: bsize(0.75);
   }
 
   .row {
@@ -57,7 +57,7 @@
       button {
         flex-basis: bsize(3);
         @include in-phone {
-          width: 100%;
+          flex-basis: 100%;
         }
       }
 
