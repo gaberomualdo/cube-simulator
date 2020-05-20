@@ -34,25 +34,6 @@
             opacity: 0.4;
           }
 
-          &[color='green'] {
-            background-color: $cube-green;
-          }
-          &[color='red'] {
-            background-color: $cube-red;
-          }
-          &[color='orange'] {
-            background-color: $cube-orange;
-          }
-          &[color='white'] {
-            background-color: $cube-white;
-          }
-          &[color='blue'] {
-            background-color: $cube-blue;
-          }
-          &[color='yellow'] {
-            background-color: $cube-yellow;
-          }
-
           i {
             position: absolute;
             top: 50%;
@@ -65,6 +46,34 @@
             opacity: 0;
             transition: opacity 0.1s ease-in-out;
           }
+
+          &[color='green'] {
+            background-color: $cube-green;
+          }
+          &[color='red'] {
+            background-color: $cube-red;
+          }
+          &[color='orange'] {
+            background-color: $cube-orange;
+          }
+          &[color='white'] {
+            background-color: $cube-white;
+
+            i {
+              color: $dark-grey;
+            }
+          }
+          &[color='blue'] {
+            background-color: $cube-blue;
+          }
+          &[color='yellow'] {
+            background-color: $cube-yellow;
+
+            i {
+              color: $dark-grey;
+            }
+          }
+
           &:not(:disabled) {
             &:hover {
               opacity: 0.8;

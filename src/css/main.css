@@ -376,18 +376,6 @@ ul.misc-buttons {
           transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out; }
           .set-pieces .content .faces-row .face .row .piece:disabled {
             opacity: 0.4; }
-          .set-pieces .content .faces-row .face .row .piece[color='green'] {
-            background-color: #63fa77; }
-          .set-pieces .content .faces-row .face .row .piece[color='red'] {
-            background-color: #ec6164; }
-          .set-pieces .content .faces-row .face .row .piece[color='orange'] {
-            background-color: #f9802a; }
-          .set-pieces .content .faces-row .face .row .piece[color='white'] {
-            background-color: #e3e3db; }
-          .set-pieces .content .faces-row .face .row .piece[color='blue'] {
-            background-color: #3ac2fe; }
-          .set-pieces .content .faces-row .face .row .piece[color='yellow'] {
-            background-color: #cbf74c; }
           .set-pieces .content .faces-row .face .row .piece i {
             position: absolute;
             top: 50%;
@@ -399,6 +387,22 @@ ul.misc-buttons {
             line-height: 1;
             opacity: 0;
             transition: opacity 0.1s ease-in-out; }
+          .set-pieces .content .faces-row .face .row .piece[color='green'] {
+            background-color: #63fa77; }
+          .set-pieces .content .faces-row .face .row .piece[color='red'] {
+            background-color: #ec6164; }
+          .set-pieces .content .faces-row .face .row .piece[color='orange'] {
+            background-color: #f9802a; }
+          .set-pieces .content .faces-row .face .row .piece[color='white'] {
+            background-color: #e3e3db; }
+            .set-pieces .content .faces-row .face .row .piece[color='white'] i {
+              color: #44585d; }
+          .set-pieces .content .faces-row .face .row .piece[color='blue'] {
+            background-color: #3ac2fe; }
+          .set-pieces .content .faces-row .face .row .piece[color='yellow'] {
+            background-color: #cbf74c; }
+            .set-pieces .content .faces-row .face .row .piece[color='yellow'] i {
+              color: #44585d; }
           .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover {
             opacity: 0.8; }
             .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover i {
