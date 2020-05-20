@@ -84,8 +84,13 @@ const sendVisualizerHTTPRequest = async (facesObj) => {
   }
 };
 
+let refreshCubeCallback = () => {};
+
 module.exports = {
-  refreshCube: refreshCubeImages,
+  refreshCube: async (cube) => {
+    await refreshCubeImages(cube);
+    refreshCubeCallback(cube);
+  },
 
   // getters and setters
   getVisualizerServerURL: () => VISUALIZER_SERVER_URL,
@@ -96,5 +101,9 @@ module.exports = {
   },
   setIsLargeImage: (isLargeImage) => {
     VISUALIZER_LARGE_IMAGE = isLargeImage;
+  },
+
+  setRefreshCubeCallback: (callback) => {
+    refreshCubeCallback = callback;
   },
 };

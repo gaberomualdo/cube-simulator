@@ -337,15 +337,16 @@ ul.misc-buttons {
   border-radius: 8px;
   font-size: 18.4px;
   outline: none;
-  cursor: pointer;
   box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
   transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
-  .styled-button:not([disabled]):hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
-  .styled-button:not([disabled]):active, .styled-button:not([disabled]):focus {
-    transform: translateY(0);
-    background-color: #e5ebec; }
+  .styled-button:not([disabled]) {
+    cursor: pointer; }
+    .styled-button:not([disabled]):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 1.6px 6.4px rgba(68, 88, 93, 0.45); }
+    .styled-button:not([disabled]):active, .styled-button:not([disabled]):focus {
+      transform: translateY(0);
+      background-color: #e5ebec; }
 
 .set-pieces .content {
   justify-content: space-around;
@@ -372,10 +373,21 @@ ul.misc-buttons {
           height: 47.2px;
           border-radius: 8px;
           position: relative;
-          background-color: red;
           transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out; }
           .set-pieces .content .faces-row .face .row .piece:disabled {
-            opacity: 0.5; }
+            opacity: 0.4; }
+          .set-pieces .content .faces-row .face .row .piece[color='green'] {
+            background-color: #63fa77; }
+          .set-pieces .content .faces-row .face .row .piece[color='red'] {
+            background-color: #ec6164; }
+          .set-pieces .content .faces-row .face .row .piece[color='orange'] {
+            background-color: #f9802a; }
+          .set-pieces .content .faces-row .face .row .piece[color='white'] {
+            background-color: #e3e3db; }
+          .set-pieces .content .faces-row .face .row .piece[color='blue'] {
+            background-color: #3ac2fe; }
+          .set-pieces .content .faces-row .face .row .piece[color='yellow'] {
+            background-color: #cbf74c; }
           .set-pieces .content .faces-row .face .row .piece i {
             position: absolute;
             top: 50%;

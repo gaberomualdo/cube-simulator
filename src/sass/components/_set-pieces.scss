@@ -28,11 +28,29 @@
           height: bsize(2.95);
           border-radius: br-bsize(2);
           position: relative;
-          background-color: red;
           transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 
           &:disabled {
-            opacity: 0.35;
+            opacity: 0.4;
+          }
+
+          &[color='green'] {
+            background-color: $cube-green;
+          }
+          &[color='red'] {
+            background-color: $cube-red;
+          }
+          &[color='orange'] {
+            background-color: $cube-orange;
+          }
+          &[color='white'] {
+            background-color: $cube-white;
+          }
+          &[color='blue'] {
+            background-color: $cube-blue;
+          }
+          &[color='yellow'] {
+            background-color: $cube-yellow;
           }
 
           i {

@@ -29,6 +29,12 @@ const makeMoveAndRefreshImage = async (moveNotation) => {
 // openable section DOM for open and close events
 require('./dom/openableSection');
 
+// set pieces section
+const setPieces = require('./dom/setPieces');
+refreshCubeImages.setRefreshCubeCallback((cube) => {
+  setPieces(cube.toFacesObj());
+});
+
 // misc buttons
 const miscButtons = require('./dom/miscButtons')();
 
