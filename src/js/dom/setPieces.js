@@ -21,6 +21,15 @@ colors.forEach((color, ind) => {
         }
       }, 150);
     });
+
+    // onclick, change piece color
+    piece.addEventListener('click', async () => {
+      const pieceColor = piece.getAttribute('color');
+      if (pieceColor) {
+        const newColor = colors[(colors.indexOf(pieceColor) + 1) % colors.length];
+        piece.setAttribute('color', newColor);
+      }
+    });
   });
 });
 
