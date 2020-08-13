@@ -6,7 +6,7 @@
         "name": "Fred Adams",
         "email": "xtrp@xtrp.io"
       },
-      "name": "Rubik's Cube Simulator",
+      "name": "Rubik's Cube Playground",
       "description": "Scramble, solve, and move a virtual Rubik's cube just like you would in real life!"
     },
     "cubeMoves": [

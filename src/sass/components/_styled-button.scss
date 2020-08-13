@@ -8,6 +8,8 @@
   outline: none;
   box-shadow: 0 bsize(0.05) bsize(0.2) rgba($dark-grey, 0.35);
 
+  backface-visibility: hidden;
+
   $transition-duration: 0.1s;
   $transition-timing: ease-in-out;
 

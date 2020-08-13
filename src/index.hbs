@@ -1,45 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--  <head>
-    <link type="text/plain" rel="author" href="/humans.txt">
-
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="white">
-<meta name="format-detection" content="telephone=no">
-
-    <meta name="robots" content="index, follow">
-<meta name="author" content="Fred Adams">
-<meta name="description" content="Young web developer (currently starting high school) looking to build something new with code and make a name for myself.">
-
-<meta name="twitter:card" content="summary_large_image">
-
-<meta name="twitter:title" content="Fred Adams (xtrp) – Full Stack Web-Developer">
-<meta name="twitter:description" content="Young web developer (currently starting high school) looking to build something new with code and make a name for myself.">
-
-<meta property="og:title" content="Fred Adams (xtrp) – Full Stack Web-Developer">
-<meta property="og:site_name" content="Fred Adams (xtrp) – Full Stack Web-Developer">
-<meta property="og:description" content="Young web developer (currently starting high school) looking to build something new with code and make a name for myself.">
-
-    
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-
-    <link rel="stylesheet" href="/views/resources/skeleton/normalize.min.css?v=10">
-<link rel="stylesheet" href="/views/resources/skeleton/skeleton.min.css?v=10">
-
-    <link rel="stylesheet" href="/views/assets/css/main.css?v=11">
-<link rel="stylesheet" href="/views/assets/css/pages/home.css?v=11"></head>-->
-
 <head>
     <!-- Viewport Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title -->
-    <title>Rubik's Cube</title>
+    <title>{{siteDetails.name}}</title>
 
     <!-- SEO -->
     <script type="application/ld+json">
@@ -113,7 +80,7 @@
       <div class="col">
         <div class="logo">
           <img src="icon.png" alt="Rubik's Cube Logo" />
-          <h1>Rubik's Cube</h1>
+          <h1>{{siteDetails.name}}</h1>
         </div>
 
         <div class="set-pieces openable-section closed">
@@ -153,11 +120,11 @@
               </li>
               <li>
                 <button class="styled-button scramble">Scramble <span class="mobile-no-display">Cube</span></button>
-                <p>Scramble cube with 25 random moves.</p>
+                <p>Scramble cube with 50 random moves.</p>
               </li>
               <li>
                 <button class="styled-button undo">Undo</button>
-                <p>Undo the previous move (includes moves from scramble or solve).</p>
+                <p>Undo the previous move (includes moves from scramble or solve, but ignores manual piece changes).</p>
               </li>
             </ul>
             <hr>
@@ -175,14 +142,21 @@
 
       <div class="col">
         <div class="row">
-          <img src="placeholder-image.png" alt="Rubik's Cube Front View" class="cube-image front-view" />
+          <canvas width="1200" height="800" class="cube-image front-view"></canvas>
           <p class="caption">Front View</p>
         </div>
         <div class="row">
-          <img src="placeholder-image.png" alt="Rubik's Cube Back View" class="cube-image back-view" />
+          <canvas width="1200" height="800" class="cube-image back-view"></canvas>
           <p class="caption">Back View</p>
         </div>
       </div>
+    </div>
+
+    <div class="not-displayed">
+      <img src="cubebackground.jpg" alt="Rubik's Cube" class="rubiks-cube-background-image">
+      <img src="cubenoshadow.png" alt="Rubik's Cube" class="rubiks-cube-shadow-image">
+      <img src="rotatecounterclockwise.png" alt="Rotate Counterclockwise Button" class="rotate-counterclockwise-button-image">
+      <img src="rotateclockwise.png" alt="Rotate Clockwise Button" class="rotate-clockwise-button-image">
     </div>
 
     <!-- Main script -->

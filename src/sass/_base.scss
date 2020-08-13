@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 // variables
-$cube-green: rgb(99, 250, 119);
+$cube-green: darken(rgb(99, 250, 119), 5%);
 $cube-orange: rgb(249, 128, 42);
 $cube-blue: rgb(58, 194, 254);
 $cube-red: rgb(236, 97, 100);
 $cube-white: rgb(227, 227, 219);
-$cube-yellow: rgb(203, 247, 76);
+$cube-yellow: lighten(rgb(203, 247, 76), 2%);
+
+// brighter cube colors:
+// $cube-green: #64f831;
+// $cube-blue: #43e1f4;
+// $cube-red: #ff274e;
+// $cube-orange: #ff6712;
+// $cube-white: #f2f6f7;
+// $cube-yellow: #fcfc04;
 
 $white: #ffffff;
 
@@ -153,4 +161,9 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-thumb:hover {
   background-color: $medium-light-grey;
+}
+
+// not displayed
+body .not-displayed {
+  display: none;
 }

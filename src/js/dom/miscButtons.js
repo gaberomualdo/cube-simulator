@@ -1,5 +1,11 @@
+const timeBetweenMovesMS = 25;
+
 const isFocused = (element) => {
   return element === document.activeElement;
+};
+
+const timeSleep = (milliseconds) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
 // returns a list of buttons and their onclick functions
@@ -25,7 +31,8 @@ module.exports = () => {
 
         movesMadeCount++;
 
-        await refreshCubeImages.refreshCube(cube);
+        await timeSleep(5000 / movesToSolve.length);
+        refreshCubeImages.refreshCube(cube);
 
         if (movesMadeCount < movesToSolve.length) {
           makeMovesToSolve();
@@ -36,13 +43,15 @@ module.exports = () => {
 
       if (movesToSolve.length > 0) {
         makeMovesToSolve();
-        await refreshCubeImages.refreshCube(cube);
+        refreshCubeImages.refreshCube(cube);
       }
     },
     scramble: async (cube, refreshCubeImages, history) => {
-      await cube.scramble(25, async (notation) => {
+      const amountOfMoves = 50;
+      await cube.scramble(amountOfMoves, async (notation) => {
         history.push(notation);
-        await refreshCubeImages.refreshCube(cube);
+        await timeSleep(1000 / amountOfMoves);
+        refreshCubeImages.refreshCube(cube);
       });
     },
     undo: async (cube, refreshCubeImages, history) => {

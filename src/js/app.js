@@ -10,42 +10,45 @@ const cube = new Cube();
 // history
 let history = [];
 
-window.addEventListener('load', async () => {
-  await refreshCubeImages.refreshCube(cube);
+window.addEventListener('load', () => {
+  cubeImages.refreshCube(cube);
 });
 
 // make move and refresh
-const refreshCubeImages = require('./dom/refreshCubeImages');
+const cubeImages = require('./dom/cubeImages');
 
-refreshCubeImages.setIsLargeImage(true);
-refreshCubeImages.setVisualizerServerURL('http://localhost:6556/api/');
-
-const makeMoveAndRefreshImage = async (moveNotation) => {
+const makeMoveAndRefreshImage = (moveNotation) => {
   cube.makeMove(moveNotation);
   history.push(moveNotation);
-  await refreshCubeImages.refreshCube(cube);
+  cubeImages.refreshCube(cube);
 };
 
 // openable section DOM for open and close events
 require('./dom/openableSection');
 
 // set pieces section
-const setPieces = require('./dom/setPieces');
-refreshCubeImages.setRefreshCubeCallback((cube) => {
-  setPieces(cube.toFacesObj());
+const { updatePieces, initPieceButtons } = require('./dom/setPieces');
+
+initPieceButtons((x, y, z, key, newVal) => {
+  cube.cube[x][y][z][key] = newVal;
+  cubeImages.refreshCube(cube);
+});
+
+cubeImages.setRefreshCubeCallback((cube) => {
+  updatePieces(cube.toFacesObj());
 });
 
 // misc buttons
 const miscButtons = require('./dom/miscButtons')();
 
 miscButtons.solveButton.addEventListener('click', () => {
-  miscButtons.solve(Cube, cube, refreshCubeImages, solveCube, compressMoves, history);
+  miscButtons.solve(Cube, cube, cubeImages, solveCube, compressMoves, history);
 });
 miscButtons.scrambleButton.addEventListener('click', () => {
-  miscButtons.scramble(cube, refreshCubeImages, history);
+  miscButtons.scramble(cube, cubeImages, history);
 });
 miscButtons.undoButton.addEventListener('click', () => {
-  miscButtons.undo(cube, refreshCubeImages, history);
+  miscButtons.undo(cube, cubeImages, history);
 });
 
 // move buttons

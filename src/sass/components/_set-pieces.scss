@@ -28,10 +28,11 @@
           height: bsize(2.95);
           border-radius: br-bsize(2);
           position: relative;
+          padding: 0;
           transition: box-shadow 0.1s ease-in-out, opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 
           &:disabled {
-            opacity: 0.4;
+            opacity: 0.5;
           }
 
           i {
@@ -40,9 +41,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: $white;
-            margin-top: bsize(0.2);
+            margin-top: bsize(0.22);
             font-size: bsize(1.75);
-            line-height: 1;
+            line-height: 1.25;
             opacity: 0;
             transition: opacity 0.1s ease-in-out;
           }
@@ -60,7 +61,7 @@
             background-color: $cube-white;
 
             i {
-              color: $dark-grey;
+              color: darken($cube-white, 65%);
             }
           }
           &[color='blue'] {
@@ -70,13 +71,13 @@
             background-color: $cube-yellow;
 
             i {
-              color: $dark-grey;
+              color: darken($cube-yellow, 45%);
             }
           }
 
           &:not(:disabled) {
             &:hover {
-              opacity: 0.8;
+              opacity: 0.85;
 
               i {
                 opacity: 1;
