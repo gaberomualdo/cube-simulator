@@ -11,7 +11,7 @@ const timeSleep = (milliseconds) => {
 // returns a list of buttons and their onclick functions
 module.exports = () => {
   let returnVal = {
-    solve: async (Cube, cube, refreshCubeImages, solveCube, compressMoves, history) => {
+    solve: async (Cube, cube, cubeImages, solveCube, compressMoves, history) => {
       let movesToSolve = [];
 
       const cubeToSolve = new Cube(cube.cube);
@@ -31,8 +31,8 @@ module.exports = () => {
 
         movesMadeCount++;
 
-        await timeSleep(5000 / movesToSolve.length);
-        refreshCubeImages.refreshCube(cube);
+        await timeSleep(3000 / movesToSolve.length);
+        cubeImages.refreshCube(cube);
 
         if (movesMadeCount < movesToSolve.length) {
           makeMovesToSolve();
@@ -43,18 +43,18 @@ module.exports = () => {
 
       if (movesToSolve.length > 0) {
         makeMovesToSolve();
-        refreshCubeImages.refreshCube(cube);
+        cubeImages.refreshCube(cube);
       }
     },
-    scramble: async (cube, refreshCubeImages, history) => {
+    scramble: async (cube, cubeImages, history) => {
       const amountOfMoves = 50;
       await cube.scramble(amountOfMoves, async (notation) => {
         history.push(notation);
         await timeSleep(1000 / amountOfMoves);
-        refreshCubeImages.refreshCube(cube);
+        cubeImages.refreshCube(cube);
       });
     },
-    undo: async (cube, refreshCubeImages, history) => {
+    undo: async (cube, cubeImages, history) => {
       const getInverse = (notation) => {
         if (notation.length === 1) {
           return notation + "'";
@@ -69,7 +69,7 @@ module.exports = () => {
 
         cube.makeMove(inverseOfPreviousMove);
 
-        await refreshCubeImages.refreshCube(cube);
+        await cubeImages.refreshCube(cube);
       }
     },
   };

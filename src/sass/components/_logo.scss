@@ -42,4 +42,13 @@
       padding-right: bsize(1.5);
     }
   }
+
+  .logo-buttons {
+    display: block;
+    float: left;
+    @include in-mobile-and-phone {
+      float: none;
+      text-align: center;
+    }
+  }
 }

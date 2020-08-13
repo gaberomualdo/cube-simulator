@@ -33,6 +33,28 @@
       filter: saturate(1.25);
     }
 
+    .rotate-arrows img {
+      position: absolute;
+      width: 7rem;
+      height: auto;
+      opacity: 1;
+      transition: opacity 0.2s;
+      transform: translate(-50%, -50%);
+
+      &.left-face {
+      }
+      &.top-face {
+        bottom: 62%;
+        left: 50%;
+      }
+      &.right-face {
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
     .caption {
       position: absolute;
       right: 0;

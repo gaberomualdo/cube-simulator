@@ -53,3 +53,9 @@ miscButtons.undoButton.addEventListener('click', () => {
 
 // move buttons
 require('./dom/moveButtons')(makeMoveAndRefreshImage);
+
+// log toggle open
+import './dom/logOpenToggle';
+
+// log functionality
+import './dom/logFunctionality';
