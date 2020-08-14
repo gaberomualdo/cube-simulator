@@ -27,7 +27,7 @@ module.exports = () => {
       const makeMovesToSolve = async () => {
         const move = movesToSolve[movesMadeCount];
         cube.makeMove(move);
-        history.add(move);
+        history.add(move, true);
 
         movesMadeCount++;
 
@@ -49,7 +49,7 @@ module.exports = () => {
     scramble: async (cube, cubeImages, history) => {
       const amountOfMoves = 50;
       await cube.scramble(amountOfMoves, async (notation) => {
-        history.add(notation);
+        history.add(notation, true);
         await timeSleep(1000 / amountOfMoves);
         cubeImages.refreshCube(cube);
       });

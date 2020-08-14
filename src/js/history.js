@@ -7,9 +7,9 @@ class History {
   length() {
     return this.history.length;
   }
-  add(entry) {
+  add(entry, ...callbackArgs) {
     this.history.push(entry);
-    this.addCallback(entry);
+    this.addCallback(entry, ...callbackArgs);
   }
   pop() {
     const popped = this.history.pop();

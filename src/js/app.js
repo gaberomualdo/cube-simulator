@@ -5,11 +5,14 @@ const solveCube = require('./solve');
 const compressMoves = require('./compressMoves');
 const History = require('./history');
 
+// log add and pop
+const { addToLog, popFromLog } = require('./dom/logFunctionality');
+
 // cube
 const cube = new Cube();
 
 // history
-let history = new History();
+let history = new History(addToLog, popFromLog);
 
 window.addEventListener('load', () => {
   cubeImages.refreshCube(cube);
