@@ -3,12 +3,13 @@ require('regenerator-runtime/runtime');
 const Cube = require('./cube');
 const solveCube = require('./solve');
 const compressMoves = require('./compressMoves');
+const History = require('./history');
 
 // cube
 const cube = new Cube();
 
 // history
-let history = [];
+let history = new History();
 
 window.addEventListener('load', () => {
   cubeImages.refreshCube(cube);
@@ -19,7 +20,7 @@ const cubeImages = require('./dom/cubeImages');
 
 const makeMoveAndRefreshImage = (moveNotation) => {
   cube.makeMove(moveNotation);
-  history.push(moveNotation);
+  history.add(moveNotation);
   cubeImages.refreshCube(cube);
 };
 

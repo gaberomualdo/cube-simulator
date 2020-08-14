@@ -27,7 +27,7 @@ module.exports = () => {
       const makeMovesToSolve = async () => {
         const move = movesToSolve[movesMadeCount];
         cube.makeMove(move);
-        history.push(move);
+        history.add(move);
 
         movesMadeCount++;
 
@@ -49,7 +49,7 @@ module.exports = () => {
     scramble: async (cube, cubeImages, history) => {
       const amountOfMoves = 50;
       await cube.scramble(amountOfMoves, async (notation) => {
-        history.push(notation);
+        history.add(notation);
         await timeSleep(1000 / amountOfMoves);
         cubeImages.refreshCube(cube);
       });
@@ -63,7 +63,7 @@ module.exports = () => {
         }
       };
 
-      if (history.length > 0) {
+      if (history.length() > 0) {
         const previousMove = history.pop();
         const inverseOfPreviousMove = getInverse(previousMove);
 
