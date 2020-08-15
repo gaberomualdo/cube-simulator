@@ -45,7 +45,7 @@
 
   .logo-buttons {
     display: block;
-    float: left;
+    float: right;
     @include in-mobile-and-phone {
       float: none;
       text-align: center;

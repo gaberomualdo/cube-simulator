@@ -1,0 +1,23 @@
+.col:first-child .logo .logo-buttons {
+  & > * {
+    padding: 0 bsize(0.75);
+    height: bsize(2.5);
+    line-height: bsize(2.5);
+    font-size: bsize(1.15);
+    border-radius: br-bsize(1.25);
+    color: $dark-grey;
+    display: block;
+    margin: 0 auto;
+  }
+  .toggle-log {
+    span {
+      display: none;
+    }
+    &.log-open span.open {
+      display: inline;
+    }
+    &:not(.log-open) span.closed {
+      display: inline;
+    }
+  }
+}

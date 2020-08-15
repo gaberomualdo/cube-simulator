@@ -174,11 +174,30 @@ body {
         padding-right: 24px; } }
   .col:first-child .logo .logo-buttons {
     display: block;
-    float: left; }
+    float: right; }
     @media only screen and (max-width: 1000px) {
       .col:first-child .logo .logo-buttons {
         float: none;
         text-align: center; } }
+
+.col:first-child .logo .logo-buttons > * {
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18.4px;
+  border-radius: 5px;
+  color: #44585d;
+  display: block;
+  margin: 0 auto; }
+
+.col:first-child .logo .logo-buttons .toggle-log span {
+  display: none; }
+
+.col:first-child .logo .logo-buttons .toggle-log.log-open span.open {
+  display: inline; }
+
+.col:first-child .logo .logo-buttons .toggle-log:not(.log-open) span.closed {
+  display: inline; }
 
 .openable-section {
   display: flex;
