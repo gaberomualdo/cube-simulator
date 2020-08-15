@@ -11,7 +11,7 @@ const timeSleep = (milliseconds) => {
 // returns a list of buttons and their onclick functions
 module.exports = () => {
   let returnVal = {
-    solve: async (Cube, cube, cubeImages, solveCube, compressMoves, history) => {
+    solve: async (Cube, cube, cubeImages, solveCube, compressMoves, history, callback) => {
       let movesToSolve = [];
 
       const cubeToSolve = new Cube(cube.cube);
@@ -27,7 +27,7 @@ module.exports = () => {
       const makeMovesToSolve = async () => {
         const move = movesToSolve[movesMadeCount];
         cube.makeMove(move);
-        history.add(move, true);
+        history.add(move, true); // second arg --> isComputer
 
         movesMadeCount++;
 
@@ -36,6 +36,8 @@ module.exports = () => {
 
         if (movesMadeCount < movesToSolve.length) {
           makeMovesToSolve();
+        } else {
+          callback(movesToSolve.length);
         }
       };
 
@@ -49,7 +51,7 @@ module.exports = () => {
     scramble: async (cube, cubeImages, history) => {
       const amountOfMoves = 50;
       await cube.scramble(amountOfMoves, async (notation) => {
-        history.add(notation, true);
+        history.add(notation, true); // second arg --> isComputer
         await timeSleep(1000 / amountOfMoves);
         cubeImages.refreshCube(cube);
       });

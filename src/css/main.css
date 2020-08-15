@@ -463,6 +463,10 @@ ul.misc-buttons {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0; }
 
+@media only screen and (max-width: 25rem) {
+  body.log-open {
+    overflow: hidden; } }
+
 .log {
   position: fixed;
   right: 0;
@@ -488,12 +492,12 @@ ul.misc-buttons {
   .log .top {
     border-bottom: 1px solid #ecf0f1;
     margin-bottom: 12px;
-    height: 32px12px;
     padding-top: 24px;
     padding-bottom: 12px;
     position: sticky;
     top: 0;
-    background-color: #fdfdfd; }
+    background-color: #fdfdfd;
+    z-index: 9999; }
     .log .top > * {
       margin: 0; }
     .log .top button {
@@ -525,16 +529,81 @@ ul.misc-buttons {
     margin: 0;
     padding: 0;
     color: #5a747b; }
-    .log .log-items li {
+    .log .log-items li:not(:last-child) {
+      margin-bottom: 18.4px; }
+    .log .log-items li:not(.marker) {
       min-height: 32px;
       line-height: 24px;
       font-size: 16px;
       padding-top: 4px;
       padding-bottom: 4px;
       padding-left: 44px;
-      padding-right: 12px;
+      padding-right: 4px;
       background-size: 20.8px auto;
       background-position: 5.6px 5.6px;
       background-repeat: no-repeat; }
-      .log .log-items li:not(:last-child) {
-        margin-bottom: 18.4px; }
+      .log .log-items li:not(.marker) > * {
+        min-width: 24px;
+        min-height: 24px;
+        display: block;
+        float: left; }
+      .log .log-items li:not(.marker) .move-badge {
+        transform: scale(1.1);
+        float: right;
+        margin-left: 8px; }
+    .log .log-items .marker {
+      position: relative;
+      height: 24px;
+      color: #5a747b;
+      text-align: center; }
+      .log .log-items .marker span {
+        height: 24px;
+        display: inline-block;
+        line-height: 24px;
+        padding: 0 16px;
+        color: #9db2b7;
+        background-color: #fdfdfd; }
+      .log .log-items .marker:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        top: 50%;
+        left: 0;
+        background-color: #d6dee1;
+        z-index: -1; }
+  .log .clear-log {
+    padding: 0 12px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: #44585d;
+    display: block;
+    margin: 0 auto;
+    margin-top: 24px; }
+
+.move-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 400px;
+  padding: 4px;
+  position: relative;
+  user-select: none; }
+  .move-badge img {
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: left; }
+  .move-badge.red {
+    background-color: #ec6164; }
+  .move-badge.green {
+    background-color: #4af961; }
+  .move-badge.blue {
+    background-color: #3ac2fe; }
+  .move-badge.white {
+    background-color: #e3e3db; }
+  .move-badge.yellow {
+    background-color: #cef756; }
+  .move-badge.orange {
+    background-color: #f9802a; }

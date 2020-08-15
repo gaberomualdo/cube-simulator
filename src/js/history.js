@@ -11,6 +11,9 @@ class History {
     this.history.push(entry);
     this.addCallback(entry, ...callbackArgs);
   }
+  clear() {
+    this.history = [];
+  }
   pop() {
     const popped = this.history.pop();
     this.popCallback();

@@ -1,0 +1,33 @@
+.move-badge {
+  width: bsize(1.5);
+  height: bsize(1.5);
+  border-radius: br-bsize(100);
+  padding: bsize(0.25);
+  position: relative;
+  user-select: none;
+
+  img {
+    width: bsize(1);
+    height: bsize(1);
+    @include db-fl;
+  }
+
+  &.red {
+    background-color: $cube-red;
+  }
+  &.green {
+    background-color: $cube-green;
+  }
+  &.blue {
+    background-color: $cube-blue;
+  }
+  &.white {
+    background-color: $cube-white;
+  }
+  &.yellow {
+    background-color: $cube-yellow;
+  }
+  &.orange {
+    background-color: $cube-orange;
+  }
+}

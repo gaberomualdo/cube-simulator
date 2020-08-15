@@ -1,19 +1,25 @@
-require('regenerator-runtime/runtime');
-
 const Cube = require('./cube');
 const solveCube = require('./solve');
 const compressMoves = require('./compressMoves');
-const History = require('./history');
 
-// log add and pop
-const { addToLog, popFromLog } = require('./dom/logFunctionality');
+// log
+const { addToLog, popFromLog, addMarkerToLog, clearLog } = require('./dom/logFunctionality');
+
+// history
+const History = require('./history');
+let history = new History(addToLog, popFromLog);
+
+// clear log
+document.querySelector('.log .clear-log').addEventListener('click', (e) => {
+  history.clear();
+  clearLog();
+  e.target.blur();
+});
 
 // cube
 const cube = new Cube();
 
-// history
-let history = new History(addToLog, popFromLog);
-
+// init cube image on load
 window.addEventListener('load', () => {
   cubeImages.refreshCube(cube);
 });
@@ -45,11 +51,27 @@ cubeImages.setRefreshCubeCallback((cube) => {
 // misc buttons
 const miscButtons = require('./dom/miscButtons')();
 
-miscButtons.solveButton.addEventListener('click', () => {
-  miscButtons.solve(Cube, cube, cubeImages, solveCube, compressMoves, history);
+let solving = false;
+let scrambling = false;
+
+miscButtons.solveButton.addEventListener('click', async () => {
+  if (!solving) {
+    solving = true;
+    addMarkerToLog('Begin Solve');
+    await miscButtons.solve(Cube, cube, cubeImages, solveCube, compressMoves, history, (solveMoves) => {
+      addMarkerToLog(`End Solve (${solveMoves} moves)`);
+      solving = false;
+    });
+  }
 });
-miscButtons.scrambleButton.addEventListener('click', () => {
-  miscButtons.scramble(cube, cubeImages, history);
+miscButtons.scrambleButton.addEventListener('click', async () => {
+  if (!scrambling) {
+    scrambling = true;
+    addMarkerToLog('Start Scramble');
+    await miscButtons.scramble(cube, cubeImages, history);
+    addMarkerToLog('End Scramble (50 moves)');
+    scrambling = false;
+  }
 });
 miscButtons.undoButton.addEventListener('click', () => {
   miscButtons.undo(cube, cubeImages, history);
