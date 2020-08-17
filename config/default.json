@@ -12,52 +12,75 @@
     "cubeMoves": [
       {
         "notation": "U",
-        "key": "u"
+        "key": "u",
+        "color": "white",
+        "direction": "clockwise"
       },
       {
         "notation": "D",
-        "key": "d"
+        "key": "d",
+        "color": "yellow",
+        "direction": "clockwise"
       },
       {
         "notation": "L",
-        "key": "l"
+        "key": "l",
+        "color": "orange",
+        "direction": "clockwise"
       },
-      {
-        "notation": "R",
-        "key": "r"
-      },
-      {
-        "notation": "F",
-        "key": "f"
-      },
-      {
-        "notation": "B",
-        "key": "b"
-      },
-
       {
         "notation": "U'",
-        "key": "shift + u"
+        "key": "shift + u",
+        "color": "white",
+        "direction": "counterclockwise"
       },
       {
         "notation": "D'",
-        "key": "shift + d"
+        "key": "shift + d",
+        "color": "yellow",
+        "direction": "counterclockwise"
       },
       {
         "notation": "L'",
-        "key": "shift + l"
+        "key": "shift + l",
+        "color": "orange",
+        "direction": "counterclockwise"
+      },
+      {
+        "notation": "R",
+        "key": "r",
+        "color": "red",
+        "direction": "clockwise"
+      },
+      {
+        "notation": "F",
+        "key": "f",
+        "color": "green",
+        "direction": "clockwise"
+      },
+      {
+        "notation": "B",
+        "key": "b",
+        "color": "blue",
+        "direction": "clockwise"
       },
       {
         "notation": "R'",
-        "key": "shift + r"
+        "key": "shift + r",
+        "color": "red",
+        "direction": "counterclockwise"
       },
       {
         "notation": "F'",
-        "key": "shift + f"
+        "key": "shift + f",
+        "color": "green",
+        "direction": "counterclockwise"
       },
       {
         "notation": "B'",
-        "key": "shift + b"
+        "key": "shift + b",
+        "color": "blue",
+        "direction": "counterclockwise"
       }
     ]
   }

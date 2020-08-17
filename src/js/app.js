@@ -85,3 +85,6 @@ import './dom/logOpenToggle';
 
 // log functionality
 import './dom/logFunctionality';
+
+// notation type toggle functionality
+import './dom/toggleNotation';

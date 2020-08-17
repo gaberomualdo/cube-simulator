@@ -107,6 +107,13 @@ body.log-open {
         @include db-fl;
       }
 
+      body.use-face-view & .cube-notation {
+        display: none;
+      }
+      body:not(.use-face-view) & .face-view {
+        display: none;
+      }
+
       .move-badge {
         transform: scale(1.1);
         float: right;

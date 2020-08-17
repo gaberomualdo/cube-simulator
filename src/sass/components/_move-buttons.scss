@@ -61,10 +61,82 @@
 
       button {
         flex-basis: bsize(3);
+        position: relative;
+
         @include in-phone {
           flex-basis: 100%;
           height: bsize(2.5);
           line-height: bsize(2.5);
+        }
+
+        body:not(.use-face-view) & .rotate_icon {
+          display: none;
+        }
+
+        .rotate_icon {
+          width: auto;
+          height: 75%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        body.use-face-view & {
+          background-size: 85%;
+          background-position: center;
+          background-repeat: no-repeat;
+
+          &:active,
+          &:focus {
+            box-shadow: 0 bsize(0.075) bsize(0.3) rgba($dark-grey, 0.35);
+          }
+
+          span {
+            display: none;
+          }
+
+          &.red {
+            background-color: $cube-red;
+          }
+          &.green {
+            background-color: $cube-green;
+          }
+          &.blue {
+            background-color: $cube-blue;
+          }
+          &.white {
+            background-color: $cube-white;
+          }
+          &.yellow {
+            background-color: $cube-yellow;
+          }
+          &.orange {
+            background-color: $cube-orange;
+          }
+
+          &.clockwise {
+            .rotate_icon.counterclockwise {
+              display: none;
+            }
+          }
+          &.counterclockwise {
+            .rotate_icon.clockwise {
+              display: none;
+            }
+          }
+
+          &.yellow,
+          &.white {
+            .rotate_icon:not(.dark) {
+              display: none;
+            }
+          }
+          &:not(.yellow):not(.white) {
+            .rotate_icon.dark {
+              display: none;
+            }
+          }
         }
       }
 

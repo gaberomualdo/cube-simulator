@@ -10,23 +10,7 @@ const Handlebars = require('handlebars');
 
 const handlebarsInput = JSON.parse(JSON.stringify(config.get('hbs')));
 
-const sourceCodeVersionUniqueID = (() => {
-  try {
-    const out = childProcess.execSync('git log --abbrev-commit HEAD -1').toString();
-    const outAsArr = out.replace(/\n/g, ' ').replace(/\t/g, ' ').split(' ');
-
-    const latestCommitID = outAsArr[outAsArr.indexOf('commit') + 1];
-
-    return latestCommitID;
-  } catch (err) {
-    console.error(err.message);
-  }
-
-  // if getting unique ID Git commit fails, use UUID v4 with 'u' prefix
-  return `u${uuid.v4()}`;
-})();
-
-handlebarsInput.cacheVersion = sourceCodeVersionUniqueID;
+handlebarsInput.cacheVersion = require('unique-commit-id').latest();
 
 Handlebars.registerHelper('times', function (n, block) {
   let accum = '';

@@ -2,6 +2,37 @@ const logElm = document.querySelector('.log');
 const logItemsElm = document.querySelector('.log .log-items');
 const Cube = require('../cube');
 
+const toFaceView = (moveNotation) => {
+  moveNotation = moveNotation.toLowerCase();
+
+  let faceColor;
+  switch (moveNotation[0]) {
+    case 'f':
+      faceColor = 'g';
+      break;
+    case 'b':
+      faceColor = 'b';
+      break;
+    case 'l':
+      faceColor = 'o';
+      break;
+    case 'r':
+      faceColor = 'r';
+      break;
+    case 'u':
+      faceColor = 'w';
+      break;
+    case 'd':
+      faceColor = 'y';
+  }
+
+  const clockwise = !(moveNotation[1] && moveNotation[1] === "'");
+  let color = Cube.colors[faceColor];
+  color = color[0].toUpperCase() + color.slice(1, color.length);
+
+  return `${color} ${clockwise ? /* 'Clockwise' : 'Counterclockwise' */ 'CW' : 'CCW'}`;
+};
+
 const generateMoveBadgeHTML = (moveNotation) => {
   moveNotation = moveNotation.toLowerCase();
 
@@ -38,7 +69,9 @@ const addToLog = (moveNotation, isComputer = false) => {
   const backgroundURL = `log_icons/${isComputer ? 'computer' : 'human'}.png`;
   const logItem = document.createElement('li');
   logItem.style.backgroundImage = `url(${backgroundURL})`;
-  logItem.innerHTML = `<span>${moveNotation}</span>${generateMoveBadgeHTML(moveNotation)}`;
+  logItem.innerHTML = `<span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(
+    moveNotation
+  )}</span>${generateMoveBadgeHTML(moveNotation)}`;
   logItemsElm.appendChild(logItem);
   logElm.scrollTop = logElm.scrollHeight;
 };

@@ -1,13 +1,19 @@
 .col:first-child .logo .logo-buttons {
   & > * {
     padding: 0 bsize(0.75);
-    height: bsize(2.5);
-    line-height: bsize(2.5);
-    font-size: bsize(1.15);
+    height: bsize(2.25);
+    line-height: bsize(2.25);
+    font-size: bsize(1);
     border-radius: br-bsize(1.25);
     color: $dark-grey;
     display: block;
-    margin: 0 auto;
+    margin: bsize(0.125) auto;
+
+    @include dib-fn-vt;
+
+    &:not(:last-child) {
+      margin-right: bsize(0.5);
+    }
   }
   .toggle-log {
     span {
@@ -17,6 +23,17 @@
       display: inline;
     }
     &:not(.log-open) span.closed {
+      display: inline;
+    }
+  }
+  .toggle-notation {
+    span {
+      display: none;
+    }
+    body.use-face-view & span.face-view {
+      display: inline;
+    }
+    body:not(.use-face-view) & span.cube-notation {
       display: inline;
     }
   }

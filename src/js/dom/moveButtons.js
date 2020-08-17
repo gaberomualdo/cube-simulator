@@ -15,7 +15,7 @@ module.exports = (makeMove) => {
 
     const moveKeyKeyCode = moveKey.toUpperCase().charCodeAt(0);
 
-    const moveNotation = moveButton.innerText;
+    const moveNotation = moveButton.querySelector('span.notation').innerText;
 
     // if focused, blur after a certain amount of time
     moveButton.addEventListener('focus', function () {
