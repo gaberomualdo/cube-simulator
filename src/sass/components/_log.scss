@@ -148,6 +148,20 @@ body.log-open {
       }
     }
   }
+
+  .move-count {
+    font-size: bsize(1);
+    text-transform: uppercase;
+    letter-spacing: bsize(0.05);
+    height: bsize(1.5);
+    line-height: bsize(1.5);
+    text-align: center;
+    color: $dark-medium-grey;
+    font-weight: 500;
+    margin-top: bsize(1.5);
+    margin-bottom: bsize(1.25);
+  }
+
   .clear-log {
     padding: 0 bsize(0.75);
     height: bsize(2.25);
@@ -157,6 +171,5 @@ body.log-open {
     color: $dark-grey;
     display: block;
     margin: 0 auto;
-    margin-top: bsize(1.5);
   }
 }

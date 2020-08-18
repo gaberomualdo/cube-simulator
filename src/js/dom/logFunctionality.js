@@ -2,6 +2,8 @@ const logElm = document.querySelector('.log');
 const logItemsElm = document.querySelector('.log .log-items');
 const Cube = require('../cube');
 
+const USE_REPEATS = false;
+
 const toFaceView = (moveNotation) => {
   moveNotation = moveNotation.toLowerCase();
 
@@ -65,6 +67,8 @@ const generateMoveBadgeHTML = (moveNotation) => {
   }.png' /></div>`;
 };
 
+// repeat util functions
+
 const getLastLogItem = () => {
   const logItems = logItemsElm.querySelectorAll('li:not(.marker)');
   if (logItems.length > 0) {
@@ -92,17 +96,21 @@ const removeRepeatFromLastItem = () => {
   lastItemCountElm.innerText = getLastLogItemRepeatCount() - 1;
 };
 
+// end repeat util functions
+
 const addToLog = (moveNotation, isComputer = false) => {
-  if (getLastLogItem() && getLastLogItemNotation() === moveNotation) {
+  if (USE_REPEATS && getLastLogItem() && getLastLogItemNotation() === moveNotation) {
     return addRepeatToLastItem();
   }
 
   const backgroundURL = `log_icons/${isComputer ? 'computer' : 'human'}.png`;
   const logItem = document.createElement('li');
   logItem.style.backgroundImage = `url(${backgroundURL})`;
-  logItem.innerHTML = `<span class='repeat'><span class='count'>1</span>&nbsp;×&nbsp;</span><span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(
+  logItem.innerHTML = `${
+    USE_REPEATS ? "<span class='repeat'><span class='count'>1</span>&nbsp;×&nbsp;</span>" : ''
+  }<span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(moveNotation)}</span>${generateMoveBadgeHTML(
     moveNotation
-  )}</span>${generateMoveBadgeHTML(moveNotation)}`;
+  )}`;
   logItemsElm.appendChild(logItem);
   logElm.scrollTop = logElm.scrollHeight;
 };
@@ -116,7 +124,7 @@ const addMarkerToLog = (markerText) => {
 };
 
 const popFromLog = () => {
-  if (getLastLogItem() && getLastLogItemRepeatCount() > 1) {
+  if (USE_REPEATS && getLastLogItem() && getLastLogItemRepeatCount() > 1) {
     return removeRepeatFromLastItem();
   }
 
@@ -133,4 +141,8 @@ const clearLog = () => {
   }
 };
 
-module.exports = { addToLog, popFromLog, addMarkerToLog, clearLog };
+const updateLogMoveCount = (count) => {
+  logElm.querySelector('.move-count').innerText = `${count} Moves`;
+};
+
+module.exports = { addToLog, popFromLog, addMarkerToLog, clearLog, updateLogMoveCount };

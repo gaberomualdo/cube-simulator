@@ -3,11 +3,11 @@ const solveCube = require('./solve');
 const compressMoves = require('./compressMoves');
 
 // log
-const { addToLog, popFromLog, addMarkerToLog, clearLog } = require('./dom/logFunctionality');
+const { addToLog, popFromLog, addMarkerToLog, clearLog, updateLogMoveCount } = require('./dom/logFunctionality');
 
 // history
 const History = require('./history');
-let history = new History(addToLog, popFromLog);
+let history = new History(() => updateLogMoveCount(history.length()), addToLog, popFromLog);
 
 // clear log
 document.querySelector('.log .clear-log').addEventListener('click', (e) => {

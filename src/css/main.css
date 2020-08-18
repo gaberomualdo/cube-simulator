@@ -647,6 +647,17 @@ ul.misc-buttons {
         left: 0;
         background-color: #d6dee1;
         z-index: -1; }
+  .log .move-count {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #5a747b;
+    font-weight: 500;
+    margin-top: 24px;
+    margin-bottom: 20px; }
   .log .clear-log {
     padding: 0 12px;
     height: 36px;
@@ -655,8 +666,7 @@ ul.misc-buttons {
     border-radius: 5px;
     color: #44585d;
     display: block;
-    margin: 0 auto;
-    margin-top: 24px; }
+    margin: 0 auto; }
 
 .move-badge {
   width: 24px;
