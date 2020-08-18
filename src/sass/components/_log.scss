@@ -1,7 +1,7 @@
-$log-base-width: 25rem;
+// log variables can be found at ../_base.scss
 
 body.log-open {
-  @media only screen and (max-width: $log-base-width) {
+  @media only screen and (max-width: $log-width) {
     overflow: hidden;
   }
 }
@@ -14,14 +14,14 @@ body.log-open {
   padding-top: 0;
   height: var(--full-height);
   background-color: $container-grey;
-  flex-basis: $log-base-width;
-  width: $log-base-width;
+  flex-basis: $log-width;
+  width: $log-width;
   border-left: 1px solid $lightest-grey;
   overflow-y: auto;
-  transform: translate3d($log-base-width, 0, 0);
-  transition: transform ease-in-out 0.4s, box-shadow ease-in-out 0.4s;
+  transform: translate3d($log-width, 0, 0);
+  transition: transform ease-in-out $log-transition-duration, box-shadow ease-in-out $log-transition-duration;
 
-  @media only screen and (max-width: $log-base-width) {
+  @media only screen and (max-width: $log-width) {
     flex-basis: 100%;
     width: 100%;
     transform: translate3d(100%, 0, 0);

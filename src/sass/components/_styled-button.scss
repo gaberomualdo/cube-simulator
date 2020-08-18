@@ -19,10 +19,13 @@
   &:not([disabled]) {
     cursor: pointer;
 
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 bsize(0.1) bsize(0.4) rgba($dark-grey, 0.45);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 bsize(0.1) bsize(0.4) rgba($dark-grey, 0.45);
+      }
     }
+
     &:active,
     &:focus {
       transform: translateY(0);

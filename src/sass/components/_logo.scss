@@ -6,9 +6,11 @@
   margin-bottom: bsize(0.75);
 
   @include in-mobile-and-phone {
-    height: bsize(3);
+    padding-left: 0;
+    padding-right: 0;
     padding-bottom: bsize(0.5);
     text-align: center;
+    zoom: 90%;
   }
 
   & > * {
@@ -20,8 +22,10 @@
   }
 
   img {
+    box-sizing: content-box;
     height: bsize(2.5);
     width: auto;
+    padding-top: #{$logo-items-horizontal-spacing}px;
     margin-right: bsize(1);
     @include in-mobile-and-phone {
       margin-right: bsize(0.625);
@@ -34,6 +38,7 @@
     font-size: bsize(1.35);
     color: $dark-medium-grey;
     font-weight: 500;
+    padding-top: #{$logo-items-horizontal-spacing}px;
 
     @include in-mobile-and-phone {
       font-size: bsize(1.25);
@@ -44,6 +49,7 @@
   }
 
   .logo-buttons {
+    margin-top: #{$logo-items-horizontal-spacing}px;
     display: block;
     float: right;
     @include in-mobile-and-phone {

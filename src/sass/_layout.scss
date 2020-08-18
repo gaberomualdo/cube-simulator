@@ -24,19 +24,29 @@ body {
 .container {
   background-color: $container-grey;
   flex-basis: 100%;
-  width: 100%;
   border-radius: br-bsize(1.5);
   box-shadow: 0 bsize(0.25) bsize(1.75) rgba($medium-grey, 0.25);
   border: 1px solid $lightest-grey;
   overflow: hidden;
+  margin-right: 0;
 
   display: flex;
   flex-direction: row;
 
+  transition: margin-right ease-in-out $log-transition-duration;
+
   @include in-mobile-and-phone {
     flex-direction: column;
   }
+
+  $min-width: #{$page-mobile-width + $log-width + 1px};
+  @media only screen and (min-width: $min-width) {
+    body.log-open & {
+      margin-right: $log-width;
+    }
+  }
 }
+
 .col {
   padding: bsize(1.5);
   flex-basis: 35%;
@@ -53,6 +63,7 @@ body {
 .col:first-child {
   flex-basis: 65%;
   padding: bsize(1.5) bsize(1.5) 0 bsize(1.5);
+  padding-top: #{bsize(1.5, false) - $logo-items-horizontal-spacing}px;
 
   & > *:last-child {
     padding-bottom: bsize(1.5);

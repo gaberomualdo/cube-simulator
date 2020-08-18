@@ -1,4 +1,12 @@
 .col:first-child .logo .logo-buttons {
+  @include in-phone {
+    display: flex;
+
+    .phone-no-display {
+      display: none;
+    }
+  }
+
   & > * {
     padding: 0 bsize(0.75);
     height: bsize(2.25);
@@ -13,6 +21,10 @@
 
     &:not(:last-child) {
       margin-right: bsize(0.5);
+    }
+
+    @include in-phone {
+      flex-basis: 100%;
     }
   }
   .toggle-log {

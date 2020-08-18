@@ -55,7 +55,8 @@ let solving = false;
 let scrambling = false;
 
 miscButtons.solveButton.addEventListener('click', async () => {
-  if (!solving) {
+  miscButtons.solveButton.blur();
+  if (!solving && !scrambling) {
     solving = true;
     addMarkerToLog('Begin Solve');
     await miscButtons.solve(Cube, cube, cubeImages, solveCube, compressMoves, history, (solveMoves) => {
@@ -65,7 +66,8 @@ miscButtons.solveButton.addEventListener('click', async () => {
   }
 });
 miscButtons.scrambleButton.addEventListener('click', async () => {
-  if (!scrambling) {
+  miscButtons.scrambleButton.blur();
+  if (!scrambling && !solving) {
     scrambling = true;
     addMarkerToLog('Start Scramble');
     await miscButtons.scramble(cube, cubeImages, history);
@@ -74,6 +76,7 @@ miscButtons.scrambleButton.addEventListener('click', async () => {
   }
 });
 miscButtons.undoButton.addEventListener('click', () => {
+  miscButtons.undoButton.blur();
   miscButtons.undo(cube, cubeImages, history);
 });
 
