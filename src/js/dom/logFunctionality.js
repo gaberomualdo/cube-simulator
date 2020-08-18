@@ -65,11 +65,42 @@ const generateMoveBadgeHTML = (moveNotation) => {
   }.png' /></div>`;
 };
 
+const getLastLogItem = () => {
+  const logItems = logItemsElm.querySelectorAll('li:not(.marker)');
+  if (logItems.length > 0) {
+    return logItems[logItems.length - 1];
+  }
+  return null;
+};
+
+const getLastLogItemNotation = () => {
+  const lastItemNotationElm = getLastLogItem().querySelector('span.cube-notation');
+  return lastItemNotationElm.innerText.trim();
+};
+
+const getLastLogItemRepeatCount = () => {
+  const lastItemCountElm = getLastLogItem().querySelector('span.repeat span.count');
+  return parseInt(lastItemCountElm.innerText.trim());
+};
+
+const addRepeatToLastItem = () => {
+  const lastItemCountElm = getLastLogItem().querySelector('span.repeat span.count');
+  lastItemCountElm.innerText = getLastLogItemRepeatCount() + 1;
+};
+const removeRepeatFromLastItem = () => {
+  const lastItemCountElm = getLastLogItem().querySelector('span.repeat span.count');
+  lastItemCountElm.innerText = getLastLogItemRepeatCount() - 1;
+};
+
 const addToLog = (moveNotation, isComputer = false) => {
+  if (getLastLogItem() && getLastLogItemNotation() === moveNotation) {
+    return addRepeatToLastItem();
+  }
+
   const backgroundURL = `log_icons/${isComputer ? 'computer' : 'human'}.png`;
   const logItem = document.createElement('li');
   logItem.style.backgroundImage = `url(${backgroundURL})`;
-  logItem.innerHTML = `<span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(
+  logItem.innerHTML = `<span class='repeat'><span class='count'>1</span>&nbsp;×&nbsp;</span><span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(
     moveNotation
   )}</span>${generateMoveBadgeHTML(moveNotation)}`;
   logItemsElm.appendChild(logItem);
@@ -85,6 +116,10 @@ const addMarkerToLog = (markerText) => {
 };
 
 const popFromLog = () => {
+  if (getLastLogItem() && getLastLogItemRepeatCount() > 1) {
+    return removeRepeatFromLastItem();
+  }
+
   let toRemove;
   while (!toRemove || toRemove.classList.contains('marker')) {
     toRemove = logItemsElm.querySelector('li:last-child');

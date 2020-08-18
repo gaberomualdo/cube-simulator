@@ -14,7 +14,7 @@
   $transition-timing: ease-in-out;
 
   transition: box-shadow $transition-duration $transition-timing, background-color $transition-duration $transition-timing,
-    transform $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
+    transform $transition-duration $transition-timing;
 
   &:not([disabled]) {
     cursor: pointer;

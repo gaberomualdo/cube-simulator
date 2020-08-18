@@ -11,74 +11,74 @@
     },
     "cubeMoves": [
       {
+        "notation": "F",
+        "key": "q",
+        "color": "green",
+        "direction": "clockwise"
+      },
+      {
         "notation": "U",
-        "key": "u",
+        "key": "w",
         "color": "white",
+        "direction": "clockwise"
+      },
+      {
+        "notation": "R",
+        "key": "e",
+        "color": "red",
+        "direction": "clockwise"
+      },
+      {
+        "notation": "F'",
+        "key": "shift + q",
+        "color": "green",
+        "direction": "counterclockwise"
+      },
+      {
+        "notation": "U'",
+        "key": "shift + w",
+        "color": "white",
+        "direction": "counterclockwise"
+      },
+      {
+        "notation": "R'",
+        "key": "shift + e",
+        "color": "red",
+        "direction": "counterclockwise"
+      },
+      {
+        "notation": "L",
+        "key": "a",
+        "color": "orange",
         "direction": "clockwise"
       },
       {
         "notation": "D",
-        "key": "d",
+        "key": "s",
         "color": "yellow",
-        "direction": "clockwise"
-      },
-      {
-        "notation": "L",
-        "key": "l",
-        "color": "orange",
-        "direction": "clockwise"
-      },
-      {
-        "notation": "U'",
-        "key": "shift + u",
-        "color": "white",
-        "direction": "counterclockwise"
-      },
-      {
-        "notation": "D'",
-        "key": "shift + d",
-        "color": "yellow",
-        "direction": "counterclockwise"
-      },
-      {
-        "notation": "L'",
-        "key": "shift + l",
-        "color": "orange",
-        "direction": "counterclockwise"
-      },
-      {
-        "notation": "R",
-        "key": "r",
-        "color": "red",
-        "direction": "clockwise"
-      },
-      {
-        "notation": "F",
-        "key": "f",
-        "color": "green",
         "direction": "clockwise"
       },
       {
         "notation": "B",
-        "key": "b",
+        "key": "d",
         "color": "blue",
         "direction": "clockwise"
       },
       {
-        "notation": "R'",
-        "key": "shift + r",
-        "color": "red",
+        "notation": "L'",
+        "key": "shift + a",
+        "color": "orange",
         "direction": "counterclockwise"
       },
       {
-        "notation": "F'",
-        "key": "shift + f",
-        "color": "green",
+        "notation": "D'",
+        "key": "shift + s",
+        "color": "yellow",
         "direction": "counterclockwise"
       },
       {
         "notation": "B'",
-        "key": "shift + b",
+        "key": "shift + d",
         "color": "blue",
         "direction": "counterclockwise"
       }

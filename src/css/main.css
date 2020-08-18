@@ -339,7 +339,7 @@ body:not(.use-face-view) .col:first-child .logo .logo-buttons .toggle-notation s
           background-position: center;
           background-repeat: no-repeat; }
           body.use-face-view .col:first-child .moves .content .move-buttons .row li button:active, body.use-face-view .col:first-child .moves .content .move-buttons .row li button:focus {
-            box-shadow: 0 1.2px 4.8px rgba(68, 88, 93, 0.35); }
+            box-shadow: 0 1.2px 5.6px rgba(68, 88, 93, 0.4); }
           body.use-face-view .col:first-child .moves .content .move-buttons .row li button span {
             display: none; }
           body.use-face-view .col:first-child .moves .content .move-buttons .row li button.red {
@@ -433,7 +433,7 @@ ul.misc-buttons {
   outline: none;
   box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
   backface-visibility: hidden;
-  transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.1s ease-in-out; }
+  transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out; }
   .styled-button:not([disabled]) {
     cursor: pointer; }
     .styled-button:not([disabled]):hover {
