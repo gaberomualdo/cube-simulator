@@ -55,6 +55,11 @@
     <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png" />
 
+    <link rel="icon" type="image/png" sizes="36x36" href="android-icon-36x36.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="android-icon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="72x72" href="android-icon-72x72.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="android-icon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="android-icon-144x144.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
@@ -63,19 +68,25 @@
     <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
 
     <!-- Theme color -->
-    <meta name="msapplication-TileColor" content="#5a747b" />
-    <meta name="theme-color" content="#5a747b" />
+    <meta name="msapplication-TileColor" content="#ecf0f1" />
+    <meta name="theme-color" content="#ecf0f1" />
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f1f4f5">
+    <meta name="apple-mobile-web-app-title" content="Cube">
+    <meta name="theme-color" content="#f1f4f5" />
+
 
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="main.css?v={{cacheVersion}}" />
+    <link rel="stylesheet" href="main.{{cacheVersion}}.css" />
 
     <!-- Icon font -->
     <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
   </head>
   <body class="use-face-view">
+    <button aria-label="Install App" id="install-button" style="display: none;">Install</button>
     <div class="container">
       <div class="col">
         <div class="logo">
@@ -100,7 +111,7 @@
                   {{#times 3}}
                   <div class="row">
                     {{#times 3}}
-                    <button class="piece styled-button"><i class="icon im im-sync"></i></button>
+                    <button aria-label="Toggle Piece Color" class="piece styled-button"><i class="icon im im-sync"></i></button>
                     {{/times}}
                   </div>
                   {{/times}}
@@ -135,13 +146,13 @@
             <div class="move-buttons">
               {{#generateMovesMarkup cubeMoves}}
                 <li class="move">
-                  <button class="styled-button {{@move.direction}} {{@move.color}}">
+                  <button class="styled-button {{@move.direction}} {{@move.color}}" aria-label="Make move {{@move.color}} {{@move.direction}} ">
                     <span class="notation">{{@move.notation}}</span>
                     
-                    <img class="rotate_icon clockwise" src="rotate_arrows/clockwise.png" />
-                    <img class="rotate_icon counterclockwise" src="rotate_arrows/counterclockwise.png" />
-                    <img class="rotate_icon dark clockwise" src="rotate_arrows/clockwise_dark.png" />
-                    <img class="rotate_icon dark counterclockwise" src="rotate_arrows/counterclockwise_dark.png" />
+                    <img alt="Rotate Clockwise Arrow Icon" class="rotate_icon clockwise" src="rotate_arrows/clockwise.png" />
+                    <img alt="Rotate Counterclockwise Arrow Icon" class="rotate_icon counterclockwise" src="rotate_arrows/counterclockwise.png" />
+                    <img alt="Dark Rotate Clockwise Arrow Icon" class="rotate_icon dark clockwise" src="rotate_arrows/clockwise_dark.png" />
+                    <img alt="Dark Rotate Counterclockwise Arrow Icon" class="rotate_icon dark counterclockwise" src="rotate_arrows/counterclockwise_dark.png" />
                   </button>
                   <p><strong>{{#replace 'shift' '<span class="shift">shift</span>'}}{{@move.key}}{{/replace}}</strong></p>
                 </li>
@@ -180,7 +191,7 @@
     </div>
     <div class="log">
       <div class="top">
-        <button class="close-log">
+        <button class="close-log" aria-label="Close Log">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
         </button>
         <h1>Log</h1>
@@ -196,6 +207,46 @@
     </div>
 
     <!-- Main script -->
-    <script src="main.js?v={{cacheVersion}}"></script>
+    <script src="main.{{cacheVersion}}.js"></script>
+
+    <!-- Service Worker and PWA -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+        });
+      }
+
+      {{!-- let deferredInstallPrompt = null;
+      const installButton = document.getElementById('install-button');
+      installButton.addEventListener('click', installPWA);
+
+      window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
+
+      function saveBeforeInstallPromptEvent(evt) {
+        deferredInstallPrompt = evt;
+        installButton.removeAttribute('hidden');
+      }
+
+      function installPWA(evt) {
+        deferredInstallPrompt.prompt();
+        evt.srcElement.setAttribute('hidden', true);
+        deferredInstallPrompt.userChoice
+          .then((choice) => {
+            if (choice.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt', choice);
+            } else {
+              console.log('User dismissed the A2HS prompt', choice);
+            }
+            deferredInstallPrompt = null;
+          });
+      }
+
+      window.addEventListener('appinstalled', logAppInstalled);
+
+      function logAppInstalled(evt) {
+        console.log('App was installed.', evt);
+      } --}}
+    </script>
   </body>
 </html>

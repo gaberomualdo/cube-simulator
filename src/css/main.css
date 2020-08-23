@@ -469,6 +469,15 @@ ul.misc-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between; }
+    @media screen and (max-width: 880px) {
+      .set-pieces .content .faces-row {
+        zoom: 75%; } }
+    @media screen and (max-width: 750px) {
+      .set-pieces .content .faces-row {
+        zoom: 65%; } }
+    @media screen and (max-width: 650px) {
+      .set-pieces .content .faces-row {
+        zoom: 50%; } }
     .set-pieces .content .faces-row .face {
       height: 160px;
       width: 160px;
@@ -516,10 +525,11 @@ ul.misc-buttons {
             background-color: #cef756; }
             .set-pieces .content .faces-row .face .row .piece[color='yellow'] i {
               color: #4b6304; }
-          .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover {
-            opacity: 0.85; }
-            .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover i {
-              opacity: 1; }
+          @media (hover: hover) and (pointer: fine) {
+            .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover {
+              opacity: 0.85; }
+              .set-pieces .content .faces-row .face .row .piece:not(:disabled):hover i {
+                opacity: 1; } }
           .set-pieces .content .faces-row .face .row .piece:not(:disabled):active {
             opacity: 1; }
         .set-pieces .content .faces-row .face .row:nth-child(1) .piece:nth-child(1) {

@@ -10,7 +10,9 @@ const Handlebars = require('handlebars');
 
 const handlebarsInput = JSON.parse(JSON.stringify(config.get('hbs')));
 
-handlebarsInput.cacheVersion = require('unique-commit-id').latest();
+const cacheVersion = require('unique-commit-id').latest();
+
+handlebarsInput.cacheVersion = cacheVersion;
 
 Handlebars.registerHelper('times', function (n, block) {
   let accum = '';
@@ -39,78 +41,112 @@ Handlebars.registerHelper('replace', function (target, replacement, block) {
   return new Handlebars.SafeString(block.fn(this).split(target).join(replacement));
 });
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  mode: 'production',
-  watch: true,
+module.exports = [
+  {
+    entry: './src/index.js',
+    output: {
+      filename: 'main.' + cacheVersion + '.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    mode: 'production',
+    watch: true,
 
-  optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-  },
-  plugins: [new MiniCssExtractPlugin()],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
+    optimization: {
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].' + cacheVersion + '.css',
+      }),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {},
             },
-          },
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties'],
-          },
-        },
-      },
-      {
-        test: /\.hbs$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].html',
-            },
-          },
-          'extract-loader',
-          {
-            loader: 'html-loader',
-            options: {
-              attributes: false,
-              preprocessor: (content, loaderContext) => {
-                let result;
-
-                try {
-                  result = Handlebars.compile(content)(handlebarsInput);
-                } catch (error) {
-                  loaderContext.emitError(error);
-                  return content;
-                }
-
-                return result;
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
               },
             },
+            'postcss-loader',
+          ],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties'],
+            },
           },
-        ],
-      },
-    ],
+        },
+        {
+          test: /\.hbs$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].html',
+              },
+            },
+            'extract-loader',
+            {
+              loader: 'html-loader',
+              options: {
+                attributes: false,
+                preprocessor: (content, loaderContext) => {
+                  let result;
+
+                  try {
+                    result = Handlebars.compile(content)(handlebarsInput);
+                  } catch (error) {
+                    loaderContext.emitError(error);
+                    return content;
+                  }
+
+                  return result;
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
   },
-};
+  {
+    entry: './src/serviceWorker/sw-compiled.js',
+    output: {
+      filename: 'service-worker.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    mode: 'production',
+    watch: true,
+
+    optimization: {
+      minimizer: [new TerserJSPlugin({})],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-class-properties'],
+            },
+          },
+        },
+      ],
+    },
+  },
+];

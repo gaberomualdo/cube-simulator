@@ -9,6 +9,16 @@
     flex-direction: row;
     justify-content: space-between;
 
+    @media screen and (max-width: 880px) {
+      zoom: 75%;
+    }
+    @media screen and (max-width: 750px) {
+      zoom: 65%;
+    }
+    @media screen and (max-width: 650px) {
+      zoom: 50%;
+    }
+
     .face {
       height: bsize(10);
       width: bsize(10);
@@ -76,11 +86,13 @@
           }
 
           &:not(:disabled) {
-            &:hover {
-              opacity: 0.85;
+            @media (hover: hover) and (pointer: fine) {
+              &:hover {
+                opacity: 0.85;
 
-              i {
-                opacity: 1;
+                i {
+                  opacity: 1;
+                }
               }
             }
 
