@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "concurrently --kill-others \"node-sass src/sass/main.scss src/css/main.css -w\" \"webpack\""
+    "build": "concurrently --kill-others \"node-sass src/sass/main.scss src/css/main.css -w\" \"webpack\"",
+    "build:sw": "workbox injectManifest workbox-config.js"
   },
   "author": "",
   "license": "UNLICENSED",
