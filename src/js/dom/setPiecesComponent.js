@@ -4,28 +4,6 @@ const colors = ['green', 'red', 'white', 'orange', 'blue', 'yellow'];
 const isFocused = (element) => {
   return element === document.activeElement;
 };
-
-colors.forEach((color, ind) => {
-  const face = document.querySelector(
-    `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
-  );
-  face.querySelectorAll('.piece').forEach((piece, ind) => {
-    // disable center piece
-    if (ind === 4) {
-      piece.setAttribute('disabled', 'true');
-    }
-
-    // if focused, blur after a certain amount of time
-    piece.addEventListener('focus', function () {
-      setTimeout(() => {
-        if (isFocused(this)) {
-          this.blur();
-        }
-      }, 150);
-    });
-  });
-});
-
 const toShorthand = (color) => {
   return Object.keys(Cube.colors)[Object.values(Cube.colors).indexOf(color)];
 };
@@ -33,13 +11,52 @@ const toFullName = (color) => {
   return Cube.colors[color];
 };
 
-// function to update piece colors
-module.exports = {
-  initPieceButtons: (setCubePiece) => {
+class SetPiecesComponent {
+  constructor(containerElm, setCubePiece) {
+    this.container = containerElm;
+
+    // set up HTML
+    let finalInnerHTML = '';
+    for (let facesRow = 0; facesRow < 2; facesRow++) {
+      finalInnerHTML += `<div class="faces-row">`;
+      for (let face = 0; face < 3; face++) {
+        finalInnerHTML += `<div class="face">`;
+        for (let row = 0; row < 3; row++) {
+          finalInnerHTML += `<div class="row">`;
+          for (let item = 0; item < 3; item++) {
+            finalInnerHTML += `<button aria-label="Toggle Piece Color" class="piece styled-button"><i class="icon im im-sync"></i></button>`;
+          }
+          finalInnerHTML += '</div>';
+        }
+        finalInnerHTML += '</div>';
+      }
+      finalInnerHTML += '</div>';
+    }
+    this.container.innerHTML = finalInnerHTML;
+
+    // set up buttons
+    colors.forEach((color, ind) => {
+      const face = this.container.querySelector(`.faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`);
+      face.querySelectorAll('.piece').forEach((piece, ind) => {
+        // disable center piece
+        if (ind === 4) {
+          piece.setAttribute('disabled', 'true');
+        }
+
+        // if focused, blur after a certain amount of time
+        piece.addEventListener('focus', function () {
+          setTimeout(() => {
+            if (isFocused(this)) {
+              this.blur();
+            }
+          }, 150);
+        });
+      });
+    });
+
+    // initialize piece buttons with functionality
     colors.forEach((faceColor, ind) => {
-      const face = document.querySelector(
-        `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
-      );
+      const face = this.container.querySelector(`.faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`);
       face.querySelectorAll('.piece').forEach((piece, pieceInd) => {
         // onclick, change piece color
         piece.addEventListener('click', async () => {
@@ -96,12 +113,11 @@ module.exports = {
         });
       });
     });
-  },
-  updatePieces: (cubeFaces) => {
+  }
+
+  updatePieces(cubeFaces) {
     colors.forEach((color, ind) => {
-      const faceElm = document.querySelector(
-        `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
-      );
+      const faceElm = this.container.querySelector(`.faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`);
 
       // convert from color to color shorthand with Cube.colors object
       const faceColors = cubeFaces[toShorthand(color)];
@@ -112,5 +128,7 @@ module.exports = {
         piece.setAttribute('color', toFullName(colorShorthand));
       });
     });
-  },
-};
+  }
+}
+
+module.exports = SetPiecesComponent;

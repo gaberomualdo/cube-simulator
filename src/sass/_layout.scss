@@ -24,10 +24,10 @@ body {
 @keyframes page-enter {
   0% {
     opacity: 0;
-    transform: scale(0.9) rotate(2deg);
+    transform: scale(0.9) rotate(1deg);
   }
   50% {
-    transform: scale(1) rotate(-2deg);
+    transform: scale(1) rotate(-1deg);
   }
   100% {
     opacity: 1;
@@ -44,7 +44,7 @@ body {
   margin-right: 0;
   transition: margin-right ease-in-out $log-transition-duration, width ease-in-out $log-transition-duration;
   animation-name: page-enter;
-  animation-duration: 0.4s;
+  animation-duration: 0;
   animation-fill-mode: both;
   width: 100%;
 

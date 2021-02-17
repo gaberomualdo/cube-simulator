@@ -1,0 +1,133 @@
+.cube-area-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $lightest-grey;
+  border-radius: 4px;
+  margin: bsize(1.5) 0;
+  background-color: lighten($page-grey, 5%);
+
+  &.hidden {
+    display: none;
+  }
+  .center-cube {
+    height: bsize(19);
+    width: bsize(19);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.95);
+  }
+
+  .tip {
+    text-align: center;
+    color: $medium-grey;
+    opacity: 0.7;
+    font-size: bsize(0.8);
+  }
+  .scramble-notation {
+    width: 100%;
+    text-align: center;
+    padding: 0 bsize(1);
+    font-size: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(bsize(4), 1fr));
+    grid-gap: bsize(0.15);
+    margin-bottom: bsize(1);
+  }
+  .active-move {
+    display: flex;
+    justify-content: center;
+    padding-bottom: bsize(0.5);
+
+    & > * {
+      height: bsize(2);
+      line-height: bsize(2);
+      margin: 0 !important;
+
+      &:not(:last-child) {
+        margin-right: bsize(0.75) !important;
+      }
+      &.move-number {
+        margin-right: bsize(0.25) !important;
+      }
+      &.move,
+      &.move * {
+        line-height: bsize(1.5) !important;
+      }
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      padding: 0 bsize(0.1);
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.1;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+
+      i {
+        transform: translateY(bsize(0.1));
+        font-size: bsize(1);
+        color: $dark-medium-grey;
+      }
+    }
+  }
+  .scramble-notation button,
+  .active-move .move {
+    text-align: left;
+    font-size: bsize(0.9);
+    margin-top: bsize(0.35);
+    margin-right: bsize(0.35);
+    border: none;
+    padding: bsize(0.25) bsize(0.5);
+    border-radius: 4px;
+    color: $dark-grey;
+    line-height: 1.2;
+    position: relative;
+
+    &:not(.not-button) {
+      cursor: pointer;
+      background-color: lighten($lightest-grey, 9%);
+      transition: background-color 0.15s;
+    }
+    &.not-button {
+      border: 1px solid lighten($lightest-grey, 0%);
+      width: bsize(4);
+    }
+
+    &:not(.not-button):hover {
+      background-color: lighten($lightest-grey, 5%);
+    }
+    &.active {
+      background-color: lighten($lightest-grey, 0%) !important;
+    }
+
+    * {
+      line-height: 1.2;
+      display: inline-block;
+    }
+
+    .number {
+      display: none;
+    }
+    .move-badge {
+      position: absolute;
+      right: bsize(0.1);
+      top: 50%;
+      transform: translateY(-50%) scale(0.85);
+      box-shadow: 0 0 bsize(0.3) rgba(0, 0, 0, 0.1);
+    }
+    .face-view {
+      display: none;
+    }
+  }
+}

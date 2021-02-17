@@ -1,12 +1,12 @@
 {
   "hbs": {
     "siteDetails": {
-      "url": "http://localhost:6557/",
+      "url": "https://rubikscube.now.sh/",
       "author": {
-        "name": "Fred Adams",
+        "name": "Gabriel Romualdo",
         "email": "xtrp@xtrp.io"
       },
-      "name": "Rubik's Cube Playground",
+      "name": "CubeSimulator",
       "description": "Scramble, solve, and move a virtual Rubik's cube just like you would in real life!"
     },
     "cubeMoves": [

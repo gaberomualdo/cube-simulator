@@ -1,0 +1,119 @@
+.stopwatch {
+  position: fixed;
+  top: calc(100vh - #{bsize(2.75)});
+  box-shadow: 0 bsize(0.25) bsize(1.25) rgba($medium-grey, 0.5);
+  width: 10rem;
+  max-width: 90%;
+  width: bsize(17.5);
+  min-height: bsize(2.75);
+  z-index: 999999999999;
+  left: bsize(2);
+  background-color: $white;
+  border-radius: br-bsize(1.5);
+  transition: left 0.5s, top 0.5s;
+}
+.stopwatch.dragging {
+  transition-duration: 0s !important;
+}
+.stopwatch.closed {
+  cursor: pointer;
+}
+.stopwatch:not(.closed) {
+  top: var(--y);
+  left: var(--x);
+}
+.stopwatch header {
+  position: relative;
+  height: bsize(2.75);
+  padding: 0 bsize(1);
+  user-select: none;
+  border-bottom: 1px solid $lightest-grey;
+}
+.stopwatch header * {
+  height: bsize(2.75);
+  line-height: bsize(2.75);
+}
+.stopwatch header p {
+  margin: 0;
+  font-weight: 500;
+  color: $dark-grey;
+  font-size: bsize(1.1);
+  transition: color 0.2s;
+}
+.stopwatch header i {
+  color: $dark-medium-grey;
+  position: absolute;
+  right: 0;
+  padding: 0 bsize(1);
+  top: 50%;
+  transform: translateY(-45%);
+  font-size: bsize(0.95);
+  transition: transform 0.2s, color 0.2s;
+}
+.stopwatch:not(.closed) i {
+  transform: translateY(-55%) rotate(180deg);
+}
+.stopwatch.closed header:hover * {
+  color: $blue;
+}
+.stopwatch.closed:hover header i {
+  transform: translateY(-45%) scale(1.1);
+}
+.stopwatch:not(.closed) header {
+  cursor: move;
+}
+.stopwatch:not(.closed) header i {
+  cursor: pointer;
+}
+.stopwatch:not(.closed) header i:hover {
+  transform: translateY(-55%) rotate(180deg) scale(1.1);
+  color: $blue;
+}
+.stopwatch .stopwatch-container .time {
+  padding: bsize(1) 0;
+  padding-bottom: 0;
+  text-align: center;
+  color: $dark-grey;
+}
+.stopwatch .stopwatch-container .time > * {
+  display: inline-block;
+  font-size: bsize(1.75);
+}
+.stopwatch .stopwatch-container .time > .small-digits,
+.stopwatch .stopwatch-container .time > .unit {
+  font-size: bsize(1.15);
+  vertical-align: baseline;
+}
+
+.stopwatch .stopwatch-container .time > .unit {
+  margin-right: bsize(0.25);
+}
+.stopwatch .stopwatch-container .buttons {
+  padding: bsize(0.75);
+  padding-bottom: 0;
+  display: flex;
+}
+.stopwatch .stopwatch-container .buttons > * {
+  flex: 0 1 100%;
+  border-radius: br-bsize(1);
+  padding: bsize(0.5) bsize(0.5);
+  font-size: bsize(0.95);
+}
+.stopwatch .stopwatch-container .buttons > *:first-child {
+  margin-right: bsize(0.75);
+  color: $white;
+  background-color: $blue;
+}
+.stopwatch .stopwatch-container .buttons > *:first-child:hover {
+  opacity: 0.9;
+}
+.stopwatch .stopwatch-container .buttons > *:first-child:active {
+  opacity: 1;
+}
+.stopwatch .stopwatch-container > p {
+  text-align: center;
+  color: $medium-grey;
+  font-size: bsize(0.9);
+  line-height: 1.35;
+  margin-bottom: bsize(0.5);
+}

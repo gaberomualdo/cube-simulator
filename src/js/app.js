@@ -37,15 +37,14 @@ const makeMoveAndRefreshImage = (moveNotation) => {
 require('./dom/openableSection');
 
 // set pieces section
-const { updatePieces, initPieceButtons } = require('./dom/setPieces');
-
-initPieceButtons((x, y, z, key, newVal) => {
+const SetPiecesComponent = require('./dom/setPiecesComponent');
+const simulatorPieces = new SetPiecesComponent(document.querySelector('.container .set-pieces .content'), (x, y, z, key, newVal) => {
   cube.cube[x][y][z][key] = newVal;
   cubeImages.refreshCube(cube);
 });
 
 cubeImages.setRefreshCubeCallback((cube) => {
-  updatePieces(cube.toFacesObj());
+  simulatorPieces.updatePieces(cube.toFacesObj());
 });
 
 // misc buttons
@@ -99,3 +98,6 @@ global.setPage = setPage;
 
 // pages
 require('./pages/scrambler');
+
+// stopwatch
+import './dom/stopwatch';

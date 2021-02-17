@@ -69,7 +69,7 @@ module.exports = (cube, makeMoveWithNotation) => {
     .join('');
 
   const cubeJSCube = CubeJS.fromString(cubeJSString);
-  const solvedMoves = cubeJSCube.solve(20).split(' ');
+  const solvedMoves = cubeJSCube.solve().split(' ');
 
   solvedMoves.forEach((move) => {
     if (move.endsWith('2')) {

@@ -1,6 +1,6 @@
 const defaultPage = 'simulator';
 const logPage = 'simulator';
-const validPages = ['about', 'simulator', 'scrambler', 'solver', 'live', 'learn'];
+const validPages = ['about', 'simulator', 'scrambler', 'solver', /* 'live', */ 'learn'];
 const setPage = (p, updateURL = true) => {
   const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
