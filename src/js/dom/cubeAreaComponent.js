@@ -60,7 +60,7 @@ class CubeAreaComponent {
       this.keydownFunction(e);
     });
   }
-  initialize(movesToMake, initialCubeData) {
+  initialize(movesToMake, initialCubeData, page) {
     const cubeElm = this.container.querySelector('.center-cube');
     const notationElm = this.container.querySelector('.scramble-notation');
 

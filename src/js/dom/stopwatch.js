@@ -69,27 +69,43 @@ const intervalMS = 10;
 const min = 1000 * 60;
 const sec = 1000;
 
-start.addEventListener('click', () => {
-  start.blur();
-
+const startStopwatch = () => {
+  startTime = new Date().getTime();
+  interval = setInterval(() => {
+    const cur = new Date().getTime();
+    let diff = cur - startTime + additionalDiff;
+    const mi = Math.floor(diff / min);
+    diff %= min;
+    const se = Math.floor(diff / sec);
+    diff %= sec;
+    updateTime(mi, se, diff);
+  }, intervalMS);
+};
+const stopStopwatch = () => {
+  const cur = new Date().getTime();
+  additionalDiff += cur - startTime;
+  clearInterval(interval);
+};
+const toggleStopwatch = () => {
   going = !going;
   if (going) {
-    startTime = new Date().getTime();
-    interval = setInterval(() => {
-      const cur = new Date().getTime();
-      let diff = cur - startTime + additionalDiff;
-      const mi = Math.floor(diff / min);
-      diff %= min;
-      const se = Math.floor(diff / sec);
-      diff %= sec;
-      updateTime(mi, se, diff);
-    }, intervalMS);
+    startStopwatch();
   } else {
-    const cur = new Date().getTime();
-    additionalDiff += cur - startTime;
-    clearInterval(interval);
+    stopStopwatch();
   }
   updateStopStartBtn();
+};
+
+start.addEventListener('click', () => {
+  start.blur();
+  toggleStopwatch();
+});
+
+document.addEventListener('keydown', (e) => {
+  console.log(e.key);
+  if (e.key === ' ') {
+    toggleStopwatch();
+  }
 });
 
 reset.addEventListener('click', () => {
