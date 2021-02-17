@@ -1,7 +1,7 @@
 // logo bar
 .col:first-child .logo {
   flex-basis: bsize(3.25);
-  padding: 0 bsize(0.5) bsize(0.75) bsize(0.5);
+  padding: 0 bsize(0.5) bsize(0.625) bsize(0.5);
   border-bottom: 1px solid $page-grey;
   margin-bottom: bsize(0.75);
 
@@ -23,33 +23,29 @@
 
   img {
     box-sizing: content-box;
-    height: bsize(2.5);
+    height: bsize(1.25);
+    margin-top: bsize(0.625);
     width: auto;
-    padding-top: #{$logo-items-horizontal-spacing}px;
-    margin-right: bsize(1);
+    margin-right: bsize(0.75);
     @include in-mobile-and-phone {
-      margin-right: bsize(0.625);
+      display: none;
     }
   }
 
   h1 {
     @include m0;
-    line-height: bsize(2.5);
-    font-size: bsize(1.35);
+    height: bsize(2.5);
+    line-height: bsize(2.65);
+    font-size: bsize(1.15);
     color: $dark-medium-grey;
     font-weight: 500;
-    padding-top: #{$logo-items-horizontal-spacing}px;
 
     @include in-mobile-and-phone {
-      font-size: bsize(1.25);
-
-      // padding to compensate for centering to make text seem more centered
-      padding-right: bsize(1.5);
+      display: none;
     }
   }
 
   .logo-buttons {
-    margin-top: #{$logo-items-horizontal-spacing}px;
     display: block;
     float: right;
     @include in-mobile-and-phone {

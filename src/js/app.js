@@ -30,7 +30,7 @@ const cubeImages = require('./dom/cubeImages');
 const makeMoveAndRefreshImage = (moveNotation) => {
   cube.makeMove(moveNotation);
   history.add(moveNotation);
-  cubeImages.refreshCube(cube);
+  cubeImages.refreshCube(cube, moveNotation);
 };
 
 // openable section DOM for open and close events
@@ -71,7 +71,7 @@ miscButtons.scrambleButton.addEventListener('click', async () => {
     scrambling = true;
     addMarkerToLog('Start Scramble');
     await miscButtons.scramble(cube, cubeImages, history);
-    addMarkerToLog('End Scramble (50 moves)');
+    addMarkerToLog('End Scramble (20 moves)');
     scrambling = false;
   }
 });
@@ -91,3 +91,11 @@ import './dom/logFunctionality';
 
 // notation type toggle functionality
 import './dom/toggleNotation';
+
+// page functionality
+const { getPage, setPage } = require('./pagesFunctionality');
+global.getPage = getPage;
+global.setPage = setPage;
+
+// pages
+require('./pages/scrambler');

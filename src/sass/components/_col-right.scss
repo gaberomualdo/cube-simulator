@@ -1,8 +1,8 @@
-.col:nth-child(2) {
+.container > .col:nth-child(2) {
   background-color: lighten($page-grey, 2%);
 
   // each row is an image with a caption
-  .row {
+  & > .row {
     flex-basis: 50%;
     flex-shrink: 1;
     width: 100%;
@@ -12,8 +12,8 @@
     font-size: 0;
 
     @include in-mobile-and-phone {
-      height: auto;
-      max-height: bsize(25);
+      height: bsize(10);
+      flex-basis: bsize(10);
     }
 
     &:not(:last-child) {
@@ -24,13 +24,18 @@
       }
     }
 
-    .cube-image {
+    & > .cube-image {
+      position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
-      background-color: darken($container-grey, 10%);
-      filter: saturate(1.25);
+      top: 0;
+      left: 0;
+      $cube-grey: darken($container-grey, 10%);
+      background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%),
+        linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+        linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+      display: flex;
+      flex-direction: column;
     }
 
     .rotate-arrows img {

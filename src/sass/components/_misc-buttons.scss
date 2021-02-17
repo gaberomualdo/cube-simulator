@@ -2,7 +2,7 @@ ul.misc-buttons {
   color: $dark-grey;
   list-style: none;
   padding: 0;
-  margin: bsize(1.5) 0;
+  margin: bsize(1) 0;
 
   @include in-mobile-and-phone {
     margin: bsize(0.75) 0;
@@ -11,6 +11,11 @@ ul.misc-buttons {
   @include in-phone {
     display: flex;
     flex-direction: row;
+    margin-bottom: 0;
+
+    & + hr {
+      display: none;
+    }
   }
 
   li {

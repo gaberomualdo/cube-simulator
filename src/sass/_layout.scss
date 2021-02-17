@@ -1,3 +1,5 @@
+$min-log-change-width: #{$page-mobile-width + $log-width + 1px};
+
 * {
   box-sizing: border-box;
   font-family: inherit;
@@ -5,8 +7,10 @@
 
 body {
   background-color: $page-grey;
-  padding: bsize(2);
+  padding: bsize(0.75);
+  padding-top: bsize(4.25);
   display: flex;
+  align-items: center;
   flex-direction: column;
   height: 100vh;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -16,12 +20,21 @@ body {
   @include in-mobile-and-phone {
     height: auto;
   }
-
-  @include in-phone {
-    padding: bsize(0.875);
+}
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) rotate(2deg);
+  }
+  50% {
+    transform: scale(1) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
   }
 }
-.container {
+.page {
   background-color: $container-grey;
   flex-basis: 100%;
   border-radius: br-bsize(1.5);
@@ -29,28 +42,36 @@ body {
   border: 1px solid $lightest-grey;
   overflow: hidden;
   margin-right: 0;
+  transition: margin-right ease-in-out $log-transition-duration, width ease-in-out $log-transition-duration;
+  animation-name: page-enter;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  width: 100%;
 
+  &:not(.active) {
+    display: none !important;
+  }
+
+  @media only screen and (min-width: $min-log-change-width) {
+    body.log-open & {
+      margin-right: $log-width;
+      width: calc(100% - #{$log-width});
+    }
+  }
+}
+.container {
   display: flex;
   flex-direction: row;
-
-  transition: margin-right ease-in-out $log-transition-duration;
 
   @include in-mobile-and-phone {
     flex-direction: column;
   }
-
-  $min-width: #{$page-mobile-width + $log-width + 1px};
-  @media only screen and (min-width: $min-width) {
-    body.log-open & {
-      margin-right: $log-width;
-    }
-  }
 }
 
-.col {
+.container > .col {
   padding: bsize(1.5);
-  flex-basis: 35%;
-  overflow-y: auto;
+  flex: 1 1 35%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 
@@ -60,10 +81,14 @@ body {
 }
 
 // special case with scrolling on first column
-.col:first-child {
+.container > .col:first-child {
   flex-basis: 65%;
   padding: bsize(1.5) bsize(1.5) 0 bsize(1.5);
   padding-top: #{bsize(1.5, false) - $logo-items-horizontal-spacing}px;
+
+  @include in-phone {
+    padding: bsize(0.75) bsize(0.75) 0 bsize(0.75);
+  }
 
   & > *:last-child {
     padding-bottom: bsize(1.5);
@@ -72,4 +97,33 @@ body {
       padding-bottom: bsize(0.75);
     }
   }
+}
+
+// under construction
+.page.construction {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://cdn.pixabay.com/photo/2020/04/25/09/28/blueprint-5090067_1280.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.page.construction * {
+  text-align: center;
+  text-shadow: 0 0.15rem 0.6rem rgba(0, 0, 0, 0.75);
+}
+.page.construction h1 {
+  font-size: 3.5rem;
+  color: $white;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.025rem;
+  text-transform: uppercase;
+}
+.page.construction p {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  color: $white;
+  opacity: 0.7;
 }

@@ -1,0 +1,187 @@
+nav.nav {
+  min-height: bsize(3.5);
+  overflow: hidden;
+  width: 100%;
+  padding: bsize(0.5) bsize(0.875);
+  padding-right: 0;
+  background-color: $container-grey;
+  box-shadow: 0 0 bsize(1.25) rgba($medium-grey, 0.25);
+  border-bottom: 1px solid $lightest-grey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  transition: padding-right ease-in-out $log-transition-duration;
+
+  @include in-mobile-and-phone {
+    padding-right: bsize(0.875);
+  }
+
+  @media only screen and (min-width: $min-log-change-width) {
+    body.log-open & {
+      padding-right: $log-width;
+    }
+  }
+
+  & > * {
+    display: block;
+    float: left;
+    height: bsize(2.5);
+  }
+  & > .logo {
+    cursor: pointer;
+    user-select: none;
+    & > * {
+      @include db-fl;
+
+      @include in-mobile-and-phone {
+        @include dib-fn-vt;
+      }
+    }
+
+    img {
+      box-sizing: content-box;
+      height: bsize(2.5);
+      width: auto;
+      transform: scale(0.8);
+      margin-right: bsize(0.65);
+      @include in-mobile-and-phone {
+        margin-right: bsize(0.625);
+      }
+    }
+
+    h1 {
+      @include m0;
+      line-height: bsize(2.5);
+      font-size: bsize(1.25);
+      color: $dark-medium-grey;
+      font-weight: 500;
+
+      @include in-mobile-and-phone {
+        font-size: bsize(1.25);
+
+        // padding to compensate for centering to make text seem more centered
+        padding-right: bsize(1.5);
+      }
+    }
+  }
+  & > .links {
+    float: right;
+    font-size: 0;
+    display: flex;
+    align-items: center;
+    margin-right: bsize(0.85);
+
+    & > * {
+      display: inline-block;
+      font-size: bsize(0.95);
+      line-height: 1.2;
+      font-weight: 500;
+      color: darken($grey-base-color, 16.5%);
+      text-decoration: none;
+      padding: bsize(0.325) bsize(0.85);
+      border-radius: bsize(1000);
+      transition: color 0.2s, background-color 0.2s;
+      cursor: pointer;
+
+      &:not(:first-child) {
+        margin-left: bsize(0.25);
+      }
+      &.active.red {
+        color: darken($cube-red, 4%);
+        background-color: lighten($cube-red, 27%);
+      }
+      &.active.blue {
+        color: darken($cube-blue, 17%);
+        background-color: lighten($cube-blue, 29%);
+      }
+      &.active.green {
+        color: darken($cube-green, 28%);
+        background-color: lighten($cube-green, 27%);
+      }
+      &.active.yellow {
+        color: darken($cube-yellow, 38%);
+        background-color: lighten($cube-yellow, 17%);
+      }
+      &.active.orange {
+        color: darken($cube-orange, 10%);
+        background-color: lighten($cube-orange, 32%);
+      }
+      &.active.purple {
+        $purple: #8e44ad;
+        background-color: lighten($purple, 40%);
+        color: darken($purple, 12%);
+      }
+      &:hover {
+        background-color: lighten($grey-base-color, 22%);
+        color: darken($grey-base-color, 20.5%);
+      }
+    }
+  }
+  .menu-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0 bsize(0.5);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    display: none;
+
+    @include in-mobile-and-phone {
+      display: flex;
+    }
+
+    i {
+      color: $dark-medium-grey;
+      margin-top: bsize(0.2);
+    }
+    .im-x-mark {
+      display: none;
+    }
+  }
+  @include in-mobile-and-phone {
+    & > .links {
+      width: 100%;
+      clear: both;
+      margin-right: 0;
+      margin-top: bsize(0.5);
+      height: auto;
+      text-align: center;
+    }
+    &:not(.menu-open) {
+      & > .links {
+        display: none;
+      }
+    }
+    &.menu-open {
+      & > .links {
+        display: block;
+      }
+      .menu-btn {
+        .im-menu {
+          display: none;
+        }
+        .im-x-mark {
+          display: block;
+        }
+      }
+    }
+  }
+  @include in-phone {
+    & > .logo h1 {
+      display: none;
+    }
+    & > .links {
+      margin-top: bsize(0.25);
+    }
+    & > .links > * {
+      display: block;
+      width: 100%;
+      clear: both;
+      margin-top: bsize(0.25);
+      margin-left: 0 !important;
+      padding: bsize(0.5) bsize(0.85);
+    }
+  }
+}

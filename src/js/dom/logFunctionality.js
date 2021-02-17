@@ -88,11 +88,15 @@ const getLastLogItemRepeatCount = () => {
 };
 
 const addRepeatToLastItem = () => {
+  getLastLogItem().querySelector('span.repeat').style.display = 'block';
   const lastItemCountElm = getLastLogItem().querySelector('span.repeat span.count');
   lastItemCountElm.innerText = getLastLogItemRepeatCount() + 1;
 };
 const removeRepeatFromLastItem = () => {
   const lastItemCountElm = getLastLogItem().querySelector('span.repeat span.count');
+  if (getLastLogItemRepeatCount() - 1 <= 1) {
+    getLastLogItem().querySelector('span.repeat').style.display = 'none';
+  }
   lastItemCountElm.innerText = getLastLogItemRepeatCount() - 1;
 };
 
@@ -105,12 +109,13 @@ const addToLog = (moveNotation, isComputer = false) => {
 
   const backgroundURL = `log_icons/${isComputer ? 'computer' : 'human'}.png`;
   const logItem = document.createElement('li');
+  logItem.classList.add(isComputer ? 'computer' : 'human');
   logItem.style.backgroundImage = `url(${backgroundURL})`;
-  logItem.innerHTML = `${
-    USE_REPEATS ? "<span class='repeat'><span class='count'>1</span>&nbsp;×&nbsp;</span>" : ''
-  }<span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(moveNotation)}</span>${generateMoveBadgeHTML(
+  logItem.innerHTML = `<span class='cube-notation'>${moveNotation}</span><span class='face-view'>${toFaceView(
     moveNotation
-  )}`;
+  )}</span>${generateMoveBadgeHTML(moveNotation)}${
+    USE_REPEATS ? "<span class='repeat' style='display: none;'><span class='times'>&nbsp;×&nbsp;</span><span class='count'>1</span></span>" : ''
+  }`;
   logItemsElm.appendChild(logItem);
   logElm.scrollTop = logElm.scrollHeight;
 };

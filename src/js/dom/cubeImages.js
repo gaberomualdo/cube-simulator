@@ -1,102 +1,69 @@
-const Cube = require('../cube');
-const url = require('url');
+const VisualizedCube = require('./visualizedCube');
+const { getCubeTransitionTimeMS, convertFacesObj } = require('../util');
 
-let cubeBackgroundsInitialized = false;
-const originalCubeImageRatio = [600, 400];
-const cubeFacesPolygonData = require('./cubeFacesPolygonData');
+const transitionTimeMS = getCubeTransitionTimeMS();
 
-const cubeColors = {
-  green: 'rgb(99, 250, 119)',
-  orange: 'rgb(249, 128, 42)',
-  blue: 'rgb(58, 194, 254)',
-  red: 'rgb(236, 97, 100)',
-  white: 'rgb(227, 227, 219)',
-  yellow: 'rgb(203, 247, 76)',
+let cubeIntialized = false;
+let cubeFront;
+let cubeBack;
+let moveQueue = [];
+const moveFromQueue = () => {
+  const [face, moveDirection, cubeData] = moveQueue[moveQueue.length - 1];
+  cubeFront.moveCubeFace(face, moveDirection, () => {
+    cubeFront.cubeData = cubeData;
+  });
+  cubeBack.moveCubeFace(face, moveDirection, () => {
+    cubeBack.cubeData = cubeData;
+  });
+  setTimeout(() => {
+    moveQueue.pop();
+    if (moveQueue.length >= 1) {
+      moveFromQueue();
+    }
+  }, transitionTimeMS);
 };
-
-// cube visualization
-const refreshCubeImages = (cube) => {
-  const frontViewCanvas = document.querySelector('.cube-image.front-view');
-  const backViewCanvas = document.querySelector('.cube-image.back-view');
-
-  clearCanvas(frontViewCanvas);
-  clearCanvas(backViewCanvas);
-
-  initializeCubeBackground(frontViewCanvas);
-  initializeCubeBackground(backViewCanvas);
-  if (!cubeBackgroundsInitialized) {
-    cubeBackgroundsInitialized = true;
+const refreshCubeImages = (cube, move, moveCount) => {
+  const cubeData = convertFacesObj(cube.toFacesObj());
+  if (!cubeIntialized) {
+    cubeFront = new VisualizedCube((transitionTimeMS - 50) / 1000, document.querySelector('.cube-image.front-view'), cubeData.clone());
+    cubeBack = new VisualizedCube((transitionTimeMS - 50) / 1000, document.querySelector('.cube-image.back-view'), cubeData.clone());
+    cubeFront.cubeMirror = cubeBack;
+    cubeBack.cubeMirror = cubeFront;
+    cubeBack.updateCamera(180, 0);
+    cubeIntialized = true;
   }
 
-  const cubePiecesFrontView = getCubePieces(cube, true);
-  const cubePiecesBackView = getCubePieces(cube, false);
+  if (move === '') {
+    cubeFront.cubeData = cubeData;
+    cubeFront.resetCube(cubeFront);
+    cubeFront.initializeCube();
 
-  cubePiecesFrontView.forEach((faceColor, idx) => {
-    drawFaceOnCanvas(frontViewCanvas, idx, faceColor);
-  });
-  cubePiecesBackView.forEach((faceColor, idx) => {
-    drawFaceOnCanvas(backViewCanvas, idx, faceColor);
-  });
-};
-
-const clearCanvas = (canvas) => {
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-};
-
-const initializeCubeBackground = (canvas) => {
-  const ctx = canvas.getContext('2d');
-  const bgImg = document.querySelector('.rubiks-cube-background-image');
-  const shadowImg = document.querySelector('.rubiks-cube-shadow-image');
-  ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-  ctx.drawImage(shadowImg, 0, (-14 / originalCubeImageRatio[1]) * canvas.height, canvas.width, canvas.height);
-};
-
-const getCubePieces = (cube, isFrontView) => {
-  const cubeFaces = cube.toFacesObj();
-
-  let targetFaces = isFrontView ? [cubeFaces['g'], cubeFaces['r'], cubeFaces['w']] : [cubeFaces['o'], cubeFaces['b'], cubeFaces['y']];
-
-  const cubePieces = [].concat.apply(
-    [],
-    targetFaces.map(getFaceWithColors).map((face) => {
-      return [].concat.apply([], face);
-    })
-  );
-  return cubePieces;
-};
-
-const getFaceWithColors = (face) => {
-  face.forEach((row, rowIdx) => {
-    row.forEach((colorShorthand, colorShorthandIdx) => {
-      face[rowIdx][colorShorthandIdx] = cubeColors[Cube.colors[colorShorthand]];
-    });
-  });
-
-  return face;
-};
-
-const drawFaceOnCanvas = (canvas, faceIdx, color) => {
-  let vertices = cubeFacesPolygonData[faceIdx];
-  vertices = vertices.map((e) => [(e[0] / originalCubeImageRatio[0]) * canvas.width, ((e[1] - 14) / originalCubeImageRatio[1]) * canvas.height]);
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(vertices[0][0], vertices[0][1]);
-  vertices.forEach((i, idx) => {
-    if (idx > 0) {
-      ctx.lineTo(i[0], i[1]);
+    cubeBack.cubeData = cubeData;
+    cubeBack.resetCube(cubeBack);
+    cubeBack.initializeCube();
+  } else {
+    const moveDirection = move.length === 2 ? moveCount * -1 : moveCount;
+    const faces = {
+      b: 'back',
+      f: 'front',
+      r: 'right',
+      l: 'left',
+      u: 'top',
+      d: 'bottom',
+    };
+    const face = faces[move[0].toLowerCase()];
+    moveQueue.unshift([face, moveDirection, cubeData]);
+    if (moveQueue.length === 1) {
+      moveFromQueue();
     }
-  });
-  ctx.closePath();
-  ctx.fill();
+  }
 };
 
 let refreshCubeCallback = () => {};
 
 module.exports = {
-  refreshCube: (cube) => {
-    refreshCubeImages(cube);
+  refreshCube: (cube, move = '', moveCount = 1) => {
+    refreshCubeImages(cube, move, moveCount);
     refreshCubeCallback(cube);
   },
 

@@ -1,11 +1,19 @@
 document.querySelectorAll('.openable-section .label').forEach((sectionLabel) => {
-  sectionLabel.addEventListener('click', () => {
-    const section = sectionLabel.parentElement;
+  const click = (secLabel) => {
+    const section = secLabel.parentElement;
+    const sectionContents = section.querySelector('.content');
     section.classList.toggle('closed');
+    sectionContents.setAttribute('style', '--current-height: ' + sectionContents.scrollHeight + 'px');
     setTimeout(() => {
-      if (sectionLabel === document.activeElement) {
-        sectionLabel.blur();
+      if (secLabel === document.activeElement) {
+        secLabel.blur();
       }
     }, 250);
+  };
+  if (sectionLabel.getAttribute('data-open')) {
+    click(sectionLabel);
+  }
+  sectionLabel.addEventListener('click', () => {
+    click(sectionLabel);
   });
 });

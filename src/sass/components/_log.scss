@@ -18,6 +18,7 @@ body.log-open {
   width: $log-width;
   border-left: 1px solid $lightest-grey;
   overflow-y: auto;
+  z-index: 9999;
   transform: translate3d($log-width, 0, 0);
   transition: transform ease-in-out $log-transition-duration, box-shadow ease-in-out $log-transition-duration;
 
@@ -102,15 +103,19 @@ body.log-open {
       background-repeat: no-repeat;
 
       & > * {
-        min-width: bsize(1.5);
         min-height: bsize(1.5);
         @include db-fl;
+      }
+
+      & > .move-badge {
+        min-width: bsize(1.5);
       }
 
       body.use-face-view & .cube-notation {
         display: none;
       }
-      body:not(.use-face-view) & .face-view {
+      body:not(.use-face-view) & .face-view,
+      body:not(.use-face-view) &.computer .times {
         display: none;
       }
 

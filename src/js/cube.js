@@ -83,16 +83,42 @@ class Cube {
 
   // scramble (make random moves)
   async scramble(amountOfMoves = 30, afterEveryMove = () => {}) {
-    const possibleNormalMoves = ['U', 'D', 'R', 'L', 'F', 'B'];
+    let moveCount = 0;
+
+    const makeScrambleMove = async (n) => {
+      moveCount++;
+      this.makeMove(n);
+      await afterEveryMove(n);
+    };
+
+    const possibleMoves = ['U', 'D', 'R', 'L', 'F', 'B', "U'", "D'", "R'", "L'", "F'", "B'", 'U2', 'D2', 'R2', 'L2', 'F2', 'B2'];
+
+    let previousMoveBase = ' ';
 
     for (let i = 0; i < amountOfMoves; i++) {
-      const chosenMove = possibleNormalMoves[Math.floor(Math.random() * possibleNormalMoves.length)];
-      const clockwise = [true, false][Math.floor(Math.random() * 2)];
+      let chosenMove = previousMoveBase;
+      while (chosenMove[0] === previousMoveBase) {
+        chosenMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      }
 
-      const notation = `${chosenMove}${clockwise ? "'" : ''}`;
-      this.makeMove(notation);
+      previousMoveBase = chosenMove[0];
 
-      await afterEveryMove(notation);
+      if (chosenMove.endsWith('2')) {
+        chosenMove = chosenMove[0];
+        await makeScrambleMove(chosenMove);
+      }
+
+      if (moveCount >= amountOfMoves) {
+        break;
+      }
+
+      if (moveCount + 1 <= amountOfMoves) {
+        await makeScrambleMove(chosenMove);
+      }
+
+      if (moveCount >= amountOfMoves) {
+        break;
+      }
     }
   }
 

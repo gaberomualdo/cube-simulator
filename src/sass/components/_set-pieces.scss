@@ -1,13 +1,14 @@
 .set-pieces .content {
-  justify-content: space-around;
-  padding-bottom: bsize(1.5);
-
   .faces-row {
-    flex-basis: bsize(10);
+    height: bsize(10);
     margin-top: bsize(1.5);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    &:last-child {
+      margin-bottom: bsize(1.5);
+    }
 
     @media screen and (max-width: 880px) {
       zoom: 75%;

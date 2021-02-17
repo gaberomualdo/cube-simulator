@@ -1,35 +1,24 @@
 .openable-section {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex-shrink: 1;
-
   &.closed {
-    flex-basis: auto;
-    flex-shrink: 0;
-
-    @include in-phone {
-      flex-basis: bsize(2.5);
-    }
-
     .content {
-      display: none;
+      max-height: 0;
     }
     .label .icon {
-      transform: translateX(-#{bsize(0.15)}) rotate(-90deg);
+      transform: translateY(-50%) rotate(-90deg);
     }
   }
 
   .label {
+    position: relative;
     cursor: pointer;
-    flex-basis: bsize(3.5);
+    height: bsize(3.5);
+    width: 100%;
     border: none;
     margin-bottom: 2px;
     padding: bsize(0.25) bsize(0.85);
     background-color: transparent;
     color: $dark-grey;
     box-shadow: 0 1px 0 darken($page-grey, 5%);
-    flex-shrink: 0;
 
     &::after {
       content: '';
@@ -47,15 +36,17 @@
     }
 
     .icon {
-      float: right;
+      position: absolute;
+      top: 50%;
+      right: bsize(0.85);
       font-size: bsize(1.35);
-      line-height: bsize(3.3);
+      transform: translateY(-45%);
       transition: transform 0.25s;
     }
 
     @include in-phone {
       padding: bsize(0.25) bsize(0.65);
-      flex-basis: bsize(2.5);
+      height: bsize(2.5);
 
       & > * {
         height: bsize(2);
@@ -70,15 +61,16 @@
   }
 
   .content {
-    flex-basis: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 1;
+    --current-height: 0;
+    transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    overflow: hidden;
+    height: auto;
+    max-height: var(--current-height);
 
-    .on-safari & {
-      @include not-in-mobile-and-phone {
-        overflow: auto;
-      }
+    & > * {
+      padding-left: bsize(0.45);
+      padding-right: bsize(0.45);
+      box-sizing: border-box;
     }
   }
 }

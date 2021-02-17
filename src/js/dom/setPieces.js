@@ -6,7 +6,9 @@ const isFocused = (element) => {
 };
 
 colors.forEach((color, ind) => {
-  const face = document.querySelector(`.set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`);
+  const face = document.querySelector(
+    `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
+  );
   face.querySelectorAll('.piece').forEach((piece, ind) => {
     // disable center piece
     if (ind === 4) {
@@ -35,7 +37,9 @@ const toFullName = (color) => {
 module.exports = {
   initPieceButtons: (setCubePiece) => {
     colors.forEach((faceColor, ind) => {
-      const face = document.querySelector(`.set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`);
+      const face = document.querySelector(
+        `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
+      );
       face.querySelectorAll('.piece').forEach((piece, pieceInd) => {
         // onclick, change piece color
         piece.addEventListener('click', async () => {
@@ -48,8 +52,6 @@ module.exports = {
             const shorthandFaceColor = toShorthand(faceColor);
             let pieceRow = Math.floor(pieceInd / 3);
             let pieceCol = pieceInd % 3;
-
-            console.log(pieceRow, pieceCol, shorthandFaceColor);
 
             // calculate piece position on cube
             const finalPiecePos = { x: -1, y: -1, z: -1 };
@@ -68,9 +70,6 @@ module.exports = {
               faceAxis = axis;
             });
 
-            console.log(faceAxis);
-            console.log(finalPiecePos);
-
             // transform row and col with presets to fix orientation problems
             if (shorthandFaceColor === 'o' || shorthandFaceColor === 'b') {
               pieceRow = 2 - pieceRow;
@@ -79,8 +78,6 @@ module.exports = {
               pieceRow = 2 - pieceRow;
               pieceCol = 2 - pieceCol;
             }
-
-            console.log(pieceRow, pieceCol);
 
             // more presets
             if (faceAxis === 'z') {
@@ -94,8 +91,6 @@ module.exports = {
               finalPiecePos.z = pieceCol;
             }
 
-            console.log(finalPiecePos);
-
             await setCubePiece(finalPiecePos.x, finalPiecePos.y, finalPiecePos.z, faceAxis, toShorthand(newColor));
           }
         });
@@ -105,7 +100,7 @@ module.exports = {
   updatePieces: (cubeFaces) => {
     colors.forEach((color, ind) => {
       const faceElm = document.querySelector(
-        `.set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
+        `.container .set-pieces .content .faces-row:nth-child(${Math.floor(ind / 3) + 1}) .face:nth-child(${(ind % 3) + 1})`
       );
 
       // convert from color to color shorthand with Cube.colors object

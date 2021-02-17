@@ -1,4 +1,17 @@
+const CubeJS = require('cubejs');
+let cubeJSSolverInitialized = false;
+
 const Cube = require('./cube');
+
+// (async () => {
+//   console.log('solving');
+//   // Create a new solved cube instance
+//   const testCube = new CubeJS();
+
+//   // Apply an algorithm or randomize the cube state
+//   testCube.move("U F R2 B' D2 L'");
+//   console.log(testCube.solve());
+// })();
 
 // Array contains function (returns true if item is in array; false if not)
 Array.prototype.contains = function (item) {
@@ -15,8 +28,63 @@ Array.prototype.equals = function (array) {
   return true;
 };
 
+// rotate matrix function
+const rotateMatrix = (matrix) => {
+  return matrix.map((row, i) => row.map((val, j) => matrix[matrix.length - 1 - j][i]));
+};
+
+// convert face to notation
+const faceToNotation = (e) => {
+  e = e.toLowerCase();
+  if (e === 'g') return 'F';
+  if (e === 'r') return 'R';
+  if (e === 'w') return 'U';
+  if (e === 'o') return 'L';
+  if (e === 'b') return 'B';
+  if (e === 'y') return 'D';
+};
+
 // solve function
 module.exports = (cube, makeMoveWithNotation) => {
+  if (!cubeJSSolverInitialized) {
+    CubeJS.initSolver();
+  }
+
+  const faces = JSON.parse(JSON.stringify(cube.toFacesObj()));
+
+  // orange and blue faces need to be rotated
+  faces.o = rotateMatrix(rotateMatrix(faces.o));
+  faces.b = rotateMatrix(rotateMatrix(faces.b));
+
+  // yellow face needs to be rotated
+  faces.y = rotateMatrix(faces.y);
+
+  const cubeJSString = [faces.w, faces.r, faces.g, faces.y, faces.o, faces.b]
+    .map((e) =>
+      [].concat
+        .apply([], e)
+        .map((e) => faceToNotation(e))
+        .join('')
+    )
+    .join('');
+
+  const cubeJSCube = CubeJS.fromString(cubeJSString);
+  const solvedMoves = cubeJSCube.solve(20).split(' ');
+
+  solvedMoves.forEach((move) => {
+    if (move.endsWith('2')) {
+      const moveNotation = move.slice(0, move.length - 1);
+      makeMoveWithNotation(moveNotation);
+      makeMoveWithNotation(moveNotation);
+    } else {
+      makeMoveWithNotation(move);
+    }
+  });
+
+  return;
+
+  // below is my, less efficient, ~125-200 move solving algorithm. it is faster than the CubeJS solver.
+
   // check if the piece moves (is not a center piece of a face)
   const isMovable = (piece) => {
     const axes = Object.keys(piece);

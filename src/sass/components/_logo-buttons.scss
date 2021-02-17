@@ -28,7 +28,7 @@
     }
   }
   .toggle-log {
-    span {
+    span:not(.displayed) {
       display: none;
     }
     &.log-open span.open {

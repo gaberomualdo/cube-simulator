@@ -1,4 +1,5 @@
-const timeBetweenMovesMS = 25;
+const { getCubeTransitionTimeMS } = require('../util');
+const cubeTransitionTime = getCubeTransitionTimeMS();
 
 const isFocused = (element) => {
   return element === document.activeElement;
@@ -25,19 +26,26 @@ module.exports = () => {
       movesToSolve = compressMoves(movesToSolve);
 
       const makeMovesToSolve = async () => {
+        await timeSleep(cubeTransitionTime);
         const move = movesToSolve[movesMadeCount];
         cube.makeMove(move);
         history.add(move, true); // second arg --> isComputer
 
         movesMadeCount++;
 
-        await timeSleep(3000 / movesToSolve.length);
-        cubeImages.refreshCube(cube);
+        cubeImages.refreshCube(cube, move);
 
         if (movesMadeCount < movesToSolve.length) {
           makeMovesToSolve();
         } else {
-          callback(movesToSolve.length);
+          // calculate how many moves to solve, ignoring repeated moves
+          let movesToSolveCount = 0;
+          movesToSolve.forEach((e, i) => {
+            if (i > 0 && movesToSolve[i - 1] !== e) {
+              movesToSolveCount++;
+            }
+          });
+          callback(movesToSolveCount);
         }
       };
 
@@ -45,15 +53,14 @@ module.exports = () => {
 
       if (movesToSolve.length > 0) {
         makeMovesToSolve();
-        cubeImages.refreshCube(cube);
       }
     },
     scramble: async (cube, cubeImages, history) => {
-      const amountOfMoves = 50;
+      const amountOfMoves = 20;
       await cube.scramble(amountOfMoves, async (notation) => {
+        await timeSleep(cubeTransitionTime);
         history.add(notation, true); // second arg --> isComputer
-        await timeSleep(1000 / amountOfMoves);
-        cubeImages.refreshCube(cube);
+        cubeImages.refreshCube(cube, notation);
       });
     },
     undo: async (cube, cubeImages, history) => {
@@ -71,7 +78,7 @@ module.exports = () => {
 
         cube.makeMove(inverseOfPreviousMove);
 
-        await cubeImages.refreshCube(cube);
+        await cubeImages.refreshCube(cube, inverseOfPreviousMove);
       }
     },
   };
