@@ -12,8 +12,8 @@
     font-size: 0;
 
     @include in-mobile-and-phone {
-      height: bsize(10);
-      flex-basis: bsize(10);
+      height: bsize(20);
+      flex-basis: bsize(20);
     }
 
     &:not(:last-child) {

@@ -34,6 +34,7 @@ class DraggableComponent {
       stop(e);
     });
     document.addEventListener('mousemove', (e) => {
+      e.preventDefault();
       drag(e);
     });
     dragElm.addEventListener('mousedown', (e) => {
@@ -46,6 +47,7 @@ class DraggableComponent {
     document.addEventListener(
       'touchmove',
       (e) => {
+        e.preventDefault();
         drag(e.changedTouches[0]);
       },
       { passive: false }

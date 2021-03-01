@@ -129,8 +129,8 @@ body {
     font-size: 0; }
     @media only screen and (max-width: 1000px) {
       .container > .col:nth-child(2) > .row {
-        height: 160px;
-        flex-basis: 160px; } }
+        height: 320px;
+        flex-basis: 320px; } }
     .container > .col:nth-child(2) > .row:not(:last-child) {
       margin-bottom: 24px; }
       @media only screen and (max-width: 650px) {
