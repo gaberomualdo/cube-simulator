@@ -102,7 +102,6 @@ start.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (e) => {
-  console.log(e.key);
   if (e.key === ' ') {
     toggleStopwatch();
   }

@@ -3,16 +3,6 @@ let cubeJSSolverInitialized = false;
 
 const Cube = require('./cube');
 
-// (async () => {
-//   console.log('solving');
-//   // Create a new solved cube instance
-//   const testCube = new CubeJS();
-
-//   // Apply an algorithm or randomize the cube state
-//   testCube.move("U F R2 B' D2 L'");
-//   console.log(testCube.solve());
-// })();
-
 // Array contains function (returns true if item is in array; false if not)
 Array.prototype.contains = function (item) {
   return this.indexOf(item) > -1;
@@ -83,7 +73,10 @@ module.exports = (cube, makeMoveWithNotation) => {
 
   return;
 
-  // below is my, less efficient, ~125-200 move solving algorithm. it is faster than the CubeJS solver.
+  // below is my, less efficient, ~125-200 move solving algorithm. It runs faster than the CubeJS solver.
+  // in fact, the solver takes about 3 seconds to initialize. This solver does not have an initialization time, yet it does use many more moves.
+  // my basic understanding is that their solver generates and fetches some sort of large heuristic table of values to be used when solving. At that point, any solve can be performed in a very short period of time.
+  // This makes a lot of sense, I think. I have opted for the CubeJS solver for now, but I may move back to this solver due to less file transfer size, better performance, and better support on different browsers. In addition, the CubeJS solver can create some JavaScript blocking time which can cause a number of problems.
 
   // check if the piece moves (is not a center piece of a face)
   const isMovable = (piece) => {
