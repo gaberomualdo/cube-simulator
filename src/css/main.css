@@ -892,24 +892,22 @@ nav.nav {
     nav.nav.menu-open .menu-btn .im-x-mark {
       display: block; } }
   @media only screen and (max-width: 650px) {
-    nav.nav > .logo h1 {
-      display: none; }
     nav.nav > .links {
       margin-top: 4px; }
       nav.nav > .links > * {
         display: block;
         width: 100%;
-        clear: both;
         margin-top: 4px;
         margin-left: 0 !important;
-        padding: 8px 0;
-        position: relative; }
+        padding: 8px 13.6px;
+        width: calc(50% - 4px);
+        text-align: left;
+        float: left; }
+        nav.nav > .links > *:nth-child(2n) {
+          margin-left: 8px !important; }
         nav.nav > .links > * > i {
-          width: 32px;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-45%);
-          left: calc((100% - 240px) / 2); } }
+          width: 20px;
+          text-align: center; } }
 
 .cube-container {
   --perspective: 500px;

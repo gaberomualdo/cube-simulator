@@ -174,26 +174,26 @@ nav.nav {
     }
   }
   @include in-phone {
-    & > .logo h1 {
-      display: none;
-    }
+    // & > .logo h1 {
+    //   display: none;
+    // }
     & > .links {
       margin-top: bsize(0.25);
       & > * {
         display: block;
         width: 100%;
-        clear: both;
         margin-top: bsize(0.25);
         margin-left: 0 !important;
-        padding: bsize(0.5) 0;
-        position: relative;
-
+        padding: bsize(0.5) bsize(0.85);
+        width: calc(50% - #{bsize(0.25)});
+        text-align: left;
+        float: left;
+        &:nth-child(2n) {
+          margin-left: bsize(0.5) !important;
+        }
         & > i {
-          width: bsize(2);
-          position: absolute;
-          top: 50%;
-          transform: translateY(-45%);
-          left: calc((100% - #{bsize(15)}) / 2);
+          width: bsize(1.25);
+          text-align: center;
         }
       }
     }
