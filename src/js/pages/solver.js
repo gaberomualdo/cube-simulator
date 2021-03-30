@@ -1,9 +1,14 @@
 const Cube = require('../cube');
 const VisualizedCube = require('../dom/visualizedCube');
 const CubeAreaComponent = require('../dom/cubeAreaComponent');
+const SetPiecesComponent = require('../dom/setPiecesComponent');
 const { convertFacesObj, getCubeTransitionTimeMS } = require('../util');
 
 const transitionTimeMS = getCubeTransitionTimeMS();
+
+let cubeIntialized = false;
+let cubeFront;
+let cubeBack;
 
 const colors = {
   f: 'green',
@@ -14,10 +19,47 @@ const colors = {
   d: 'yellow',
 };
 
-const scrambleSectionElm = document.querySelector('.page.scrambler .scramble-moves-section .moves');
-const movesInputElm = document.querySelector('.page.scrambler input.scramble–moves');
+const toSolve = new Cube();
+const setPieces = new SetPiecesComponent(document.querySelector('.page.solver > .create-cube > .set-pieces > .content'), (x, y, z, key, newVal) => {
+  toSolve.cube[x][y][z][key] = newVal;
+  refreshCubeImages(toSolve);
+  updatePieces(setPieces, toSolve);
+});
 
-let scrambleCubeArea;
+const updatePieces = (setPieces, cube) => {
+  setPieces.updatePieces(cube.toFacesObj());
+};
+
+const refreshCubeImages = (cube) => {
+  const cubeData = convertFacesObj(cube.toFacesObj());
+  if (!cubeIntialized) {
+    cubeFront = new VisualizedCube(
+      (transitionTimeMS - 50) / 1000,
+      document.querySelector('.page.solver > .create-cube > .cube-row > .cube-col.front > .cube'),
+      cubeData.clone()
+    );
+    cubeBack = new VisualizedCube(
+      (transitionTimeMS - 50) / 1000,
+      document.querySelector('.page.solver > .create-cube > .cube-row > .cube-col.back > .cube'),
+      cubeData.clone()
+    );
+    cubeFront.cubeMirror = cubeBack;
+    cubeBack.cubeMirror = cubeFront;
+    cubeBack.updateCamera(180, 0);
+    cubeIntialized = true;
+  }
+
+  cubeFront.cubeData = cubeData;
+  cubeFront.resetCube(cubeFront);
+  cubeFront.initializeCube();
+
+  cubeBack.cubeData = cubeData;
+  cubeBack.resetCube(cubeBack);
+  cubeBack.initializeCube();
+};
+
+updatePieces(setPieces, toSolve);
+refreshCubeImages(toSolve);
 
 const newScramble = () => {
   scrambleSectionElm.innerHTML = '';
@@ -59,22 +101,11 @@ const newScramble = () => {
       // set up cubes on the right
       scrambleSectionElm.querySelectorAll('.move-container').forEach((e, i) => {
         const moveCubeElm = e.querySelector('.move-cube');
-        new VisualizedCube((transitionTimeMS - 50) / 1000, moveCubeElm, scrambleMoves[i].cubeData);
+        const moveCube = new VisualizedCube((transitionTimeMS - 50) / 1000, moveCubeElm, scrambleMoves[i].cubeData);
       });
 
-      if (scrambleCubeArea && !scrambleCubeArea.isRemoved()) {
-        scrambleCubeArea.remove();
-      }
-      scrambleCubeArea = new CubeAreaComponent(document.querySelector('.page.scrambler .cube-area-component'));
-      scrambleCubeArea.initialize(scrambleMoves, initialCubeData, 'scrambler');
+      const cubeArea = new CubeAreaComponent(document.querySelector('.page.solver .cube-area-component'));
+      cubeArea.initialize(scrambleMoves, initialCubeData, 'scrambler');
     }
   });
 };
-const newScrambleBtn = document.querySelector('.page.scrambler .new-scramble');
-
-newScramble();
-
-newScrambleBtn.addEventListener('click', () => {
-  newScrambleBtn.blur();
-  newScramble();
-});

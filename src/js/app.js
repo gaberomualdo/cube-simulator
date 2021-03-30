@@ -98,6 +98,9 @@ global.setPage = setPage;
 
 // pages
 require('./pages/scrambler');
+require('./pages/solver');
+require('./pages/learn');
+require('./pages/about');
 
 // stopwatch
 import './dom/stopwatch';

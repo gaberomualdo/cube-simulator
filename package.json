@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "concurrently --kill-others \"node-sass src/sass/main.scss src/css/main.css -w\" \"webpack\"",
-    "build:sw": "workbox injectManifest workbox-config.js"
+    "build:sw": "workbox injectManifest workbox-config.js",
+    "server": "cd dist && python3 -m http.server 6557"
   },
   "author": "",
   "license": "UNLICENSED",

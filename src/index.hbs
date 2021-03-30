@@ -208,7 +208,7 @@
 
     <div class="page scrambler" data-page="scrambler">
       <div class="column">
-        <h1 class="title">Random Scramble</h1>
+        <h1 class="styled-title title">Random Scramble</h1>
         <div class="cube-area-component">
           <div class="center-cube"></div>
           <div class="active-move">
@@ -226,17 +226,42 @@
         <div class="input-container scramble-moves-container">
           <span>Scramble With</span><input class="scramble–moves" type="number" value="20" /><span>Random Moves</span>
         </div>
-        <button class="new-scramble">Create New Scramble</button>
+        <button class="new-scramble styled-button">Create New Scramble</button>
       </div>
       <div class="column scramble-moves-section">
-        <h1 class="title">Scramble Moves</h1>
+        <h1 class="styled-title title">Scramble Moves</h1>
         <div class="moves"></div>
       </div>
     </div>
 
-    <div class="page solver construction" data-page="solver">
-      <h1>Under Construction</h1>
-      <p>We're making improvements to this page and will be back soon.</p>
+    <div class="page solver" data-page="solver">
+      <div class="column">
+        <h1 class="styled-title title">Solve Cube</h1>
+        <div class="cube-area-component">
+          <div class="center-cube"></div>
+          <div class="active-move">
+            <button class="back">
+              <i class="im im-angle-left"></i>
+            </button>
+            <div class="move-number"></div>
+            <div class="move not-button"></div>
+            <button class="forward">
+              <i class="im im-angle-right"></i>
+            </button>
+          </div>
+          <div class="scramble-notation"></div>
+        </div>
+        <button class="new-scramble">Solve <span>Another </span>Cube</button>
+      </div>
+      <div class="column">
+        <div class="pieces">
+          <div class="set-pieces"></div>
+        </div>
+        <div class="moves">
+          <h1 class="styled-title title">Solve Moves</h1>
+        <div class="moves"></div>
+        </div>
+      </div>
     </div>
     <div class="page learn construction" data-page="learn">
       <h1>Under Construction</h1>

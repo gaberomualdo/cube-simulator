@@ -6,15 +6,6 @@
     flex-direction: column;
   }
 
-  .title {
-    font-size: bsize(2);
-    font-weight: 500;
-    color: $dark-grey;
-    margin: 0;
-    text-align: center;
-    margin-top: bsize(1);
-  }
-
   .column {
     flex: 1 1 40%;
     overflow-y: scroll;
@@ -30,25 +21,13 @@
       background-color: lighten($page-grey, 2%);
       .new-scramble {
         margin-top: bsize(0.75);
-        border: none;
         background-color: #2188ff;
-        padding: bsize(0.65) bsize(0.85);
         color: #fff;
-        border-radius: 4px;
-        transition: background-color 0.2s, box-shadow 0.2s;
-        cursor: pointer;
-        outline: none;
-        line-height: 1.1;
-        display: inline-block;
-
-        &:hover {
-          background-color: #2166ff;
-        }
-        &:active,
-        &:focus {
-          background-color: #2166ff;
-          box-shadow: 0 0 0 bsize(0.2) rgba(33, 102, 255, 0.35);
-        }
+        padding: 0 bsize(0.75);
+        height: bsize(2.25);
+        line-height: bsize(2.25);
+        font-size: bsize(1);
+        border-radius: br-bsize(1.25);
       }
       .scramble-moves-container {
         margin-top: bsize(0.5);

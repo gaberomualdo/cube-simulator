@@ -40,6 +40,7 @@ const setView = (cubeData, cubeView) => {
 
 class CubeAreaComponent {
   constructor(containerElm) {
+    this.removed = false;
     this.container = containerElm;
     this.container.innerHTML = `<div class="center-cube"></div>
     <div class="active-move">
@@ -57,8 +58,16 @@ class CubeAreaComponent {
     this.keydownFunction = () => {};
 
     document.addEventListener('keydown', (e) => {
-      this.keydownFunction(e);
+      if (!this.removed) {
+        this.keydownFunction(e);
+      }
     });
+  }
+  remove() {
+    this.removed = true;
+  }
+  isRemoved() {
+    return this.removed;
   }
   initialize(movesToMake, initialCubeData, page) {
     const cubeElm = this.container.querySelector('.center-cube');
