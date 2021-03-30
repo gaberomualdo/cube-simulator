@@ -84,6 +84,11 @@ nav.nav {
       transition: color 0.2s, background-color 0.2s;
       cursor: pointer;
 
+      & > i {
+        margin-right: bsize(0.35);
+        transform: translateY(5%);
+      }
+
       &:not(:first-child) {
         margin-left: bsize(0.25);
       }
@@ -174,14 +179,23 @@ nav.nav {
     }
     & > .links {
       margin-top: bsize(0.25);
-    }
-    & > .links > * {
-      display: block;
-      width: 100%;
-      clear: both;
-      margin-top: bsize(0.25);
-      margin-left: 0 !important;
-      padding: bsize(0.5) bsize(0.85);
+      & > * {
+        display: block;
+        width: 100%;
+        clear: both;
+        margin-top: bsize(0.25);
+        margin-left: 0 !important;
+        padding: bsize(0.5) 0;
+        position: relative;
+
+        & > i {
+          width: bsize(2);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-45%);
+          left: calc((100% - #{bsize(15)}) / 2);
+        }
+      }
     }
   }
 }

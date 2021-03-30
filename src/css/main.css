@@ -832,6 +832,9 @@ nav.nav {
       border-radius: 16000px;
       transition: color 0.2s, background-color 0.2s;
       cursor: pointer; }
+      nav.nav > .links > * > i {
+        margin-right: 5.6px;
+        transform: translateY(5%); }
       nav.nav > .links > *:not(:first-child) {
         margin-left: 4px; }
       nav.nav > .links > *.active.red {
@@ -893,13 +896,20 @@ nav.nav {
       display: none; }
     nav.nav > .links {
       margin-top: 4px; }
-    nav.nav > .links > * {
-      display: block;
-      width: 100%;
-      clear: both;
-      margin-top: 4px;
-      margin-left: 0 !important;
-      padding: 8px 13.6px; } }
+      nav.nav > .links > * {
+        display: block;
+        width: 100%;
+        clear: both;
+        margin-top: 4px;
+        margin-left: 0 !important;
+        padding: 8px 0;
+        position: relative; }
+        nav.nav > .links > * > i {
+          width: 32px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-45%);
+          left: calc((100% - 240px) / 2); } }
 
 .cube-container {
   --perspective: 500px;
