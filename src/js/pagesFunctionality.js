@@ -23,7 +23,7 @@ const setPage = (p, updateURL = true) => {
   const url = new URL(window.location.href);
   if (p.length > 0) {
     url.searchParams.set('p', p);
-    document.title = `${capitalize(p)} • ${SITE_TITLE}`;
+    document.title = `${capitalize(p)} – ${SITE_TITLE}`;
   } else if (p.length === 0) {
     if (url.searchParams.has('p')) {
       url.searchParams.delete('p');

@@ -131,8 +131,19 @@
           <img src="settings_icon.png" alt="Settings Icon" />
           <h1>Options</h1>
           <div class="logo-buttons">
-            <button class="toggle-notation styled-button"><span class="face-view">Use <span class="phone-no-display">Cube</span> Notation</span><span class="cube-notation">Use Color View</span></button>
-            <button class="toggle-log styled-button"><span class="open">Hide</span><span class="closed">Show</span> <span class="displayed phone-no-display">Move</span> Log</button>
+            <button class="toggle-notation styled-button"><span class="face-view"><i class="fas fa-font"></i> Use <span class="phone-no-display">Cube</span> Notation</span><span class="cube-notation"><i class="fas fa-palette"></i> Use Color View</span></button>
+            <button class="toggle-log styled-button">
+              <span class="open">
+                <i class="fas fa-eye-slash"></i> Hide
+              </span>
+              <span class="closed">
+                <i class="fas fa-eye"></i> Show
+              </span>
+              <span class="displayed phone-no-display">
+                Move
+              </span>
+              Log
+            </button>
           </div>
         </div>
 
@@ -152,15 +163,15 @@
           <div class="content">
             <ul class="misc-buttons">
               <li>
-                <button class="styled-button solve">Solve <span class="mobile-no-display">Cube</span></button>
+                <button class="styled-button solve"><i class="fas fa-robot"></i> Solve <span class="mobile-no-display">Cube</span></button>
                 <p>Solve cube automatically in less than 30 moves.</p>
               </li>
               <li>
-                <button class="styled-button scramble">Scramble <span class="mobile-no-display">Cube</span></button>
+                <button class="styled-button scramble"><i class="fas fa-random"></i> Scramble <span class="mobile-no-display">Cube</span></button>
                 <p>Scramble cube with 20 random moves.</p>
               </li>
               <li>
-                <button class="styled-button undo">Undo</button>
+                <button class="styled-button undo"><i class="fas fa-undo"></i> Undo</button>
                 <p>Undo the previous move (does not include manual piece changes).</p>
               </li>
             </ul>
@@ -207,7 +218,7 @@
       <button class="clear-log styled-button">Clear Log</button>
     </div>
 
-    <div class="page scrambler" data-page="scrambler">
+    <div class="page scrambler columned-page" data-page="scrambler">
       <div class="column">
         <h1 class="styled-title title">Random Scramble</h1>
         <div class="cube-area-component">
@@ -271,11 +282,6 @@
     <div class="page about construction" data-page="about">
       <h1>Under Construction</h1>
       <p>We're making improvements to this page and will be back soon.</p>
-    </div>
-
-    <div class="not-displayed">
-      <img src="for_canvas/cubebackground.jpg" alt="Rubik's Cube" class="rubiks-cube-background-image">
-      <img src="for_canvas/cubenoshadow.png" alt="Rubik's Cube" class="rubiks-cube-shadow-image">
     </div>
 
     <!-- Main script -->

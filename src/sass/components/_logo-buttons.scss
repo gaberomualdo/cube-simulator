@@ -26,6 +26,11 @@
     @include in-phone {
       flex-basis: 100%;
     }
+
+    i {
+      margin-right: bsize(0.25);
+      width: bsize(1.25);
+    }
   }
   .toggle-log {
     span:not(.displayed) {

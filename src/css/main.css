@@ -240,6 +240,9 @@ body {
   @media only screen and (max-width: 650px) {
     .col:first-child .logo .logo-buttons > * {
       flex-basis: 100%; } }
+  .col:first-child .logo .logo-buttons > * i {
+    margin-right: 4px;
+    width: 20px; }
 
 .col:first-child .logo .logo-buttons .toggle-log span:not(.displayed) {
   display: none; }
@@ -498,6 +501,13 @@ ul.misc-buttons {
     .styled-button:not([disabled]):active, .styled-button:not([disabled]):focus {
       transform: translateY(0);
       background-color: #e5ebec; }
+  .styled-button i {
+    margin-right: 8px;
+    width: 24px;
+    text-align: center; }
+    @media only screen and (max-width: 650px) {
+      .styled-button i {
+        display: none; } }
 
 .set-pieces .content .faces-row {
   height: 160px;
@@ -1166,7 +1176,7 @@ nav.nav {
   width: 280px;
   min-height: 44px;
   z-index: 999999999999;
-  left: 32px;
+  left: 12.8px;
   background-color: #ffffff;
   border-radius: 6px;
   transition: left 0.5s, top 0.5s; }

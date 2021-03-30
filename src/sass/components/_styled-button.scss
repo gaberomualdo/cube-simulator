@@ -32,4 +32,14 @@
       background-color: darken($page-grey, 2.5%);
     }
   }
+
+  i {
+    margin-right: bsize(0.5);
+    width: bsize(1.5);
+    text-align: center;
+
+    @include in-phone {
+      display: none;
+    }
+  }
 }

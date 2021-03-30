@@ -8,7 +8,7 @@ const reset = document.querySelector('.stopwatch .reset');
 
 let open = !stopwatch.classList.contains('closed');
 
-let x = 32;
+let x = 12;
 let y = window.innerHeight - 200;
 
 let startTime = 0;
