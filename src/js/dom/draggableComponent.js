@@ -47,7 +47,9 @@ class DraggableComponent {
     document.addEventListener(
       'touchmove',
       (e) => {
-        e.preventDefault();
+        if (dragging) {
+          e.preventDefault();
+        }
         drag(e.changedTouches[0]);
       },
       { passive: false }
