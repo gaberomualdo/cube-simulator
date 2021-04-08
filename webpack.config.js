@@ -1,16 +1,22 @@
 const path = require('path');
-const childProcess = require('child_process');
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
+const glob = require('glob');
+const fs = require('fs');
 const config = require('config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+// remove previous files
+[...glob.sync('public/*.*.js'), ...glob.sync('public/*.*.css'), ...glob.sync('public/*.*.*.*.*')].forEach((e) => {
+  fs.unlinkSync(e);
+});
+
 const Handlebars = require('handlebars');
 
 const handlebarsInput = JSON.parse(JSON.stringify(config.get('hbs')));
 
-const cacheVersion = require('unique-commit-id').latest();
+const cacheVersion = uuidv4();
 
 handlebarsInput.cacheVersion = cacheVersion;
 
@@ -46,7 +52,7 @@ module.exports = [
     entry: './src/index.js',
     output: {
       filename: 'main.' + cacheVersion + '.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'public'),
     },
     mode: 'production',
     watch: true,
@@ -125,7 +131,7 @@ module.exports = [
     entry: './src/serviceWorker/sw-compiled.js',
     output: {
       filename: 'service-worker.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'public'),
     },
     mode: 'production',
     watch: true,

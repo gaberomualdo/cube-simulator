@@ -12,73 +12,61 @@
     "cubeMoves": [
       {
         "notation": "F",
-        "key": "q",
         "color": "green",
         "direction": "clockwise"
       },
       {
         "notation": "U",
-        "key": "w",
         "color": "white",
         "direction": "clockwise"
       },
       {
         "notation": "R",
-        "key": "e",
         "color": "red",
         "direction": "clockwise"
       },
       {
         "notation": "F'",
-        "key": "shift + q",
         "color": "green",
         "direction": "counterclockwise"
       },
       {
         "notation": "U'",
-        "key": "shift + w",
         "color": "white",
         "direction": "counterclockwise"
       },
       {
         "notation": "R'",
-        "key": "shift + e",
         "color": "red",
         "direction": "counterclockwise"
       },
       {
         "notation": "L",
-        "key": "a",
         "color": "orange",
         "direction": "clockwise"
       },
       {
         "notation": "D",
-        "key": "s",
         "color": "yellow",
         "direction": "clockwise"
       },
       {
         "notation": "B",
-        "key": "d",
         "color": "blue",
         "direction": "clockwise"
       },
       {
         "notation": "L'",
-        "key": "shift + a",
         "color": "orange",
         "direction": "counterclockwise"
       },
       {
         "notation": "D'",
-        "key": "shift + s",
         "color": "yellow",
         "direction": "counterclockwise"
       },
       {
         "notation": "B'",
-        "key": "shift + d",
         "color": "blue",
         "direction": "counterclockwise"
       }
