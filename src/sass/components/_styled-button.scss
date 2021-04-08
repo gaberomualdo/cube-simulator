@@ -33,7 +33,7 @@
     }
   }
 
-  i {
+  i:not(.set-pieces i) {
     margin-right: bsize(0.5);
     width: bsize(1.5);
     text-align: center;

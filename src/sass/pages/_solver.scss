@@ -1,61 +1,26 @@
 .page.solver {
-  overflow-y: scroll;
-  & > .create-cube {
-    text-align: center;
-    & > .cube-row {
-      background-color: lighten($page-grey, 2%);
-      padding: bsize(1);
+  .set-pieces {
+    padding: 0 bsize(2);
+  }
 
-      h1 {
-        margin-bottom: bsize(0);
-      }
-      .cube-col {
-        display: inline-flex;
-        height: bsize(20);
-        width: bsize(20);
-        vertical-align: top;
-        align-items: flex-end;
-        padding-bottom: bsize(5);
-        justify-content: center;
-        position: relative;
-        zoom: 85%;
-        overflow: hidden;
-        // background-color: $lightest-grey;
-        // border: 1px solid $light-lightest-grey;
-        // border-radius: br-bsize(2);
-
-        &:not(:last-child) {
-          margin-right: bsize(2);
-        }
-
-        & > p {
-          border-radius: br-bsize(1);
-          position: absolute;
-          bottom: 0;
-          margin: 0;
-          right: 0;
-          height: bsize(1.8);
-          line-height: bsize(1.95);
-          font-size: bsize(0.9);
-          padding: 0 bsize(0.5);
-          background-color: $lightest-grey;
-          color: $dark-medium-grey;
-        }
-      }
+  &:not(.solving) {
+    .second-column > .title span:last-child {
+      display: none;
     }
-    & > .set-pieces {
-      width: 100%;
-      max-width: bsize(60);
-      display: inline-block;
-
-      & > h1 {
-        margin-top: bsize(2);
-        margin-bottom: bsize(0.25);
-      }
-
-      & > .content {
-        zoom: 90%;
-      }
+    .second-column.moves {
+      display: none;
+    }
+    .scramble-notation,
+    .active-move {
+      display: none;
+    }
+  }
+  &.solving {
+    .second-column > .title span:first-child {
+      display: none;
+    }
+    .second-column.set-pieces {
+      display: none;
     }
   }
 }

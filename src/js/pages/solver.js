@@ -1,3 +1,4 @@
+const solveCube = require('../solve');
 const Cube = require('../cube');
 const VisualizedCube = require('../dom/visualizedCube');
 const CubeAreaComponent = require('../dom/cubeAreaComponent');
@@ -6,9 +7,11 @@ const { convertFacesObj, getCubeTransitionTimeMS } = require('../util');
 
 const transitionTimeMS = getCubeTransitionTimeMS();
 
+const sectionElm = document.querySelector('.page.solver .second-column > .moves');
+
 let cubeIntialized = false;
-let cubeFront;
-let cubeBack;
+let cubeVisualized;
+let cubeArea;
 
 const colors = {
   f: 'green',
@@ -20,7 +23,7 @@ const colors = {
 };
 
 const toSolve = new Cube();
-const setPieces = new SetPiecesComponent(document.querySelector('.page.solver > .create-cube > .set-pieces > .content'), (x, y, z, key, newVal) => {
+const setPieces = new SetPiecesComponent(document.querySelector('.page.solver .set-pieces > .content'), (x, y, z, key, newVal) => {
   toSolve.cube[x][y][z][key] = newVal;
   refreshCubeImages(toSolve);
   updatePieces(setPieces, toSolve);
@@ -33,57 +36,41 @@ const updatePieces = (setPieces, cube) => {
 const refreshCubeImages = (cube) => {
   const cubeData = convertFacesObj(cube.toFacesObj());
   if (!cubeIntialized) {
-    cubeFront = new VisualizedCube(
+    cubeVisualized = new VisualizedCube(
       (transitionTimeMS - 50) / 1000,
-      document.querySelector('.page.solver > .create-cube > .cube-row > .cube-col.front > .cube'),
+      document.querySelector('.page.solver .cube-area-component > .center-cube'),
       cubeData.clone()
     );
-    cubeBack = new VisualizedCube(
-      (transitionTimeMS - 50) / 1000,
-      document.querySelector('.page.solver > .create-cube > .cube-row > .cube-col.back > .cube'),
-      cubeData.clone()
-    );
-    cubeFront.cubeMirror = cubeBack;
-    cubeBack.cubeMirror = cubeFront;
-    cubeBack.updateCamera(180, 0);
     cubeIntialized = true;
   }
 
-  cubeFront.cubeData = cubeData;
-  cubeFront.resetCube(cubeFront);
-  cubeFront.initializeCube();
-
-  cubeBack.cubeData = cubeData;
-  cubeBack.resetCube(cubeBack);
-  cubeBack.initializeCube();
+  cubeVisualized.cubeData = cubeData;
+  cubeVisualized.resetCube(cubeVisualized);
+  cubeVisualized.initializeCube();
 };
 
 updatePieces(setPieces, toSolve);
 refreshCubeImages(toSolve);
 
-const newScramble = () => {
-  scrambleSectionElm.innerHTML = '';
+const newSolve = () => {
+  sectionElm.innerHTML = '';
 
   const cube = new Cube();
   const initialCubeData = convertFacesObj(cube.toFacesObj());
 
-  let amountOfMoves = parseInt(movesInputElm.value);
-  if (!(amountOfMoves > 0 && amountOfMoves < 1000)) {
-    amountOfMoves = 20;
-    movesInputElm.value = amountOfMoves;
-  }
+  const moves = [];
 
-  const scrambleMoves = [];
+  solveCube(cube, (notation, isLastMove) => {
+    cube.makeMove(notation);
 
-  cube.scramble(amountOfMoves, async (notation) => {
     const cubeData = convertFacesObj(cube.toFacesObj());
-    scrambleMoves.push({
+    moves.push({
       notation,
       cubeData,
     });
 
-    if (scrambleMoves.length === amountOfMoves) {
-      scrambleMoves.forEach((e, i) => {
+    if (isLastMove) {
+      moves.forEach((e, i) => {
         const color = colors[e.notation[0].toLowerCase()];
         const moveHTML = `<span class='number'>${i + 1}.</span>
           <span class='notation'>${e.notation}&nbsp;</span>
@@ -91,7 +78,7 @@ const newScramble = () => {
           <div class="move-badge ${color}"><img src="rotate_arrows/${e.notation.length === 2 ? 'counter' : ''}clockwise${
           color === 'white' || color === 'yellow' ? '_dark' : ''
         }.png"></div>`;
-        scrambleSectionElm.innerHTML += `
+        sectionElm.innerHTML += `
           <div class="move-container" data-idx="${i}">
             <div class="move-cube"></div>
             <div class="info">${moveHTML}</div>
@@ -99,13 +86,29 @@ const newScramble = () => {
           `;
       });
       // set up cubes on the right
-      scrambleSectionElm.querySelectorAll('.move-container').forEach((e, i) => {
+      sectionElm.querySelectorAll('.move-container').forEach((e, i) => {
         const moveCubeElm = e.querySelector('.move-cube');
-        const moveCube = new VisualizedCube((transitionTimeMS - 50) / 1000, moveCubeElm, scrambleMoves[i].cubeData);
+        new VisualizedCube((transitionTimeMS - 50) / 1000, moveCubeElm, moves[i].cubeData);
       });
 
-      const cubeArea = new CubeAreaComponent(document.querySelector('.page.solver .cube-area-component'));
-      cubeArea.initialize(scrambleMoves, initialCubeData, 'scrambler');
+      if (cubeArea && !cubeArea.isRemoved()) {
+        cubeArea.remove();
+      }
+      cubeArea = new CubeAreaComponent(document.querySelector('.page.solver .cube-area-component'));
+      cubeArea.initialize(moves, initialCubeData, 'solver');
+
+      document.querySelector('.page.solver').classList.add('solving');
+      solveBtn.innerHTML = '&larr;&nbsp; Solve Another Cube';
     }
   });
 };
+
+const solveBtn = document.querySelector('.page.solver .new-scramble');
+
+solveBtn.addEventListener('click', () => {
+  if (document.querySelector('.page.solver').classList.contains('solving')) {
+    window.location.reload();
+  }
+  solveBtn.blur();
+  newSolve();
+});

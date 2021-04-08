@@ -61,13 +61,14 @@ module.exports = (cube, makeMoveWithNotation) => {
   const cubeJSCube = CubeJS.fromString(cubeJSString);
   const solvedMoves = cubeJSCube.solve().split(' ');
 
-  solvedMoves.forEach((move) => {
+  solvedMoves.forEach((move, idx) => {
+    const isLastMove = idx === solvedMoves.length - 1;
     if (move.endsWith('2')) {
       const moveNotation = move.slice(0, move.length - 1);
-      makeMoveWithNotation(moveNotation);
-      makeMoveWithNotation(moveNotation);
+      makeMoveWithNotation(moveNotation, false);
+      makeMoveWithNotation(moveNotation, isLastMove);
     } else {
-      makeMoveWithNotation(move);
+      makeMoveWithNotation(move, isLastMove);
     }
   });
 

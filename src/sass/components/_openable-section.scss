@@ -20,6 +20,12 @@
     color: $dark-grey;
     box-shadow: 0 1px 0 darken($page-grey, 5%);
 
+    i {
+      width: bsize(1.25);
+      text-align: center;
+      margin-right: bsize(0.5);
+    }
+
     &::after {
       content: '';
       clear: both;

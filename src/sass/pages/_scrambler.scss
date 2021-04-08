@@ -1,4 +1,4 @@
-.page.scrambler {
+.columned-page {
   display: flex;
   color: $dark-medium-grey;
 
@@ -21,11 +21,12 @@
       background-color: lighten($page-grey, 2%);
       .new-scramble {
         margin-top: bsize(0.75);
-        background-color: #2188ff;
-        color: #fff;
-        padding: 0 bsize(0.75);
-        height: bsize(2.25);
-        line-height: bsize(2.25);
+        background-color: #fff;
+        // background-color: #2188ff;
+        // color: #fff;
+        padding: 0 bsize(1);
+        height: bsize(2.5);
+        line-height: bsize(2.5);
         font-size: bsize(1);
         border-radius: br-bsize(1.25);
       }
