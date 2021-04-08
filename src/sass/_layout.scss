@@ -109,6 +109,14 @@ body {
     url(https://cdn.pixabay.com/photo/2020/04/25/09/28/blueprint-5090067_1280.jpg);
   background-size: cover;
   background-position: center;
+  min-height: 30rem;
+  padding: 0 2rem;
+
+  @include in-mobile-and-phone {
+    * {
+      zoom: 60%;
+    }
+  }
 }
 .page.construction * {
   text-align: center;

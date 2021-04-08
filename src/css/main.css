@@ -98,7 +98,12 @@ body {
   justify-content: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://cdn.pixabay.com/photo/2020/04/25/09/28/blueprint-5090067_1280.jpg);
   background-size: cover;
-  background-position: center; }
+  background-position: center;
+  min-height: 30rem;
+  padding: 0 2rem; }
+  @media only screen and (max-width: 1000px) {
+    .page.construction * {
+      zoom: 60%; } }
 
 .page.construction * {
   text-align: center;
