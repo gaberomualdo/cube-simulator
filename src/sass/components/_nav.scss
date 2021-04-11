@@ -148,7 +148,7 @@ nav.nav {
       &:last-child {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, 0%);
       }
       &:first-child {
         top: bsize(0.5);

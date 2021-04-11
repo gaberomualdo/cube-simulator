@@ -927,7 +927,7 @@ nav.nav {
       nav.nav .menu-btn .line:first-child, nav.nav .menu-btn .line:last-child {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%); }
+        transform: translate(-50%, 0%); }
       nav.nav .menu-btn .line:first-child {
         top: 8px; }
       nav.nav .menu-btn .line:last-child {

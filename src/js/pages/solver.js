@@ -115,5 +115,5 @@ solveBtn.addEventListener('click', () => {
   solveBtn.blur();
   setTimeout(() => {
     newSolve();
-  }, 100); // solving adds blocking time so this additional time is to render the loading time to improve UX slightly.
+  }, 150); // solving adds blocking time so this additional time is to render the loading time to improve UX slightly.
 });

@@ -68,7 +68,7 @@ miscButtons.solveButton.addEventListener('click', async () => {
         solving = false;
         miscButtons.solveButton.classList.remove('loading');
       });
-    }, 100); // add some additional time to make sure the loading animation is rendered in time. The solving system creates JavaScript blocking time since it doesn't use a worker, so this is necessary for better UX.
+    }, 150); // add some additional time to make sure the loading animation is rendered in time. The solving system creates JavaScript blocking time since it doesn't use a worker, so this is necessary for better UX.
   }
 });
 miscButtons.scrambleButton.addEventListener('click', async () => {
