@@ -24,14 +24,11 @@ body {
 @keyframes page-enter {
   0% {
     opacity: 0;
-    transform: scale(0.9) rotate(1deg);
-  }
-  50% {
-    transform: scale(1) rotate(-1deg);
+    transform: scale(0.9);
   }
   100% {
     opacity: 1;
-    transform: rotate(0deg);
+    transform: scale(1);
   }
 }
 .page {

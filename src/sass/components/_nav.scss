@@ -53,13 +53,14 @@ nav.nav {
     h1 {
       @include m0;
       line-height: bsize(2.5);
-      font-size: bsize(1.25);
-      color: $dark-medium-grey;
+      font-size: bsize(1.45);
+      font-family: 'Oswald', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+        'Helvetica Neue', sans-serif;
+      text-transform: uppercase;
+      color: $darkest-grey;
       font-weight: 500;
 
       @include in-mobile-and-phone {
-        font-size: bsize(1.25);
-
         // padding to compensate for centering to make text seem more centered
         padding-right: bsize(1.5);
       }
@@ -126,23 +127,39 @@ nav.nav {
   .menu-btn {
     border: none;
     background-color: transparent;
-    padding: 0 bsize(0.5);
+    padding: bsize(0.5);
     cursor: pointer;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     float: right;
     display: none;
+    position: relative;
+    width: bsize(2.65);
+
+    .line {
+      height: bsize(0.15);
+      background-color: $dark-medium-grey;
+      transition: transform 0.2s, opacity 0.2s, width 0.2s, top 0.2s;
+      width: bsize(1.65);
+      opacity: 1;
+
+      &:first-child,
+      &:last-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &:first-child {
+        top: bsize(0.5);
+      }
+      &:last-child {
+        top: calc(100% - #{bsize(0.65)});
+      }
+    }
 
     @include in-mobile-and-phone {
       display: flex;
-    }
-
-    i {
-      color: $dark-medium-grey;
-      margin-top: bsize(0.2);
-    }
-    .im-x-mark {
-      display: none;
     }
   }
   @include in-mobile-and-phone {
@@ -150,33 +167,41 @@ nav.nav {
       width: 100%;
       clear: both;
       margin-right: 0;
-      margin-top: bsize(0.5);
       height: auto;
       text-align: center;
+      overflow-y: hidden;
+      display: block;
+      margin-top: bsize(0.5);
+      transition: height 0.2s, margin-top 0.2s;
+      --current-height: 0;
+      height: var(--current-height) !important;
     }
     &:not(.menu-open) {
       & > .links {
-        display: none;
+        height: 0 !important;
+        margin-top: 0 !important;
       }
     }
     &.menu-open {
-      & > .links {
-        display: block;
-      }
       .menu-btn {
-        .im-menu {
-          display: none;
+        .line:first-child,
+        .line:last-child {
+          width: bsize(2.1213);
+          top: 50%;
         }
-        .im-x-mark {
-          display: block;
+        .line:first-child {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .line:nth-child(2) {
+          opacity: 0;
+        }
+        .line:last-child {
+          transform: translate(-50%, -50%) rotate(-45deg);
         }
       }
     }
   }
   @include in-phone {
-    // & > .logo h1 {
-    //   display: none;
-    // }
     & > .links {
       margin-top: bsize(0.25);
       & > * {

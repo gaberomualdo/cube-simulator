@@ -97,7 +97,7 @@ const newSolve = () => {
       cubeArea = new CubeAreaComponent(document.querySelector('.page.solver .cube-area-component'));
       cubeArea.initialize(moves, initialCubeData, 'solver');
 
-      document.querySelector('.page.solver').classList.add('solving');
+      document.querySelector('.page.solver > .inner').classList.add('solving');
       solveBtn.innerHTML = '&larr;&nbsp; Solve Another Cube';
     }
   });
@@ -106,7 +106,7 @@ const newSolve = () => {
 const solveBtn = document.querySelector('.page.solver .new-scramble');
 
 solveBtn.addEventListener('click', () => {
-  if (document.querySelector('.page.solver').classList.contains('solving')) {
+  if (document.querySelector('.page.solver > .inner').classList.contains('solving')) {
     window.location.reload();
   }
   solveBtn.blur();

@@ -87,39 +87,22 @@
     <script src="https://kit.fontawesome.com/5ebdf346fa.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="stopwatch closed">
-      <header>
-        <p class="label">Stopwatch</p>
-        <i class="icon im im-angle-up"></i>
-      </header>
-      <div class="stopwatch-container">
-        <div class="time">
-          <span class="digits min"></span><span class="unit">m</span>
-          <span class="digits sec"></span><span class="unit">s</span>
-          <span class="small-digits ms"></span>
-        </div>
-        <div class="buttons">
-          <button class="start-stop styled-button">Start</button>
-          <button class="reset styled-button">Reset</button>
-        </div>
-        <p>Press space to start/stop the stopwatch.</p>
-      </div>
-    </div>
 
     <nav class="nav">
       <a class="logo page-link" data-page="simulator">
         <img src="icon.png" alt="Logo">
         <h1>{{siteDetails.name}}</h1>
       </a>
-      <button class="menu-btn" onclick="this.parentElement.classList.toggle('menu-open')" aria-label="Toggle Mobile Navigation Menu">
-        <i class="icon im im-menu"></i>
-        <i class="icon im im-x-mark"></i>
+      <button class="menu-btn" aria-label="Toggle Mobile Navigation Menu">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
       </button>
       <div class="links">
         <a data-page="simulator" class="page-link red"><i class="fas fa-mouse"></i> Simulator</a>
         <a data-page="scrambler" class="page-link green"><i class="fas fa-random"></i> Scrambler</a>
         <a data-page="solver" class="page-link blue"><i class="fas fa-robot"></i> Solver</a>
-        <a data-page="learn" class="page-link yellow"><i class="fas fa-graduation-cap"></i> Learn</a>
+        <a data-page="learn" class="page-link orange"><i class="fas fa-graduation-cap"></i> Learn</a>
         <a data-page="about" class="page-link purple"><i class="fas fa-info-circle"></i> About</a>
       </div>
     </nav>
@@ -222,7 +205,6 @@
       <p class="move-count">0 Moves</p>
       <button class="clear-log styled-button">Clear Log</button>
     </div>
-
     <div class="page scrambler columned-page" data-page="scrambler">
       <div class="column">
         <h1 class="styled-title title">Random Scramble</h1>
@@ -251,33 +233,50 @@
       </div>
     </div>
 
-    <div class="page solver columned-page" data-page="solver">
-      <div class="column">
-        <h1 class="styled-title title">Solve Cube</h1>
-        <div class="cube-area-component">
-          <div class="center-cube"></div>
-          <div class="active-move">
-            <button class="back">
-              <i class="im im-angle-left"></i>
-            </button>
-            <div class="move-number"></div>
-            <div class="move not-button"></div>
-            <button class="forward">
-              <i class="im im-angle-right"></i>
-            </button>
-          </div>
-          <div class="scramble-notation"></div>
-        </div>
-        <button class="new-scramble styled-button"><i class="fas fa-robot"></i>Solve Cube</button>
+    <div class="page solver" data-page="solver">
+      <div class="instructions">
+        
       </div>
-      <div class="column second-column">
-        <h1 class="styled-title title"><span>Set Pieces</span><span>Moves</span></h1>
-        <div class="moves"></div>
-        <div class="set-pieces">
-          <div class="content"></div>
+      <div class="inner columned-page">
+        <div class="column">
+          <h1 class="styled-title title">Solve Cube</h1>
+          <p class="styled-description description">find steps to solve your cube automatically</p>
+          <div class="cube-area-component">
+            <div class="center-cube"></div>
+            <div class="active-move">
+              <button class="back">
+                <i class="im im-angle-left"></i>
+              </button>
+              <div class="move-number"></div>
+              <div class="move not-button"></div>
+              <button class="forward">
+                <i class="im im-angle-right"></i>
+              </button>
+            </div>
+            <div class="scramble-notation"></div>
+          </div>
+          <button class="new-scramble styled-button"><i class="fas fa-robot"></i>Solve Cube</button>
+        </div>
+        <div class="column second-column">
+          <h1 class="styled-title title"><span>Set Pieces</span><span>Moves</span></h1>
+          <p class="styled-description description">design the cube you'd like to solve</p>
+          <div class="moves"></div>
+          <div class="set-pieces">
+            <div class="content"></div>
+          </div>
         </div>
       </div>
     </div>
+    {{!-- <div class="page learn" data-page="learn">
+      <div class="meta">
+        <h1 class="learn">Learn</h1>
+      <p>a database of resources to learn more about cubing</p>
+      </div>
+      <div class="list-section">
+        
+      </div>
+
+    </div> --}}
     <div class="page learn construction" data-page="learn">
       <h1>Under Construction</h1>
       <p>We're making improvements to this page and will be back soon.</p>
@@ -285,6 +284,25 @@
     <div class="page about construction" data-page="about">
       <h1>Under Construction</h1>
       <p>We're making improvements to this page and will be back soon.</p>
+    </div>
+
+    <div class="stopwatch closed">
+      <header>
+        <p class="label">Stopwatch</p>
+        <i class="icon im im-angle-up"></i>
+      </header>
+      <div class="stopwatch-container">
+        <div class="time">
+          <span class="digits min"></span><span class="unit">m</span>
+          <span class="digits sec"></span><span class="unit">s</span>
+          <span class="small-digits ms"></span>
+        </div>
+        <div class="buttons">
+          <button class="start-stop styled-button">Start</button>
+          <button class="reset styled-button">Reset</button>
+        </div>
+        <p>Press space to start/stop the stopwatch.</p>
+      </div>
     </div>
 
     <!-- Main script -->

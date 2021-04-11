@@ -1,4 +1,5 @@
 .stopwatch {
+  display: none;
   position: fixed;
   top: calc(100vh - #{bsize(2.75)});
   box-shadow: 0 bsize(0.25) bsize(1.25) rgba($medium-grey, 0.5);
@@ -11,6 +12,9 @@
   background-color: $white;
   border-radius: br-bsize(1.5);
   transition: left 0.5s, top 0.5s;
+}
+.page[data-page='simulator'].active ~ .stopwatch {
+  display: block; // only display in simulator page
 }
 .stopwatch.dragging {
   transition-duration: 0s !important;

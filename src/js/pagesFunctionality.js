@@ -36,6 +36,8 @@ const setPage = (p, updateURL = true) => {
   if (window.location.href !== newURL) {
     history.pushState({}, 'Navigate to New Page', newURL);
   }
+
+  closeNavigationMenu();
 };
 const getPage = () => {
   const url = new URL(window.location.href);
@@ -45,7 +47,9 @@ const getPage = () => {
   }
   return defaultPage;
 };
-setPage(getPage());
+window.addEventListener('load', () => {
+  setPage(getPage());
+});
 
 window.addEventListener('popstate', () => {
   setPage(getPage());

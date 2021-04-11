@@ -36,6 +36,9 @@ const makeMoveAndRefreshImage = (moveNotation) => {
 // openable section DOM for open and close events
 require('./dom/openableSection');
 
+// nav
+require('./dom/nav');
+
 // set pieces section
 const SetPiecesComponent = require('./dom/setPiecesComponent');
 const simulatorPieces = new SetPiecesComponent(document.querySelector('.container .set-pieces .content'), (x, y, z, key, newVal) => {
