@@ -848,10 +848,10 @@ nav.nav {
       height: 40px;
       width: auto;
       transform: scale(0.8);
-      margin-right: 10.4px; }
+      margin-right: 5.6px; }
       @media only screen and (max-width: 1000px) {
         nav.nav > .logo img {
-          margin-right: 10px; } }
+          margin-right: 2px; } }
     nav.nav > .logo h1 {
       margin: 0;
       line-height: 40px;
@@ -862,7 +862,8 @@ nav.nav {
       font-weight: 500; }
       @media only screen and (max-width: 1000px) {
         nav.nav > .logo h1 {
-          padding-right: 24px; } }
+          font-size: 20.8px;
+          padding-right: 8px; } }
   nav.nav > .links {
     float: right;
     font-size: 0;
