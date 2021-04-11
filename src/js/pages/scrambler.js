@@ -78,5 +78,7 @@ newScramble();
 newScrambleBtn.addEventListener('click', () => {
   newScrambleBtn.classList.add('loading');
   newScrambleBtn.blur();
-  newScramble();
+  setTimeout(() => {
+    newScramble();
+  }, 200); // give the illusion that it actually takes time to scramble the cube
 });

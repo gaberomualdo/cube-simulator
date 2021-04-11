@@ -95,7 +95,7 @@ const newSolve = () => {
         cubeArea.remove();
       }
       cubeArea = new CubeAreaComponent(document.querySelector('.page.solver .cube-area-component'));
-      cubeArea.initialize(moves, initialCubeData, 'solver');
+      cubeArea.initialize(moves, initialCubeData, 'solver', false);
 
       document.querySelector('.page.solver > .inner').classList.add('solving');
       solveBtn.innerHTML = '&larr;&nbsp; Solve Another Cube';

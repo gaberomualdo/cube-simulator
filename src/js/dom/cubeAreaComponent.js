@@ -69,7 +69,7 @@ class CubeAreaComponent {
   isRemoved() {
     return this.removed;
   }
-  initialize(movesToMake, initialCubeData, page) {
+  initialize(movesToMake, initialCubeData, page, goToLastMove = true) {
     const cubeElm = this.container.querySelector('.center-cube');
     const notationElm = this.container.querySelector('.scramble-notation');
 
@@ -191,7 +191,11 @@ class CubeAreaComponent {
         });
 
         // go to last move
-        goToMove(amountOfMoves - 1);
+        if (goToLastMove) {
+          goToMove(amountOfMoves - 1);
+        } else {
+          goToMove(-1);
+        }
       }
     });
   }
