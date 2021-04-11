@@ -67,6 +67,7 @@ const newScramble = () => {
       }
       scrambleCubeArea = new CubeAreaComponent(document.querySelector('.page.scrambler .cube-area-component'));
       scrambleCubeArea.initialize(scrambleMoves, initialCubeData, 'scrambler');
+      newScrambleBtn.classList.remove('loading');
     }
   });
 };
@@ -75,6 +76,7 @@ const newScrambleBtn = document.querySelector('.page.scrambler .new-scramble');
 newScramble();
 
 newScrambleBtn.addEventListener('click', () => {
+  newScrambleBtn.classList.add('loading');
   newScrambleBtn.blur();
   newScramble();
 });

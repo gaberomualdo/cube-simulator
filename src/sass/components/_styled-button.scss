@@ -7,6 +7,7 @@
   font-size: bsize(1.15);
   outline: none;
   box-shadow: 0 bsize(0.05) bsize(0.2) rgba($dark-grey, 0.35);
+  position: relative;
 
   backface-visibility: hidden;
 
@@ -14,7 +15,7 @@
   $transition-timing: ease-in-out;
 
   transition: box-shadow $transition-duration $transition-timing, background-color $transition-duration $transition-timing,
-    transform $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
+    color $transition-duration $transition-timing, transform $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
 
   &:not([disabled]) {
     cursor: pointer;
@@ -40,6 +41,37 @@
 
     @include in-phone {
       display: none;
+    }
+  }
+
+  &.loading {
+    touch-action: none;
+    pointer-events: none;
+    opacity: 0.5;
+    color: transparent !important;
+
+    @keyframes loading-spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    &:before {
+      content: '';
+      width: bsize(1);
+      height: bsize(1);
+      border: 2px solid transparent;
+      border-left-color: $dark-grey;
+      border-top-color: $dark-grey;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: loading-spin 0.65s linear 0s infinite;
+      border-radius: 50%;
     }
   }
 }

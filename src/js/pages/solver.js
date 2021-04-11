@@ -55,7 +55,7 @@ refreshCubeImages(toSolve);
 const newSolve = () => {
   sectionElm.innerHTML = '';
 
-  const cube = new Cube();
+  const cube = toSolve;
   const initialCubeData = convertFacesObj(cube.toFacesObj());
 
   const moves = [];
@@ -99,6 +99,8 @@ const newSolve = () => {
 
       document.querySelector('.page.solver > .inner').classList.add('solving');
       solveBtn.innerHTML = '&larr;&nbsp; Solve Another Cube';
+
+      solveBtn.classList.remove('loading');
     }
   });
 };
@@ -106,9 +108,12 @@ const newSolve = () => {
 const solveBtn = document.querySelector('.page.solver .new-scramble');
 
 solveBtn.addEventListener('click', () => {
+  solveBtn.classList.add('loading');
   if (document.querySelector('.page.solver > .inner').classList.contains('solving')) {
     window.location.reload();
   }
   solveBtn.blur();
-  newSolve();
+  setTimeout(() => {
+    newSolve();
+  }, 100); // solving adds blocking time so this additional time is to render the loading time to improve UX slightly.
 });

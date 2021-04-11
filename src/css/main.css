@@ -95,7 +95,7 @@ body {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://cdn.pixabay.com/photo/2020/04/25/09/28/blueprint-5090067_1280.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://cdn.pixabay.com/photo/2019/03/14/22/12/blueprint-4056027_1280.jpg);
   background-size: cover;
   background-position: center;
   min-height: 30rem;
@@ -498,8 +498,9 @@ ul.misc-buttons {
   font-size: 18.4px;
   outline: none;
   box-shadow: 0 0.8px 3.2px rgba(68, 88, 93, 0.35);
+  position: relative;
   backface-visibility: hidden;
-  transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.1s ease-in-out; }
+  transition: box-shadow 0.1s ease-in-out, background-color 0.1s ease-in-out, color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.1s ease-in-out; }
   .styled-button:not([disabled]) {
     cursor: pointer; }
     @media (hover: hover) and (pointer: fine) {
@@ -516,6 +517,30 @@ ul.misc-buttons {
     @media only screen and (max-width: 650px) {
       .styled-button i {
         display: none; } }
+  .styled-button.loading {
+    touch-action: none;
+    pointer-events: none;
+    opacity: 0.5;
+    color: transparent !important; }
+
+@keyframes loading-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); } }
+    .styled-button.loading:before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-left-color: #44585d;
+      border-top-color: #44585d;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: loading-spin 0.65s linear 0s infinite;
+      border-radius: 50%; }
 
 .set-pieces .content .faces-row {
   height: 160px;
