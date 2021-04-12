@@ -11,12 +11,14 @@ footer * {
 }
 footer a {
   text-decoration: none;
+}
+footer a:not(.styled-link) {
   color: inherit;
   border-bottom: 1px dotted $dark-medium-grey;
   cursor: pointer;
   font-weight: 500;
 }
-footer a:hover {
+footer a:not(.styled-link):hover {
   border-bottom-style: solid;
 }
 footer > .row:first-child {
