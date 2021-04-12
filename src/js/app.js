@@ -60,6 +60,7 @@ miscButtons.solveButton.addEventListener('click', async () => {
   miscButtons.solveButton.blur();
   if (!solving && !scrambling) {
     solving = true;
+    cubeImages.disablePerspectiveChange();
     miscButtons.solveButton.classList.add('loading');
     addMarkerToLog('Begin Solve');
     setTimeout(async () => {
@@ -67,6 +68,7 @@ miscButtons.solveButton.addEventListener('click', async () => {
         addMarkerToLog(`End Solve (${solveMoves} moves)`);
         solving = false;
         miscButtons.solveButton.classList.remove('loading');
+        cubeImages.enablePerspectiveChange();
       });
     }, 150); // add some additional time to make sure the loading animation is rendered in time. The solving system creates JavaScript blocking time since it doesn't use a worker, so this is necessary for better UX.
   }
@@ -75,11 +77,13 @@ miscButtons.scrambleButton.addEventListener('click', async () => {
   miscButtons.scrambleButton.blur();
   if (!scrambling && !solving) {
     scrambling = true;
+    cubeImages.disablePerspectiveChange();
     miscButtons.scrambleButton.classList.add('loading');
     addMarkerToLog('Start Scramble');
     await miscButtons.scramble(cube, cubeImages, history);
     addMarkerToLog('End Scramble (20 moves)');
     miscButtons.scrambleButton.classList.remove('loading');
+    cubeImages.enablePerspectiveChange();
     scrambling = false;
   }
 });

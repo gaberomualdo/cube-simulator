@@ -50,6 +50,7 @@ class VisualizedCube {
 
     this.perspectiveSensitivity = 0.4;
     this.changingPerspective = false;
+    this.canChangePerspective = true;
     this.startPerspectivePosition = [-1, -1];
     this.startPerspectiveCameraPosition = [-1, -1];
     document.addEventListener('mouseup', (e) => {
@@ -68,6 +69,9 @@ class VisualizedCube {
     document.addEventListener(
       'touchmove',
       (e) => {
+        if (!this.canChangePerspective) {
+          return;
+        }
         if (this.changingPerspective) {
           e.preventDefault();
         }
@@ -364,6 +368,13 @@ class VisualizedCube {
       this.cameraPosition = [this.startPerspectiveCameraPosition[0] + changeX, this.startPerspectiveCameraPosition[1] + changeY];
       this.updateCubePerspective();
     }
+  }
+
+  disablePerspectiveChange() {
+    this.canChangePerspective = false;
+  }
+  enablePerspectiveChange() {
+    this.canChangePerspective = true;
   }
 }
 

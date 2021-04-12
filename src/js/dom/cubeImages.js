@@ -71,4 +71,14 @@ module.exports = {
   setRefreshCubeCallback: (callback) => {
     refreshCubeCallback = callback;
   },
+
+  // enable & disable perspective change
+  enablePerspectiveChange: () => {
+    cubeFront.enablePerspectiveChange();
+    cubeBack.enablePerspectiveChange();
+  },
+  disablePerspectiveChange: () => {
+    cubeFront.disablePerspectiveChange();
+    cubeBack.disablePerspectiveChange();
+  },
 };
