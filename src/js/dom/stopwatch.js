@@ -117,4 +117,13 @@ reset.addEventListener('click', () => {
   updateStopStartBtn();
 });
 
+window.addEventListener('scroll', () => {
+  const hiddenThresholdPx = 50;
+  if (window.pageYOffset > hiddenThresholdPx) {
+    stopwatch.classList.add('hidden');
+  } else {
+    stopwatch.classList.remove('hidden');
+  }
+});
+
 updateTime(0, 0, 0);

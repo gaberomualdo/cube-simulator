@@ -64,6 +64,7 @@
       cursor: pointer;
       transition: opacity 0.2s;
       padding: 0 bsize(0.1);
+      outline: none;
 
       &.disabled {
         pointer-events: none;
@@ -93,6 +94,7 @@
     color: $dark-grey;
     line-height: 1.2;
     position: relative;
+    outline: none;
 
     &:not(.not-button) {
       cursor: pointer;

@@ -11,7 +11,12 @@
   left: bsize(0.8);
   background-color: $white;
   border-radius: br-bsize(1.5);
-  transition: left 0.5s, top 0.5s;
+  transition: left 0.5s, top 0.5s, opacity 0.2s;
+
+  &.hidden {
+    opacity: 0;
+    top: 100vh !important;
+  }
 }
 .page[data-page='simulator'].active ~ .stopwatch {
   display: block; // only display in simulator page

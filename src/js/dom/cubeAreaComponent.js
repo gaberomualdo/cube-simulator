@@ -17,8 +17,10 @@ const colors = {
 };
 
 const moveQueue = [];
+let currentlyMoving = false;
 
 const makeMove = (move, cubeView, cubeData) => {
+  currentlyMoving = true;
   const moveDirection = move.length === 2 ? -1 : 1;
   const faces = {
     b: 'back',
@@ -32,6 +34,10 @@ const makeMove = (move, cubeView, cubeData) => {
 
   cubeView.moveCubeFace(face, moveDirection, () => {
     cubeView.cubeData = cubeData;
+
+    setTimeout(() => {
+      currentlyMoving = false;
+    }, 50);
   });
 };
 const setView = (cubeData, cubeView) => {
@@ -92,6 +98,9 @@ class CubeAreaComponent {
     const scrambleMoves = [];
 
     const goToMove = (i) => {
+      if (currentlyMoving) {
+        return;
+      }
       const btn = this.container.querySelector('.scramble-notation > button[data-idx="' + i + '"]');
       const activeBtn = this.container.querySelector('.scramble-notation > button.active');
       let madeMove = false;

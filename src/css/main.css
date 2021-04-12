@@ -1197,7 +1197,8 @@ nav.nav {
       opacity: 0.5;
       cursor: pointer;
       transition: opacity 0.2s;
-      padding: 0 1.6px; }
+      padding: 0 1.6px;
+      outline: none; }
       .cube-area-component .active-move button.disabled {
         pointer-events: none;
         opacity: 0.1; }
@@ -1218,7 +1219,8 @@ nav.nav {
     border-radius: 4px;
     color: #44585d;
     line-height: 1.2;
-    position: relative; }
+    position: relative;
+    outline: none; }
     .cube-area-component .scramble-notation button:not(.not-button),
     .cube-area-component .active-move .move:not(.not-button) {
       cursor: pointer;
@@ -1265,7 +1267,10 @@ nav.nav {
   left: 12.8px;
   background-color: #ffffff;
   border-radius: 6px;
-  transition: left 0.5s, top 0.5s; }
+  transition: left 0.5s, top 0.5s, opacity 0.2s; }
+  .stopwatch.hidden {
+    opacity: 0;
+    top: 100vh !important; }
 
 .page[data-page='simulator'].active ~ .stopwatch {
   display: block; }
