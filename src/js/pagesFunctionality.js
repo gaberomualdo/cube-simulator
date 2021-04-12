@@ -19,6 +19,7 @@ const setPage = (p, updateURL = true) => {
   document.querySelectorAll(`[data-page='${p}']`).forEach((e) => {
     e.classList.add('active');
   });
+  document.querySelector('nav.nav > .logo h1 span.page-name').innerText = capitalize(p);
 
   const url = new URL(window.location.href);
   if (p.length > 0) {

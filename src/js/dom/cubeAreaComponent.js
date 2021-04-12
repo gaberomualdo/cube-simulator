@@ -16,6 +16,8 @@ const colors = {
   d: 'yellow',
 };
 
+const moveQueue = [];
+
 const makeMove = (move, cubeView, cubeData) => {
   const moveDirection = move.length === 2 ? -1 : 1;
   const faces = {
