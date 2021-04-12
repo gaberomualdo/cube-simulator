@@ -1377,7 +1377,11 @@ nav.nav {
 footer {
   background-color: #242f31;
   margin-top: 24px;
-  padding: 20px; }
+  padding: 20px;
+  transition: padding-right ease-in-out 0.35s; }
+  @media only screen and (min-width: 1321px) {
+    body.log-open footer {
+      padding-right: calc(320px + 20px); } }
   footer * {
     color: #fff; }
   footer a {

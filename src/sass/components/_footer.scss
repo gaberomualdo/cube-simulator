@@ -3,6 +3,14 @@ footer {
   margin-top: bsize(1.5);
   padding: bsize(1.25);
 
+  transition: padding-right ease-in-out $log-transition-duration;
+
+  @media only screen and (min-width: $min-log-change-width) {
+    body.log-open & {
+      padding-right: calc(#{$log-width} + #{bsize(1.25)});
+    }
+  }
+
   * {
     color: #fff;
   }
