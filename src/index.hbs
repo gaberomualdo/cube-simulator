@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Viewport Meta Tags -->
+    {{!-- Viewport Meta Tags --}}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-    <!-- Title -->
+    {{!-- Title --}}
     <title>{{siteDetails.name}}</title>
 
-    <!-- SEO -->
+    {{!-- SEO --}}
     <script type="application/ld+json">
     {
       "@type": "WebSite",
@@ -44,7 +44,7 @@
     <meta property="og:site_name" content="{{siteDetails.name}}">
     <meta property="og:description" content="{{siteDetails.description}}">
 
-    <!-- Favicons -->
+    {{!-- Favicons --}}
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />
@@ -67,11 +67,11 @@
 
     <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
 
-    <!-- Theme color -->
+    {{!-- Theme color --}}
     <meta name="msapplication-TileColor" content="#ecf0f1" />
     <meta name="theme-color" content="#ecf0f1" />
 
-    <!-- PWA -->
+    {{!-- PWA --}}
     <link rel="manifest" href="manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#f1f4f5">
@@ -79,10 +79,10 @@
     <meta name="theme-color" content="#f1f4f5" />
 
 
-    <!-- Main stylesheet -->
+    {{!-- Main stylesheet --}}
     <link rel="stylesheet" href="main.{{cacheVersion}}.css" />
 
-    <!-- Icon font(s) -->
+    {{!-- Icon font(s) --}}
     <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
     <script src="https://kit.fontawesome.com/5ebdf346fa.js" crossorigin="anonymous"></script>
   </head>
@@ -96,8 +96,8 @@
       <button class="menu-btn" aria-label="Toggle Mobile Navigation Menu">
         <div class="icon">
           <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </button>
       <div class="links">
@@ -307,7 +307,28 @@
       </div>
     </div>
 
-    <!-- Main script -->
+    {{!-- footer --}}
+    <footer>
+      <div class="row with-text">
+        <div class="left">
+          <p>&copy; 2021&ndash;Present <strong>cubesimulator.com</strong></p>
+          <p>Built by <a href="https://gabrielromualdo.com/" target="_blank" rel="noreferred noopener">Gabriel Romualdo</a></p>
+        </div>
+        <div class="center">
+          <img src="icon.png" alt="Logo" />
+          <h1>{{siteDetails.name}}</h1>
+        </div>
+        <div class="right">
+            <p><a>Homepage</a></p>
+            <p><a>About</a></p>
+        </div>
+      </div>
+      <div class="row with-text">
+        <p>Questions, comments, or problems? Contact <a href="">support@cubesimulator.com</a>.</p>
+      </div>
+    </footer>
+
+    {{!-- Main script --}}
     <script>
       const SITE_TITLE = (() => {
         const e = document.createElement('p');
@@ -317,7 +338,7 @@
     </script>
     <script src="main.{{cacheVersion}}.js"></script>
 
-    <!-- Service Worker and PWA -->
+    {{!-- Service Worker and PWA --}}
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
