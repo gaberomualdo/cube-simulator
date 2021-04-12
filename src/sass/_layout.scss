@@ -98,7 +98,9 @@ body {
 
 // full height
 .page.full-height {
-  height: calc(var(--full-height) - #{bsize(3.5)} - #{bsize(1.5)});
+  @include not-in-mobile-and-phone {
+    height: calc(var(--full-height) - #{bsize(3.5)} - #{bsize(1.5)} - #{bsize(1.5)});
+  }
 }
 
 // under construction
